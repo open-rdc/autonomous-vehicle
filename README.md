@@ -1,6 +1,8 @@
 AutonomousVehicleWithMegaRover
 ==============================
 
+## About
+
 This program is developed for Tsukuba Challenge 2013.
 
 Tsukuba Challenge Web Page<br>
@@ -14,6 +16,12 @@ http://www.hayashibara.net/tsukuba_challenge
 Yasuo Hayashibara
 Chiba Institute of Technology<br>
 http://www.hayashibara.net/
+
+## License
+
+Copyright (c) 2013, open-rdc. (MIT License)
+
+See LICENSE for more info.
 
 ## Bugs
 
