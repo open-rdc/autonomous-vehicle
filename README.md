@@ -1,6 +1,3 @@
-AutonomousVehicleWithMegaRover
-==============================
-
 ## About
 
 This program is developed for Tsukuba Challenge 2013.
