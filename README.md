@@ -14,3 +14,7 @@ http://www.hayashibara.net/tsukuba_challenge
 Yasuo Hayashibara
 Chiba Institute of Technology<br>
 http://www.hayashibara.net/
+
+## Bugs
+
+If you find a bug please let me know by opening an issue at: https://github.com/open-rdc/autonomous-vehicle/issues
