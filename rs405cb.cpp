@@ -245,12 +245,12 @@ short RSGetAngle( HANDLE hComm )
 		return -2;
 	}
 
-	// 受信データの確認
-	sum = readbuf[2];
+	// 受信データの確認(サムチェック)
 	for( i = 3; i < 26; i++ ){
 		sum = sum ^ readbuf[i];
 	}
-	if( sum ){
+	//チェックサムはバッファの27バイト目に入ってる
+	if( sum != readbuf[26] ){
 		printf("sumError\n");
 		// チェックサムエラー
 		return -3;
