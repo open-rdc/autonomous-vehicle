@@ -16,7 +16,7 @@ http://www.hayashibara.net/
 
 ## License
 
-Copyright (c) 2013, Robot Design and Control Lab. (MIT License)
+Copyright (c) 2013-2014, Robot Design and Control Lab. (MIT License)
 
 See LICENSE for more info.
 
