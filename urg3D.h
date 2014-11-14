@@ -6,7 +6,7 @@
 class urg3D
 {
 private:
-	static const int SERVO_OFFSET = -5;		// サーボのオフセット(取付け角度を見ながら設定)
+	static const int SERVO_OFFSET = 0;		// サーボのオフセット(取付け角度を見ながら設定)
 	static const int MAX_NUM = 100000;		// (1081点 * 20回)/秒 - 現時点で5秒程度のデータを保存可能な領域
 
 	CURG urg;								// URGのクラス

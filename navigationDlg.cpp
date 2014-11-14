@@ -247,6 +247,8 @@ void CnavigationDlg::OnClose()
 	CDialog::OnClose();
 }
 
+#define len(x,y) ((x)*(x)+(y)*(y))
+
 /*!
  * @brief 一定周期(100ms)で呼び出されるハンドラ
  * あまり正確な周期では呼び出されない
@@ -254,10 +256,10 @@ void CnavigationDlg::OnClose()
 void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	// 位置の補正に用いるデータの範囲（ロボット座標）
-	static const int search_x0 =      0, search_x1 = 14000;			//! 前後方向の探索範囲(mm)	【ToDo: もっと探索範囲を広げた方が良いのではないか？】
+	static const int search_x0 =    200, search_x1 = 14000;			//! 前後方向の探索範囲(mm)	【ToDo: もっと探索範囲を広げた方が良いのではないか？】
 	static const int search_y0 = -14000, search_y1 = 14000;			//! 左右方向の探索範囲(mm)
 
-	static const int search_z0 =      0, search_z1 =  2000;			//! 上下方向の探索範囲(mm) 屋内用
+	static const int search_z0 =        0, search_z1     = 2000;	//! 上下方向の探索範囲(mm) 屋内用
 //	static const int search_z0     = 1900, search_z1     = 2000;	//! 上下方向の探索範囲(mm) 屋外用
 	static const int search_obs_z0 =    0, search_obs_z1 = 1000;	//! 障害物を探す上下方向の探索範囲(mm)　URGの高さが基準　【ToDo: 上まで探索したほうが良いのではないか？】
 	static const int search_tar_z0 =  200, search_tar_z1 = 400;		//! ターゲットを探す上下方向の探索範囲(mm)　URGの高さが基準
@@ -443,6 +445,10 @@ void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 			(p[i].y < search_y0)||(p[i].y > search_y1)) continue;
 		int x = (int)(p[i].x * cos(odoThe) - p[i].y * sin(odoThe) + odoX * 1000.0f);		// ナビゲーションにはオドメトリベースの連続的なデータを送る
 		int y = (int)(p[i].x * sin(odoThe) + p[i].y * cos(odoThe) + odoY * 1000.0f);
+		int z = (int)(p[i].z                                                      );
+		if (navi_num){
+			if (len((float)(x - naviPos[navi_num - 1].x), (float)(y - naviPos[navi_num - 1].y)) < 10000) continue;
+		}
 		naviPos[navi_num].x = x, naviPos[navi_num].y = y, naviPos[navi_num].z = p[i].z;
 		navi_num ++;
 		

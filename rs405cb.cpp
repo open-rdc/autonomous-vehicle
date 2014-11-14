@@ -246,6 +246,7 @@ short RSGetAngle( HANDLE hComm )
 	}
 
 	// 受信データの確認(サムチェック)
+	sum = readbuf[2];
 	for( i = 3; i < 26; i++ ){
 		sum = sum ^ readbuf[i];
 	}

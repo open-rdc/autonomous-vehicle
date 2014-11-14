@@ -69,7 +69,7 @@ int navi::Init()
 	estX0 = estY0 = estThe0 = 0;
 	estX = estY = estThe = 0;	
 	est_pos.Init(0,0,0);									// 自己位置推定の初期化
-	periodOfMCL = 5;										// ウェイポイントを５つ通過すると自己位置推定（初期値）
+	periodOfMCL = 1;										// ウェイポイントを５つ通過すると自己位置推定（初期値）
 	counterOfMCL = 0;
 
 	return 0;

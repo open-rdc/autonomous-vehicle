@@ -5,3 +5,7 @@ obj/
 *.suo
 *.ncb
 *.user
+*.bmp
+*.dll
+*.txt
+*.csv
