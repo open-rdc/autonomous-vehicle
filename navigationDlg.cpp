@@ -145,6 +145,10 @@ BOOL CnavigationDlg::OnInitDialog()
 #endif
 
 	timeBeginPeriod(1);
+#ifdef USE_IMU
+	IMU.Init(IMU_COM_PORT);
+	IMU.Reset();
+#endif
 #ifdef USE_URG3D
 	urg3d.Init();
 	urg3d.SetTiltAngle(0, 45, 1);
@@ -154,9 +158,6 @@ BOOL CnavigationDlg::OnInitDialog()
 	mega_rover.servoOn(30);			// Gainを設定
 	mega_rover.setSpeedControlMode(1);
 	mega_rover.setDelta(20,20);		// 加減速の程度
-#endif
-#ifdef USE_IMU
-	IMU.Init(IMU_COM_PORT);
 #endif
 #ifdef USE_CAMERA
 	ip.init();
@@ -256,7 +257,7 @@ void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 	static const int search_x0 =      0, search_x1 = 14000;			//! 前後方向の探索範囲(mm)	【ToDo: もっと探索範囲を広げた方が良いのではないか？】
 	static const int search_y0 = -14000, search_y1 = 14000;			//! 左右方向の探索範囲(mm)
 
-	static const int search_z0     = 1800, search_z1     = 1900;	//! 上下方向の探索範囲(mm) 屋内用
+	static const int search_z0 =      0, search_z1 =  2000;			//! 上下方向の探索範囲(mm) 屋内用
 //	static const int search_z0     = 1900, search_z1     = 2000;	//! 上下方向の探索範囲(mm) 屋外用
 	static const int search_obs_z0 =    0, search_obs_z1 = 1000;	//! 障害物を探す上下方向の探索範囲(mm)　URGの高さが基準　【ToDo: 上まで探索したほうが良いのではないか？】
 	static const int search_tar_z0 =  200, search_tar_z1 = 400;		//! ターゲットを探す上下方向の探索範囲(mm)　URGの高さが基準

@@ -9,6 +9,8 @@ public:
 	virtual ~navi();				// デストラクタ
 
 private:
+	int periodOfMCL;				//! 自己位置推定を行う周期（ウェイポイントの数で指定）
+	int counterOfMCL;				//! 自己位置推定を行う周期を調整するカウンタ
 	int is_record;					//! 保存モードかどうかのフラグ
 	int is_play;					//! 再生モードかどうかのフラグ
 	int step;						//! waypointの番号
@@ -82,6 +84,7 @@ private:
 public:
 	int Init();						// 初期化
 	int Close();					// 終了処理
+	int setPeriodOfMCL(int period);	// 自己位置推定を行う周期を指定(ゴールの数で指定）
 	int setOdometory(float x, float y, float the);	// オドメトリを設定する
 	int setStep(int num);			// waypointの番号をセットする
 	int getStep();					// waypointの番号を取得する

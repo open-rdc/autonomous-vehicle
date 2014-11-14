@@ -18,9 +18,11 @@ public:
 
 private:
 	// 位置の補正に用いるデータの範囲（ロボットを原点とするワールド座標）
-	static const int search_x0 = -14000, search_x1 = 14000;		// 前後方向の探索範囲(mm)
-	static const int search_y0 = -14000, search_y1 = 14000;		// 左右方向の探索範囲(mm)
-	static const int dot_per_mm = 100;							// 一つのピクセルの距離(mm)*/
+	int search_x0, search_x1;							// 前後方向の探索範囲(mm)
+	int search_y0, search_y1;							// 左右方向の探索範囲(mm)
+	int search_z0, search_z1;							// 上下方向の探索範囲(mm)
+	int dot_per_mm_xy;									// 一つのピクセルのxy方向の距離(mm)
+	int dot_per_mm_z;									// 一つのピクセルのz方向の距離(mm)
 
 	// リファレンスデータ
 	static const int MAX_REF_DATA = 10000;
@@ -47,6 +49,7 @@ public:
 	int Init(float x, float y, float the);				// 初期化
 	int Close();										// 終了処理
 
+	int setArea(int search_x0, int search_y0, int search_z0, int search_x1, int search_y1, int search_z1, int dot_per_mm_xy, int dot_per_mm_z);
 	int setOdometory(float x, float y, float the);		// オドメトリデータの入力
 	int setDeltaPosition(float dx, float dy, float dthe);
 														// 推定した移動量の入力

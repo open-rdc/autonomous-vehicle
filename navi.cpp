@@ -69,6 +69,8 @@ int navi::Init()
 	estX0 = estY0 = estThe0 = 0;
 	estX = estY = estThe = 0;	
 	est_pos.Init(0,0,0);									// 自己位置推定の初期化
+	periodOfMCL = 5;										// ウェイポイントを５つ通過すると自己位置推定（初期値）
+	counterOfMCL = 0;
 
 	return 0;
 }
@@ -83,6 +85,16 @@ int navi::Close()
 	est_pos.Close();										// 自己位置推定の終了処理
 
 	return 0;
+}
+
+/*!
+ * @brief 自己位置推定を行う周期を指定(ゴールの数で指定）
+ *
+ * @param[in] period 自己位置推定を行うゴールの数
+ */
+int navi::setPeriodOfMCL(int period)
+{
+	periodOfMCL = period;
 }
 
 /*!
@@ -128,14 +140,18 @@ int navi::setOdometory(float x, float y, float the)
 				return 1;											// ゴールに到着
 			}
 			step ++;												// waypoint番号のインクリメント
-			if (WAIT_TIMEOUT != WaitForSingleObject(hThread, 0)){	// スレッドが終了している場合
-																	// 次の目標位置，データのロード
-				selfLocalization(x, y, the, dx, dy, dthe0);			// 自己位置推定の取得及び処理の開始
-				odoX0 = x, odoY0 = y, odoThe0 = the;				// ウェイポイント通過時のオドメトリを保存（相対的な値を取得するだけなので，ずれていても問題なし）
-				estX0 += dx, estY0 += dy, estThe0 += dthe0;			// ウェイポイント通過時の位置の推定値（次回上書きされる）
-				dx0 = dy0 = dthe0 = dx = dy = 0;					// 次の自己位置の計算のためにクリア
+			counterOfMCL ++;
+			if (counterOfMCL >= periodOfMCL){
+				counterOfMCL = 0;
+				if (WAIT_TIMEOUT != WaitForSingleObject(hThread, 0)){	// スレッドが終了している場合
+																		// 次の目標位置，データのロード
+					selfLocalization(x, y, the, dx, dy, dthe0);			// 自己位置推定の取得及び処理の開始
+					odoX0 = x, odoY0 = y, odoThe0 = the;				// ウェイポイント通過時のオドメトリを保存（相対的な値を取得するだけなので，ずれていても問題なし）
+					estX0 += dx, estY0 += dy, estThe0 += dthe0;			// ウェイポイント通過時の位置の推定値（次回上書きされる）
+					dx0 = dy0 = dthe0 = dx = dy = 0;					// 次の自己位置の計算のためにクリア
+				}
+				data_no = 0;											// データのクリア
 			}
-			data_no = 0;											// データのクリア
 		}
 		if (is_search_object){
 			if (isPassSearchObject(estX, estY, estThe)){			// 探索対象が横に来た時
@@ -947,7 +963,7 @@ int navi::rerouteProcess()
 				break;
 					}
 			case MOVE_SIDE:{
-				if (!moveForward(0.282, rerouteX0, rerouteY0)) reroute_mode ++;
+				if (!moveForward(0.282f, rerouteX0, rerouteY0)) reroute_mode ++;
 				break;
 					}
 			case TURN_FORWARD:{
@@ -956,7 +972,7 @@ int navi::rerouteProcess()
 					}
 			case MOVE_FORWARD:{
 				if (is_need_stop) reroute_mode = TURN_SIDE;
-				if (!moveForward(0.5, rerouteX0, rerouteY0)) reroute_mode ++;
+				if (!moveForward(0.5f, rerouteX0, rerouteY0)) reroute_mode ++;
 				break;
 					}
 			case TURN_RETURN:{
@@ -964,7 +980,7 @@ int navi::rerouteProcess()
 				break;
 					}
 			case MOVE_RETURN:{
-				if (!moveForward(0.282, rerouteX0, rerouteY0)) reroute_mode ++;
+				if (!moveForward(0.282f, rerouteX0, rerouteY0)) reroute_mode ++;
 				break;
 					}
 			case TURN_WAYPOINT:{

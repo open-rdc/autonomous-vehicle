@@ -34,6 +34,8 @@ float maxPI(float rad){
  * @brief コンストラクタ
  */
 estimatePos::estimatePos():
+search_x0(-14000), search_x1(14000), search_y0(-14000), search_y1(14000),
+search_z0(0), search_z1(2000),dot_per_mm_xy(100), dot_per_mm_z(200),
 odoX(0), odoY(0), odoThe(0), ref_data_no(0), is_ref_data_full(0), data_no(0),
 estX(0), estY(0), estThe(0), estVar(0), coincidence(0)
 {
@@ -89,6 +91,31 @@ int estimatePos::Init(float x, float y, float the)
 int estimatePos::Close()
 {
 	return 0;
+}
+
+
+/*
+ * @brief エリアを設定する
+ *
+ * @brief[in] search_x0 探索エリアのx方向の最小値(mm)
+ * @brief[in] search_y0 探索エリアのy方向の最小値(mm)
+ * @brief[in] search_z0 探索エリアのz方向の最小値(mm)
+ * @brief[in] search_x1 探索エリアのx方向の最大値(mm)
+ * @brief[in] search_y1 探索エリアのy方向の最大値(mm)
+ * @brief[in] search_z1 探索エリアのz方向の最大値(mm)
+ * @brief[in] dot_per_mm_xy xy方向の1ドットの幅(mm)
+ * @brief[in] dot_per_mm_z z方向の1ドットの幅(mm)
+ */
+int estimatePos::setArea(int search_x0, int search_y0, int search_z0, int search_x1, int search_y1, int search_z1, int dot_per_mm_xy, int dot_per_mm_z)
+{
+	this->search_x0 = search_x0;
+	this->search_y0 = search_y0;
+	this->search_z0 = search_z0;
+	this->search_x1 = search_x1;
+	this->search_y1 = search_y1;
+	this->search_z1 = search_z1;
+	this->dot_per_mm_xy = dot_per_mm_xy;
+	this->dot_per_mm_z = dot_per_mm_z;
 }
 
 
@@ -247,7 +274,7 @@ float estimatePos::gaussian()
 	return s * cos(t);											// 標準正規分布に従う擬似乱数
 }
 
-
+#define map(x,y,z) map[x + y * num_y + z * num_x * num_y]
 /*!
  * @brief パーティクルの評価とソート
  *
@@ -255,18 +282,21 @@ float estimatePos::gaussian()
  */
 int estimatePos::evaluate()
 {
-	static const int point_wide = 4;							// 得点を与える隣の数
-	static const int point[point_wide + 1] = {16,8,4,2,1};		// 与える得点
-	static const int wide = point_wide * 2 + 1;					// テーブルのx方向のサイズ
-	static char table[wide][wide];								// 得点のテーブル
+	const int point_wide = 4;							// 得点を与える隣の数
+	const int point[point_wide + 1] = {16,8,4,2,1};		// 与える得点
+	const int wide = point_wide * 2 + 1;				// テーブルのx方向のサイズ
+	char table[wide][wide];								// 得点のテーブル
 
-	static const int num_x = (search_x1 - search_x0)/dot_per_mm;
-	static const int num_y = (search_y1 - search_y0)/dot_per_mm;
-	static const int min_x = search_x0 / dot_per_mm;
-	static const int max_x = search_x1 / dot_per_mm;
-	static const int min_y = search_y0 / dot_per_mm;
-	static const int max_y = search_y1 / dot_per_mm;
-	static char map[num_y][num_x];
+	int num_x = (search_x1 - search_x0)/dot_per_mm_xy;
+	int num_y = (search_y1 - search_y0)/dot_per_mm_xy;
+	int num_z = (search_z1 - search_z0)/dot_per_mm_z;
+	int min_x = search_x0 / dot_per_mm_xy;
+	int max_x = search_x1 / dot_per_mm_xy;
+	int min_y = search_y0 / dot_per_mm_xy;
+	int max_y = search_y1 / dot_per_mm_xy;
+	int min_z = search_z0 / dot_per_mm_z;
+	int max_z = search_z1 / dot_per_mm_z;
+	char *map = (char *)malloc(num_x * num_y * num_z);
 
 	// テーブルの作成
 	for(int i = 0; i < wide; i ++){
@@ -281,15 +311,17 @@ int estimatePos::evaluate()
 	if (is_ref_data_full) ref_no = MAX_REF_DATA;				// 参照するデータの数
 
 	for(int i = 0;i < ref_no; i ++){
-		int x = (int)((refData[i].x - estX * 1000) / dot_per_mm) - min_x;		// マップ上の位置を計算
-		int y = (int)((refData[i].y - estY * 1000) / dot_per_mm) - min_y;		
+		int x = (int)((refData[i].x - estX * 1000) / dot_per_mm_xy) - min_x;		// マップ上の位置を計算
+		int y = (int)((refData[i].y - estY * 1000) / dot_per_mm_xy) - min_y;		
+		int z = (int)((refData[i].z        * 1000) / dot_per_mm_z ) - min_z;
 		if ((x < point_wide)||(x >= (num_x - point_wide))||
 			(y < point_wide)||(y >= (num_y - point_wide))) continue;
 		for(int yp = 0; yp < wide; yp ++){
 			for(int xp = 0; xp < wide; xp ++){
 				int xt = x + (xp - point_wide);
 				int yt = y + (yp - point_wide);
-				map[yt][xt] = max(map[yt][xt], table[yp][xp]);	// より評価の高いものを採用
+				int zt = z;
+				map(xt, yt, zt) = max(map(xt, yt, zt), table[yp][xp]);	// より評価の高いものを採用
 			}			
 		}
 	}
@@ -309,10 +341,12 @@ int estimatePos::evaluate()
 			// 計測データをパーティクルの位置を基準に変換
 			p.x = (int)(dx * cos(pthe) - dy * sin(pthe) + px);
 			p.y = (int)(dx * sin(pthe) + dy * cos(pthe) + py);
-			int xt = (int)((p.x - estX * 1000) / dot_per_mm) - min_x;	// マップ上の位置を計算
-			int yt = (int)((p.y - estY * 1000) / dot_per_mm) - min_y;
+			p.z = (int)data[j].z;
+			int xt = (int)((p.x - estX * 1000) / dot_per_mm_xy) - min_x;	// マップ上の位置を計算
+			int yt = (int)((p.y - estY * 1000) / dot_per_mm_xy) - min_y;
+			int zt = (int)((p.z              ) / dot_per_mm_z ) - min_z;
 			if ((xt >= 0)&&(xt < num_x)&&(yt >= 0)&&(yt < num_y)){
-				particle[i].eval += map[yt][xt];
+				particle[i].eval += map(xt, yt, zt);
 			}
 		}
 	}
@@ -422,7 +456,7 @@ int estimatePos::getReferenceArea(int *x_min, int *y_min, int *x_max, int *y_max
 	*y_min = search_y0;
 	*x_max = search_x1;
 	*y_max = search_y1;
-	*dot_per_mm = this->dot_per_mm;
+	*dot_per_mm = this->dot_per_mm_xy;
 
 	return 0;
 }
