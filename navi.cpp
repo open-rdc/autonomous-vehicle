@@ -95,6 +95,8 @@ int navi::Close()
 int navi::setPeriodOfMCL(int period)
 {
 	periodOfMCL = period;
+
+	return 0;
 }
 
 /*!

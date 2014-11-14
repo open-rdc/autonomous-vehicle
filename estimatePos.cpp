@@ -116,6 +116,8 @@ int estimatePos::setArea(int search_x0, int search_y0, int search_z0, int search
 	this->search_z1 = search_z1;
 	this->dot_per_mm_xy = dot_per_mm_xy;
 	this->dot_per_mm_z = dot_per_mm_z;
+
+	return 0;
 }
 
 
@@ -274,7 +276,7 @@ float estimatePos::gaussian()
 	return s * cos(t);											// 標準正規分布に従う擬似乱数
 }
 
-#define map(x,y,z) map[x + y * num_y + z * num_x * num_y]
+#define map(x,y,z) map[x + y * num_x + z * num_x * num_y]
 /*!
  * @brief パーティクルの評価とソート
  *
@@ -313,7 +315,7 @@ int estimatePos::evaluate()
 	for(int i = 0;i < ref_no; i ++){
 		int x = (int)((refData[i].x - estX * 1000) / dot_per_mm_xy) - min_x;		// マップ上の位置を計算
 		int y = (int)((refData[i].y - estY * 1000) / dot_per_mm_xy) - min_y;		
-		int z = (int)((refData[i].z        * 1000) / dot_per_mm_z ) - min_z;
+		int z = (int)((refData[i].z              ) / dot_per_mm_z ) - min_z;
 		if ((x < point_wide)||(x >= (num_x - point_wide))||
 			(y < point_wide)||(y >= (num_y - point_wide))) continue;
 		for(int yp = 0; yp < wide; yp ++){
@@ -363,6 +365,7 @@ int estimatePos::evaluate()
 	} else {
 		coincidence = 0;
 	}
+	free(map);
 	return 0;
 }
 
