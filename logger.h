@@ -1,17 +1,17 @@
-#pragma once
+ï»¿#pragma once
 
 class logger
 {
 public:
-	logger(void);											// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~logger(void);											// ƒfƒXƒgƒ‰ƒNƒ^
-	static void Init(CString filename);						// ‰Šú‰»
-	static void Write(const char* str, ...);				// ƒƒOƒtƒ@ƒCƒ‹‚Ö‚Ì’Ç‰Á‘‚«‚İiƒ^ƒCƒ€ƒXƒ^ƒ“ƒv—Lj
-	static void WriteWithoutTime(const char* str, ...);		// ƒƒOƒtƒ@ƒCƒ‹‚Ö‚Ì’Ç‰Á‘‚«‚İiƒ^ƒCƒ€ƒXƒ^ƒ“ƒv–³j
-	static void Close();									// I—¹ˆ—
+	logger(void);											// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~logger(void);											// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	static void Init(CString filename);						// åˆæœŸåŒ–
+	static void Write(const char* str, ...);				// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®è¿½åŠ æ›¸ãè¾¼ã¿ï¼ˆã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—æœ‰ï¼‰
+	static void WriteWithoutTime(const char* str, ...);		// ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®è¿½åŠ æ›¸ãè¾¼ã¿ï¼ˆã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ç„¡ï¼‰
+	static void Close();									// çµ‚äº†å‡¦ç†
 protected:
-	static FILE* fp;										//! ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
+	static FILE* fp;										//! ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
 };
 
-#define LOG( ... ) { logger::Write( __VA_ARGS__ ); }							// ƒƒO‘‚«‚İƒ}ƒNƒiƒ^ƒCƒ€ƒXƒ^ƒ“ƒv—Lj
-#define LOG_WITHOUT_TIME( ... ) { logger::WriteWithoutTime( __VA_ARGS__ ); }	// ƒƒO‘‚«‚İƒ}ƒNƒiƒ^ƒCƒ€ƒXƒ^ƒ“ƒv–³j
+#define LOG( ... ) { logger::Write( __VA_ARGS__ ); }							// ãƒ­ã‚°æ›¸ãè¾¼ã¿ãƒã‚¯ãƒ­ï¼ˆã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—æœ‰ï¼‰
+#define LOG_WITHOUT_TIME( ... ) { logger::WriteWithoutTime( __VA_ARGS__ ); }	// ãƒ­ã‚°æ›¸ãè¾¼ã¿ãƒã‚¯ãƒ­ï¼ˆã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ç„¡ï¼‰

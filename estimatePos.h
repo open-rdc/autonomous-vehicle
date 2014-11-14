@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file  estimatePos.h
- * @brief ƒ‚ƒ“ƒeƒJƒ‹ƒ©ŒÈˆÊ’u„’èƒvƒƒOƒ‰ƒ€
+ * @brief ãƒ¢ãƒ³ãƒ†ã‚«ãƒ«ãƒ­è‡ªå·±ä½ç½®æ¨å®šãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @date 2013.10.31
  * @author Y.Hayashibara
  */
@@ -8,68 +8,68 @@
 #pragma once
 #include "dataType.h"
 
-float maxPI(float rad);									// Šp“x‚ğ-PI`PI‚É•ÏŠ·‚·‚é‚½‚ß‚ÌŠÖ”
+float maxPI(float rad);									// è§’åº¦ã‚’-PIï½PIã«å¤‰æ›ã™ã‚‹ãŸã‚ã®é–¢æ•°
 
 class estimatePos
 {
 public:
-	estimatePos();										// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~estimatePos();								// ƒfƒXƒgƒ‰ƒNƒ^
+	estimatePos();										// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~estimatePos();								// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 private:
-	// ˆÊ’u‚Ì•â³‚É—p‚¢‚éƒf[ƒ^‚Ì”ÍˆÍiƒƒ{ƒbƒg‚ğŒ´“_‚Æ‚·‚éƒ[ƒ‹ƒhÀ•Wj
-	static const int search_x0 = -14000, search_x1 = 14000;		// ‘OŒã•ûŒü‚Ì’Tõ”ÍˆÍ(mm)
-	static const int search_y0 = -14000, search_y1 = 14000;		// ¶‰E•ûŒü‚Ì’Tõ”ÍˆÍ(mm)
-	static const int dot_per_mm = 100;							// ˆê‚Â‚ÌƒsƒNƒZƒ‹‚Ì‹——£(mm)*/
+	// ä½ç½®ã®è£œæ­£ã«ç”¨ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ç¯„å›²ï¼ˆãƒ­ãƒœãƒƒãƒˆã‚’åŸç‚¹ã¨ã™ã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ï¼‰
+	static const int search_x0 = -14000, search_x1 = 14000;		// å‰å¾Œæ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm)
+	static const int search_y0 = -14000, search_y1 = 14000;		// å·¦å³æ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm)
+	static const int dot_per_mm = 100;							// ä¸€ã¤ã®ãƒ”ã‚¯ã‚»ãƒ«ã®è·é›¢(mm)*/
 
-	// ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^
+	// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿
 	static const int MAX_REF_DATA = 10000;
 	int ref_data_no, is_ref_data_full;
 	pos refData[MAX_REF_DATA];
-	float odoX, odoY, odoThe;							// —^‚¦‚ç‚ê‚½ˆÊ’u(m, rad)
-	float estX, estY, estThe, estVar;					// ŒvZ‚µ‚Ä‹‚ß‚½ˆÊ’u(m, rad, •ªU)
+	float odoX, odoY, odoThe;							// ä¸ãˆã‚‰ã‚ŒãŸä½ç½®(m, rad)
+	float estX, estY, estThe, estVar;					// è¨ˆç®—ã—ã¦æ±‚ã‚ãŸä½ç½®(m, rad, åˆ†æ•£)
 	float coincidence;
 
-	// ©—¥‘–s‚ÉŒv‘ª‚µ‚½ƒf[ƒ^
+	// è‡ªå¾‹èµ°è¡Œæ™‚ã«è¨ˆæ¸¬ã—ãŸãƒ‡ãƒ¼ã‚¿
 	static const int MAX_DATA = 10000;
 	int data_no;
 	pos data[MAX_DATA];
 	
 	static const int MAX_PARTICLE = 500;
 	struct particle_T particle[MAX_PARTICLE];
-	float gaussian();									// ƒKƒEƒX•ª•z‚·‚é—”‚ğ”­¶
-	int evaluate();										// ƒp[ƒeƒBƒNƒ‹‚Ì•]‰¿‚Æƒ\[ƒg
-	static int comp(const void *c1, const void *c2);	// ƒ\[ƒg‚Ì‚½‚ß‚Ì”äŠrŠÖ”
+	float gaussian();									// ã‚¬ã‚¦ã‚¹åˆ†å¸ƒã™ã‚‹ä¹±æ•°ã‚’ç™ºç”Ÿ
+	int evaluate();										// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è©•ä¾¡ã¨ã‚½ãƒ¼ãƒˆ
+	static int comp(const void *c1, const void *c2);	// ã‚½ãƒ¼ãƒˆã®ãŸã‚ã®æ¯”è¼ƒé–¢æ•°
 	float getVariance(float *ave_x, float *ave_y, float *ave_the);
-														// •ªU‚ğŒvZ‚·‚é
+														// åˆ†æ•£ã‚’è¨ˆç®—ã™ã‚‹
 
 public:
-	int Init(float x, float y, float the);				// ‰Šú‰»
-	int Close();										// I—¹ˆ—
+	int Init(float x, float y, float the);				// åˆæœŸåŒ–
+	int Close();										// çµ‚äº†å‡¦ç†
 
-	int setOdometory(float x, float y, float the);		// ƒIƒhƒƒgƒŠƒf[ƒ^‚Ì“ü—Í
+	int setOdometory(float x, float y, float the);		// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªãƒ‡ãƒ¼ã‚¿ã®å…¥åŠ›
 	int setDeltaPosition(float dx, float dy, float dthe);
-														// „’è‚µ‚½ˆÚ“®—Ê‚Ì“ü—Í
-	int clearRefData();									// ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚ÌƒNƒŠƒA
-	int addRefData(pos *p, int num);					// ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚Ì’Ç‰Á
-	int setData(pos *p, int num);						// Œv‘ªƒf[ƒ^‚ğİ’è‚·‚é
+														// æ¨å®šã—ãŸç§»å‹•é‡ã®å…¥åŠ›
+	int clearRefData();									// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
+	int addRefData(pos *p, int num);					// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
+	int setData(pos *p, int num);						// è¨ˆæ¸¬ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
 	int getEstimatedPosition(float *x, float *y, float *the, float *var, float *coin);
-														// „’èˆÊ’u‚Ìæ“¾
-	int calcualte();									// ƒp[ƒeƒBƒNƒ‹ƒtƒBƒ‹ƒ^‚ğg‚Á‚½©ŒÈˆÊ’u„’è‚Ìˆ—
+														// æ¨å®šä½ç½®ã®å–å¾—
+	int calcualte();									// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½¿ã£ãŸè‡ªå·±ä½ç½®æ¨å®šã®å‡¦ç†
 	int getParticle(struct particle_T *particle, int *num, int max_num);
-														// ƒp[ƒeƒBƒNƒ‹‚Ìæ“¾
+														// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å–å¾—
 	int getReferenceArea(int *x_min, int *y_min, int *x_max, int *y_max, int *dot_per_mm);
-														// QÆƒGƒŠƒA‚Ìæ“¾
+														// å‚ç…§ã‚¨ãƒªã‚¢ã®å–å¾—
 };
 
-/* g‚¢•û@i‚P•b–ˆ’ö“x‚ÌüŠúj@ŠÔ‚ª‚©‚©‚é‚Ì‚ÅC—Dæ“x‚Ì’á‚¢ƒXƒŒƒbƒh‚ÅÀs
- * 1) Init(x,y,the)‚ÅŒ»İ‚ÌˆÊ’u‚ğw’è
- * 2) addRefData(p, num)‚ÅQÆƒf[ƒ^‚ğ“ü—Í
- * 3) setData(p, num)‚ÅŒv‘ªƒf[ƒ^‚ğ“ü—Í
- * 4) setDeltaPosition(dx, dy, dthe)‚ÅˆÚ“®—Ê(„’è‚µ‚½‹——£‚ÆŠp“x)‚ğ“ü—Í
- * 5) setOdometory(x, y, the)‚ÅƒIƒhƒƒgƒŠ‚ğ“ü—Í
- * 6) calculate()‚Å©ŒÈˆÊ’u‚ğ„’è
- * 7) getEstimatedPosition(&ex, &ey, &ethe, &var, &coincidence)‚Å„’è‚µ‚½ˆÊ’u‚ğæ“¾
- * 8) var‚à‚µ‚­‚Ícoin‚ª“KØ‚È’†‚Éû‚Ü‚Á‚Ä‚¢‚éê‡‚ÍC„’è‚µ‚½©ŒÈˆÊ’u‚ğ•ÏX
- * 9) 2)‚É–ß‚é
+/* ä½¿ã„æ–¹ã€€ï¼ˆï¼‘ç§’æ¯ç¨‹åº¦ã®å‘¨æœŸï¼‰ã€€æ™‚é–“ãŒã‹ã‹ã‚‹ã®ã§ï¼Œå„ªå…ˆåº¦ã®ä½ã„ã‚¹ãƒ¬ãƒƒãƒ‰ã§å®Ÿè¡Œ
+ * 1) Init(x,y,the)ã§ç¾åœ¨ã®ä½ç½®ã‚’æŒ‡å®š
+ * 2) addRefData(p, num)ã§å‚ç…§ãƒ‡ãƒ¼ã‚¿ã‚’å…¥åŠ›
+ * 3) setData(p, num)ã§è¨ˆæ¸¬ãƒ‡ãƒ¼ã‚¿ã‚’å…¥åŠ›
+ * 4) setDeltaPosition(dx, dy, dthe)ã§ç§»å‹•é‡(æ¨å®šã—ãŸè·é›¢ã¨è§’åº¦)ã‚’å…¥åŠ›
+ * 5) setOdometory(x, y, the)ã§ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã‚’å…¥åŠ›
+ * 6) calculate()ã§è‡ªå·±ä½ç½®ã‚’æ¨å®š
+ * 7) getEstimatedPosition(&ex, &ey, &ethe, &var, &coincidence)ã§æ¨å®šã—ãŸä½ç½®ã‚’å–å¾—
+ * 8) varã‚‚ã—ãã¯coinãŒé©åˆ‡ãªä¸­ã«åã¾ã£ã¦ã„ã‚‹å ´åˆã¯ï¼Œæ¨å®šã—ãŸè‡ªå·±ä½ç½®ã‚’å¤‰æ›´
+ * 9) 2)ã«æˆ»ã‚‹
  */

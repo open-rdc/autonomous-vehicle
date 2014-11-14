@@ -1,10 +1,10 @@
-/*!
+ï»¿/*!
  * @class obstacleAvoidance
- * @brief áŠQ•¨‰ñ”ğ‚ğs‚¤ƒNƒ‰ƒX
+ * @brief éšœå®³ç‰©å›é¿ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
  * @date 2013.11.09
  * @author Y.Hayashibara
  *
- * –Ú‚Ì‘O‚ÉáŠQ•¨‚ª‚ ‚ê‚Îslow_down_factor‚Ì’l‚ğ¬‚³‚­(1->0)‚µ‚Ä’â~‚·‚éD
+ * ç›®ã®å‰ã«éšœå®³ç‰©ãŒã‚ã‚Œã°slow_down_factorã®å€¤ã‚’å°ã•ã(1->0)ã—ã¦åœæ­¢ã™ã‚‹ï¼
  */
 
 #include "stdafx.h"
@@ -13,7 +13,7 @@
 #include <time.h>
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 obstacleAvoidance::obstacleAvoidance():
 is_obstacle(0), slow_down_factor(1.0f),
@@ -23,14 +23,14 @@ is_reroute(0), reroute_direction(0), is_need_stop(0)
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 obstacleAvoidance::~obstacleAvoidance()
 {
 }
 
 /*!
- * @brief ‰Šú‰»
+ * @brief åˆæœŸåŒ–
  *
  * @return 0
  */
@@ -40,7 +40,7 @@ int obstacleAvoidance::Init()
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  *
  * @return 0
  */
@@ -50,9 +50,9 @@ int obstacleAvoidance::Close()
 }
 
 /*!
- * @brief áŠQ•¨‚ª‚ ‚é‚©‚Ç‚¤‚©‚ğ–ß‚·
+ * @brief éšœå®³ç‰©ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’æˆ»ã™
  *
- * @return 0:áŠQ•¨–³‚µ,1:áŠQ•¨—L‚è
+ * @return 0:éšœå®³ç‰©ç„¡ã—,1:éšœå®³ç‰©æœ‰ã‚Š
  */
 int obstacleAvoidance::isObstacle()
 {
@@ -60,11 +60,11 @@ int obstacleAvoidance::isObstacle()
 }
 
 /*!
- * @brief Œ¸‘¬‚Ì”ä—¦‚ğ–ß‚·
- * Œ¸‘¬‚Ì”ä—¦iSTOP_LENGTHˆÈ‰º‚Å0, SLOW_DOWN_LENGTH‚Å1j
- * ‚±‚ê‚ğ–Ú•W‘¬“x‚É‚©‚¯‚é‚±‚Æ‚ÅC™X‚É’â~‚·‚é
+ * @brief æ¸›é€Ÿã®æ¯”ç‡ã‚’æˆ»ã™
+ * æ¸›é€Ÿã®æ¯”ç‡ï¼ˆSTOP_LENGTHä»¥ä¸‹ã§0, SLOW_DOWN_LENGTHã§1ï¼‰
+ * ã“ã‚Œã‚’ç›®æ¨™é€Ÿåº¦ã«ã‹ã‘ã‚‹ã“ã¨ã§ï¼Œå¾ã€…ã«åœæ­¢ã™ã‚‹
  *
- * @return Œ¸‘¬‚Ì”ä—¦(0`1)
+ * @return æ¸›é€Ÿã®æ¯”ç‡(0ï½1)
  */
 float obstacleAvoidance::getSlowDownFactor()
 {
@@ -72,10 +72,10 @@ float obstacleAvoidance::getSlowDownFactor()
 }
 
 /*!
- * @brief áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğİ’è
+ * @brief éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- * @param[in] p   áŠQ•¨‚ÌˆÊ’uƒf[ƒ^
- * @param[in] num áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @param[in] p   éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * @param[in] num éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  *
  * @return 0
  */
@@ -92,11 +92,11 @@ int obstacleAvoidance::setData(pos *p, int num)
 }
 
 /*!
- * @brief ƒŠƒ‹[ƒg‚·‚é‚©‚Ç‚¤‚©‚ğ–ß‚·D
+ * @brief ãƒªãƒ«ãƒ¼ãƒˆã™ã‚‹ã‹ã©ã†ã‹ã‚’æˆ»ã™ï¼
  *
- * @param[out] direction ‰ñ”ğ‚·‚é•ûŒü
+ * @param[out] direction å›é¿ã™ã‚‹æ–¹å‘
  *
- * @return 0:ƒŠƒ‹[ƒg‚·‚éC1:ƒŠƒ‹[ƒg‚µ‚È‚¢D
+ * @return 0:ãƒªãƒ«ãƒ¼ãƒˆã™ã‚‹ï¼Œ1:ãƒªãƒ«ãƒ¼ãƒˆã—ãªã„ï¼
  */
 int obstacleAvoidance::isReroute()
 {
@@ -110,7 +110,7 @@ int obstacleAvoidance::getRerouteDirection()
 
 
 /*!
- * @brief áŠQ•¨‰ñ”ğ‚Ìˆ—‚ğs‚¤D(setData–ˆ‚ÉŒÄ‚Ño‚³‚ê‚é)
+ * @brief éšœå®³ç‰©å›é¿ã®å‡¦ç†ã‚’è¡Œã†ï¼(setDataæ¯ã«å‘¼ã³å‡ºã•ã‚Œã‚‹)
  *
  * @return 0
  */
@@ -118,10 +118,10 @@ int obstacleAvoidance::Update()
 {
 	static const int FLAG_CLEAR_PERIOD = 2000;
 	static long time0 = 0;
-	static int min_len0 = SLOW_DOWN_LENGTH;		//! áŠQ•¨‚ÌÅ’Z‹——£‚ğ•Û‘¶‚·‚é•Ï”DFLAG_CLEAR_PERIOD(2•b)‚¾‚¯áŠQ•¨‚ğ”­Œ©‚µ‚È‚¢‚ÆƒNƒŠƒA
+	static int min_len0 = SLOW_DOWN_LENGTH;		//! éšœå®³ç‰©ã®æœ€çŸ­è·é›¢ã‚’ä¿å­˜ã™ã‚‹å¤‰æ•°ï¼FLAG_CLEAR_PERIOD(2ç§’)ã ã‘éšœå®³ç‰©ã‚’ç™ºè¦‹ã—ãªã„ã¨ã‚¯ãƒªã‚¢
 
 	int min_len;
-	is_obstacle = isDetectObstacle(CENTER, &min_len);	// ‘O‚ÌáŠQ•¨‚ÌŒŸo
+	is_obstacle = isDetectObstacle(CENTER, &min_len);	// å‰ã®éšœå®³ç‰©ã®æ¤œå‡º
 	
 	float factor = (float)(min_len - STOP_LENGTH)/(SLOW_DOWN_LENGTH - STOP_LENGTH);
 	if (is_obstacle && (factor < 0.1f)){
@@ -130,14 +130,14 @@ int obstacleAvoidance::Update()
 		is_need_stop = 0;
 	}
 
-	// áŠQ•¨‚ÌŒŸoCƒXƒLƒƒƒ“‚ğŒJ‚è•Ô‚·‚½‚ßCˆê“xŒŸo‚µ‚½ƒtƒ‰ƒO‚ğb‚­•Û
-	if (is_obstacle){	// ‰ñ”ğ‚·‚×‚«áŠQ•¨‚ª‚ ‚éê‡
-		// slow_down_factor STOP_LENGTHˆÈ‰º‚Å0, SLOW_DOWN_LENGTH‚Å1
+	// éšœå®³ç‰©ã®æ¤œå‡ºï¼Œã‚¹ã‚­ãƒ£ãƒ³ã‚’ç¹°ã‚Šè¿”ã™ãŸã‚ï¼Œä¸€åº¦æ¤œå‡ºã—ãŸãƒ•ãƒ©ã‚°ã‚’æš«ãä¿æŒ
+	if (is_obstacle){	// å›é¿ã™ã¹ãéšœå®³ç‰©ãŒã‚ã‚‹å ´åˆ
+		// slow_down_factor STOP_LENGTHä»¥ä¸‹ã§0, SLOW_DOWN_LENGTHã§1
 		if (min_len < min_len0) min_len0 = min_len;
 		slow_down_factor = (float)(min_len0 - STOP_LENGTH)/(SLOW_DOWN_LENGTH - STOP_LENGTH);
 		slow_down_factor = min(max(slow_down_factor, 0),1);
 		
-		// áŠQ•¨‚ğŒŸ’m‚µ‚Ä‚¢‚éŠÔ‚ğ‹‚ß‚é
+		// éšœå®³ç‰©ã‚’æ¤œçŸ¥ã—ã¦ã„ã‚‹æ™‚é–“ã‚’æ±‚ã‚ã‚‹
 		if (slow_down_factor < 0.1){
 			if (obstacle_detect_time == 0){
 				obstacle_detect_time = timeGetTime();
@@ -149,7 +149,7 @@ int obstacleAvoidance::Update()
 			obstacle_detect_period = 0;
 		}
 
-		// ƒŠƒ‹[ƒg
+		// ãƒªãƒ«ãƒ¼ãƒˆ
 		if ((!is_reroute) && (obstacle_detect_period > REROUTE_PERIOD)){
 			obstacle_detect_time = 0;
 			is_reroute = 1;
@@ -162,8 +162,8 @@ int obstacleAvoidance::Update()
 			}
 		}
 		time0 = timeGetTime();
-	} else {						// áŠQ•¨‚ª–³‚¢ê‡
-		long time = timeGetTime();							// 2•bˆÈã‚ÌŠÔŠu‚ğ‚ ‚¯‚Äƒtƒ‰ƒO‚ÌƒNƒŠƒA
+	} else {						// éšœå®³ç‰©ãŒç„¡ã„å ´åˆ
+		long time = timeGetTime();							// 2ç§’ä»¥ä¸Šã®é–“éš”ã‚’ã‚ã‘ã¦ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢
 		if ((time - time0) > FLAG_CLEAR_PERIOD){
 			is_obstacle = 0;
 			slow_down_factor = 1;
@@ -177,16 +177,16 @@ int obstacleAvoidance::Update()
 }
 
 /*!
- * @brief ‚ ‚é—Ìˆæ‚É“ü‚éáŠQ•¨‚ÌŒÂ”‚ÌŒvZ
- * (x_min,y_min)-(x_max,y_max)‚ÉŠÜ‚Ü‚ê‚é
+ * @brief ã‚ã‚‹é ˜åŸŸã«å…¥ã‚‹éšœå®³ç‰©ã®å€‹æ•°ã®è¨ˆç®—
+ * (x_min,y_min)-(x_max,y_max)ã«å«ã¾ã‚Œã‚‹
  *
- * @param[in] x_min     ’Tõ‚·‚éxÀ•W‚ÌÅ¬’l(mm) - Œã
- * @param[in] y_min     ’Tõ‚·‚éyÀ•W‚ÌÅ¬’l(mm) - ‰E
- * @param[in] x_max     ’Tõ‚·‚éxÀ•W‚ÌÅ‘å’l(mm) - ‘O
- * @param[in] y_max     ’Tõ‚·‚éyÀ•W‚ÌÅ‘å’l(mm) - ¶
- * @param[in] nearest_x ’Tõ‚·‚éyÀ•W‚ÌÅ‘å’l(mm) - ‘O
+ * @param[in] x_min     æ¢ç´¢ã™ã‚‹xåº§æ¨™ã®æœ€å°å€¤(mm) - å¾Œ
+ * @param[in] y_min     æ¢ç´¢ã™ã‚‹yåº§æ¨™ã®æœ€å°å€¤(mm) - å³
+ * @param[in] x_max     æ¢ç´¢ã™ã‚‹xåº§æ¨™ã®æœ€å¤§å€¤(mm) - å‰
+ * @param[in] y_max     æ¢ç´¢ã™ã‚‹yåº§æ¨™ã®æœ€å¤§å€¤(mm) - å·¦
+ * @param[in] nearest_x æ¢ç´¢ã™ã‚‹yåº§æ¨™ã®æœ€å¤§å€¤(mm) - å‰
  *
- * @return áŠQ•¨‚ÌŒÂ”
+ * @return éšœå®³ç‰©ã®å€‹æ•°
  */
 int obstacleAvoidance::getDataNum(int x_min, int y_min, int x_max, int y_max, int *nearest_x)
 {
@@ -203,23 +203,23 @@ int obstacleAvoidance::getDataNum(int x_min, int y_min, int x_max, int y_max, in
 }
 
 /*!
- * @brief ‰EC’†‰›C¶‚ÉáŠQ•¨‚ª‚ ‚é‚©‚ğŒv‘ª‚·‚é
+ * @brief å³ï¼Œä¸­å¤®ï¼Œå·¦ã«éšœå®³ç‰©ãŒã‚ã‚‹ã‹ã‚’è¨ˆæ¸¬ã™ã‚‹
  *
- * @param[in] right_center_left ‰E‚Æ’†‰›‚Æ¶‚Ìw’è(RIGHT=-1,CENTER=0,LEFT=+1)
+ * @param[in] right_center_left å³ã¨ä¸­å¤®ã¨å·¦ã®æŒ‡å®š(RIGHT=-1,CENTER=0,LEFT=+1)
  *
- * @return áŠQ•¨‚ÌŒÂ”
+ * @return éšœå®³ç‰©ã®å€‹æ•°
  */
 int obstacleAvoidance::isDetectObstacle(int right_center_left, int *min_x)
 {
-	static const int MIN_POINT = 5;		// áŠQ•¨‚Æ‚İ‚È‚·Å¬‚Ìƒf[ƒ^”i‚P‰ñ‚ÌƒXƒLƒƒƒ“‚Åj
+	static const int MIN_POINT = 5;		// éšœå®³ç‰©ã¨ã¿ãªã™æœ€å°ã®ãƒ‡ãƒ¼ã‚¿æ•°ï¼ˆï¼‘å›ã®ã‚¹ã‚­ãƒ£ãƒ³ã§ï¼‰
 	int point_num = 0, min_len = 10000, res = 0;
 	
 	if (right_center_left == CENTER){
-		point_num = getDataNum(100, -(TREAD/2+MARGIN)      , SLOW_DOWN_LENGTH, (TREAD/2+MARGIN)      , &min_len);	// ’†‰›‚Å‚P‘ä•ª’Tõ‚µ‚½‚Æ‚«‚ÉáŠQ•¨‚ğ”­Œ©‚·‚é‚©D
+		point_num = getDataNum(100, -(TREAD/2+MARGIN)      , SLOW_DOWN_LENGTH, (TREAD/2+MARGIN)      , &min_len);	// ä¸­å¤®ã§ï¼‘å°åˆ†æ¢ç´¢ã—ãŸã¨ãã«éšœå®³ç‰©ã‚’ç™ºè¦‹ã™ã‚‹ã‹ï¼
 	} else if (right_center_left == RIGHT){
-		point_num = getDataNum(100, -(TREAD/2+MARGIN)-TREAD, SLOW_DOWN_LENGTH, (TREAD/2+MARGIN)-TREAD, &min_len);	// ‰E‚É‚P‘ä•ª’Tõ‚µ‚½‚Æ‚«‚ÉáŠQ•¨‚ğ”­Œ©‚·‚é‚©D	
+		point_num = getDataNum(100, -(TREAD/2+MARGIN)-TREAD, SLOW_DOWN_LENGTH, (TREAD/2+MARGIN)-TREAD, &min_len);	// å³ã«ï¼‘å°åˆ†æ¢ç´¢ã—ãŸã¨ãã«éšœå®³ç‰©ã‚’ç™ºè¦‹ã™ã‚‹ã‹ï¼	
 	} else if (right_center_left == LEFT){
-		point_num = getDataNum(100, -(TREAD/2+MARGIN)+TREAD, SLOW_DOWN_LENGTH, (TREAD/2+MARGIN)+TREAD, &min_len);	// ¶‚É‚P‘ä•ª’Tõ‚µ‚½‚Æ‚«‚ÉáŠQ•¨‚ğ”­Œ©‚·‚é‚©D
+		point_num = getDataNum(100, -(TREAD/2+MARGIN)+TREAD, SLOW_DOWN_LENGTH, (TREAD/2+MARGIN)+TREAD, &min_len);	// å·¦ã«ï¼‘å°åˆ†æ¢ç´¢ã—ãŸã¨ãã«éšœå®³ç‰©ã‚’ç™ºè¦‹ã™ã‚‹ã‹ï¼
 	}
 	if (point_num > MIN_POINT){
 		res = 1;
@@ -230,7 +230,7 @@ int obstacleAvoidance::isDetectObstacle(int right_center_left, int *min_x)
 }
 
 /*!
- * @brief ƒŠƒ‹[ƒg‚ğI—¹‚·‚éD
+ * @brief ãƒªãƒ«ãƒ¼ãƒˆã‚’çµ‚äº†ã™ã‚‹ï¼
  *
  * @return 0
  */
@@ -242,9 +242,9 @@ int obstacleAvoidance::finishReroute()
 }
 
 /*!
- * @brief ’â~‚ª•K—v‚Èó‹µ‚©‚Ç‚¤‚©‚ğ–ß‚·
+ * @brief åœæ­¢ãŒå¿…è¦ãªçŠ¶æ³ã‹ã©ã†ã‹ã‚’æˆ»ã™
  *
- * @return 1:’â~‚ª•K—vC0:•K—v‚ª‚È‚¢
+ * @return 1:åœæ­¢ãŒå¿…è¦ï¼Œ0:å¿…è¦ãŒãªã„
  */
 int obstacleAvoidance::isNeedStop()
 {

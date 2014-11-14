@@ -1,58 +1,58 @@
-#pragma once
+ï»¿#pragma once
 #include "dataType.h"
 
 class detectTarget
 {
 public:
-	detectTarget(void);								// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~detectTarget(void);							// ƒfƒXƒgƒ‰ƒNƒ^
+	detectTarget(void);								// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~detectTarget(void);							// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 private:
-	// ”½Ë‹­“xƒf[ƒ^
-	static const int MAX_INTENSITY_DATA = 10000;	//! ”½Ë‹­“x‚Ìƒf[ƒ^‚ÌÅ‘åŒÂ”
-	int intensity_data_no;							//! ”½Ë‹­“x‚Ìƒf[ƒ^‚ÌŒÂ”
-	pos_inten intensity_data[MAX_INTENSITY_DATA];	//! ”½Ë‹­“x‚Ìƒf[ƒ^
+	// åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿
+	static const int MAX_INTENSITY_DATA = 10000;	//! åå°„å¼·åº¦ã®ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§å€‹æ•°
+	int intensity_data_no;							//! åå°„å¼·åº¦ã®ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
+	pos_inten intensity_data[MAX_INTENSITY_DATA];	//! åå°„å¼·åº¦ã®ãƒ‡ãƒ¼ã‚¿
 
-	// ’Tõ‘ÎÛ‚ÌŒó•â
-	static const int MAX_SLATE_POINT = 100;			//! ’Tõ‘ÎÛ‚ÌŒó•â‚ÌÅ‘åŒÂ”
-	int slate_point_no;								//! ’Tõ‘ÎÛ‚ÌŒó•â‚ÌŒÂ”
-	pos_slate slate_point[MAX_SLATE_POINT];			//! ’Tõ‘ÎÛ‚ÌŒó•â
+	// æ¢ç´¢å¯¾è±¡ã®å€™è£œ
+	static const int MAX_SLATE_POINT = 100;			//! æ¢ç´¢å¯¾è±¡ã®å€™è£œã®æœ€å¤§å€‹æ•°
+	int slate_point_no;								//! æ¢ç´¢å¯¾è±¡ã®å€™è£œã®å€‹æ•°
+	pos_slate slate_point[MAX_SLATE_POINT];			//! æ¢ç´¢å¯¾è±¡ã®å€™è£œ
 
-	// ’Tõ‘ÎÛ
-	static const int MAX_SEARCH_POINT = 100;		//! ’Tõ“_‚ÌÅ‘åŒÂ”
-	int search_point_no;							//! ’Tõ“_‚ÌŒÂ”
-	pos_slate search_point[MAX_SEARCH_POINT];		//! ’Tõ“_‚Ìƒf[ƒ^
+	// æ¢ç´¢å¯¾è±¡
+	static const int MAX_SEARCH_POINT = 100;		//! æ¢ç´¢ç‚¹ã®æœ€å¤§å€‹æ•°
+	int search_point_no;							//! æ¢ç´¢ç‚¹ã®å€‹æ•°
+	pos_slate search_point[MAX_SEARCH_POINT];		//! æ¢ç´¢ç‚¹ã®ãƒ‡ãƒ¼ã‚¿
 
 	/*!
 	 * @struct pos_integrate_T
-	 * @brief À•W“_“‡—p\‘¢‘Ì
+	 * @brief åº§æ¨™ç‚¹çµ±åˆç”¨æ§‹é€ ä½“
 	 */
 	struct pos_integrate_T{
-		pos pos;									// ˆÊ’uƒf[ƒ^
-		int count;									// “‡‚µ‚½“_‚ÌŒÂ”
+		pos pos;									// ä½ç½®ãƒ‡ãƒ¼ã‚¿
+		int count;									// çµ±åˆã—ãŸç‚¹ã®å€‹æ•°
 	};
-	typedef struct pos_integrate_T pos_integrate;	// À•W“_“‡—p‚ÌŒ^
-	pos_integrate integrated_point[MAX_INTENSITY_DATA];	// À•W“_“‡—p‚Ìƒf[ƒ^
-	int integrated_point_no;						// À•W“_“‡—p‚Ìƒf[ƒ^‚ÌŒÂ”
+	typedef struct pos_integrate_T pos_integrate;	// åº§æ¨™ç‚¹çµ±åˆç”¨ã®å‹
+	pos_integrate integrated_point[MAX_INTENSITY_DATA];	// åº§æ¨™ç‚¹çµ±åˆç”¨ã®ãƒ‡ãƒ¼ã‚¿
+	int integrated_point_no;						// åº§æ¨™ç‚¹çµ±åˆç”¨ã®ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
 
-	float distance_xy2(pos p, pos q);				// “_‚Ì‹——£‚ğ‹‚ß‚é(m)
-	static int comp_inten(const void *c1, const void *c2);	// pos_intenŒ^‚Ìƒ\[ƒg‚Ì‚½‚ß‚Ì”äŠrŠÖ”
-	static int comp_slate(const void *c1, const void *c2);	// pos_slateŒ^‚Ìƒ\[ƒg‚Ì‚½‚ß‚Ì”äŠrŠÖ”
+	float distance_xy2(pos p, pos q);				// ç‚¹ã®è·é›¢ã‚’æ±‚ã‚ã‚‹(m)
+	static int comp_inten(const void *c1, const void *c2);	// pos_intenå‹ã®ã‚½ãƒ¼ãƒˆã®ãŸã‚ã®æ¯”è¼ƒé–¢æ•°
+	static int comp_slate(const void *c1, const void *c2);	// pos_slateå‹ã®ã‚½ãƒ¼ãƒˆã®ãŸã‚ã®æ¯”è¼ƒé–¢æ•°
 	int integratePoints(pos_inten *p, int num, pos_integrate *q, int *num_pos_integrate, float radius);
-													// ”½Ë‹­“x‚Ì‘å‚«‚¢“_‚ğ“‡‚·‚é
+													// åå°„å¼·åº¦ã®å¤§ãã„ç‚¹ã‚’çµ±åˆã™ã‚‹
 
-	int terminate;									//! ƒXƒŒƒbƒh‚ğ”jŠüi1:”jŠü, 0:Œp‘±j
-	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);		// ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
-	DWORD WINAPI ExecThread();						// •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
-	HANDLE mutex;									//! ”r‘¼§Œä‚Ìƒnƒ“ƒhƒ‹
+	int terminate;									//! ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç ´æ£„ï¼ˆ1:ç ´æ£„, 0:ç¶™ç¶šï¼‰
+	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);		// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+	DWORD WINAPI ExecThread();						// åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+	HANDLE mutex;									//! æ’ä»–åˆ¶å¾¡ã®ãƒãƒ³ãƒ‰ãƒ«
 
 public:
-	int Init();										// ‰Šú‰»
-	int Close();									// I—¹ˆ—
-	int addIntensityData(pos_inten *p, int num);	// ”½Ë‹­“xƒf[ƒ^‚ÌƒZƒbƒg
-	int getTargetPos(pos_slate *p, int *num);		// ’Tõ‘ÎÛ‚ÌˆÊ’u‚ÆŠm—¦ƒZƒbƒg
-	int getSearchPos(pos *p, pos self_loc, float radius);			// ’Tõ”ÍˆÍ“à‚Ì’Tõ‘ÎÛ‚ÌˆÊ’ui0:’Tõ‘ÎÛ–³‚µC1:—L‚èj
-	int calculateIntensity();						// ”½Ë‹­“xƒf[ƒ^‚ÌƒZƒbƒg‚©‚ç’Tõ‘ÎÛ‚ÌŒó•â‚ğ‘I’è
-	int calculateSearchPoint();						// ’Tõ‘ÎÛƒ|ƒCƒ“ƒg‚ğŒvZ
-	int update();									// üŠú“I‚Èˆ—i1s’ö“xj
+	int Init();										// åˆæœŸåŒ–
+	int Close();									// çµ‚äº†å‡¦ç†
+	int addIntensityData(pos_inten *p, int num);	// åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆ
+	int getTargetPos(pos_slate *p, int *num);		// æ¢ç´¢å¯¾è±¡ã®ä½ç½®ã¨ç¢ºç‡ã‚»ãƒƒãƒˆ
+	int getSearchPos(pos *p, pos self_loc, float radius);			// æ¢ç´¢ç¯„å›²å†…ã®æ¢ç´¢å¯¾è±¡ã®ä½ç½®ï¼ˆ0:æ¢ç´¢å¯¾è±¡ç„¡ã—ï¼Œ1:æœ‰ã‚Šï¼‰
+	int calculateIntensity();						// åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ã®ã‚»ãƒƒãƒˆã‹ã‚‰æ¢ç´¢å¯¾è±¡ã®å€™è£œã‚’é¸å®š
+	int calculateSearchPoint();						// æ¢ç´¢å¯¾è±¡ãƒã‚¤ãƒ³ãƒˆã‚’è¨ˆç®—
+	int update();									// å‘¨æœŸçš„ãªå‡¦ç†ï¼ˆ1sç¨‹åº¦ï¼‰
 };

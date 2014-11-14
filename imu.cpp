@@ -1,34 +1,34 @@
-// IMU‚É“Æ©d—l‚ÌŠî”Â‚ÆƒvƒƒgƒRƒ‹‚Å’ÊM‚µ‚Ä‚¢‚é
+ï»¿// IMUã«ç‹¬è‡ªä»•æ§˜ã®åŸºæ¿ã¨ãƒ—ãƒ­ãƒˆã‚³ãƒ«ã§é€šä¿¡ã—ã¦ã„ã‚‹
 
 #include "stdafx.h"
 #include "imu.h"
 
 /*!
  * @class imu
- * @brief IMU‚ğg‚¤‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief IMUã‚’ä½¿ã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 imu::imu()
 {
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 imu::~imu()
 {
 }
 
 /*!
- * @brief ‰Šú‰»
+ * @brief åˆæœŸåŒ–
  *
- * @param[in] com_port ’ÊMƒ|[ƒg‚Ì”Ô†(1-)
+ * @param[in] com_port é€šä¿¡ãƒãƒ¼ãƒˆã®ç•ªå·(1-)
  *
- * @return true:¬Œ÷Cfalse:¸”s
+ * @return true:æˆåŠŸï¼Œfalse:å¤±æ•—
  */
 int imu::Init(int com_port)
 {
@@ -39,7 +39,7 @@ int imu::Init(int com_port)
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  *
  * @return 0
  */
@@ -50,22 +50,22 @@ int imu::Close()
 }
 
 /*!
- * @brief IMU‚ÌƒŠƒZƒbƒg
- * IMU‚ÌƒIƒtƒZƒbƒg‚ÌƒŠƒZƒbƒg (7•bŠÔ’â~)
+ * @brief IMUã®ãƒªã‚»ãƒƒãƒˆ
+ * IMUã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã®ãƒªã‚»ãƒƒãƒˆ (7ç§’é–“åœæ­¢)
  *
  * @return 0
  */
 int imu::Reset()
 {
 	comm.Send("a");
-	Sleep(7000);			// reset‚É6.6•b‚©‚©‚é
-	comm.ClearRecvBuf();	// óM—pƒoƒbƒtƒ@‚ğƒNƒŠƒA
+	Sleep(7000);			// resetã«6.6ç§’ã‹ã‹ã‚‹
+	comm.ClearRecvBuf();	// å—ä¿¡ç”¨ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢
 
 	return 0;
 }
 
 /*!
- * @brief Šp“x‚Ìæ“¾‚ÌŠJn
+ * @brief è§’åº¦ã®å–å¾—ã®é–‹å§‹
  *
  * @return 0
  */
@@ -77,11 +77,11 @@ int imu::GetAngleStart()
 }
 
 /*!
- * @brief Šp“x‚Ìæ“¾
+ * @brief è§’åº¦ã®å–å¾—
  *
- * @param[in] x x²•ûŒü‚ÌŠp“x(rad)
- * @param[in] y y²•ûŒü‚ÌŠp“x(rad)
- * @param[in] z z²•ûŒü‚ÌŠp“x(rad)
+ * @param[in] x xè»¸æ–¹å‘ã®è§’åº¦(rad)
+ * @param[in] y yè»¸æ–¹å‘ã®è§’åº¦(rad)
+ * @param[in] z zè»¸æ–¹å‘ã®è§’åº¦(rad)
  *
  * @return 0
  */

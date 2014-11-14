@@ -1,4 +1,4 @@
-// Comm.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// Comm.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -8,11 +8,11 @@ OVERLAPPED sendop, recop;
 
 /*!
  * @class CComm
- * @brief ƒVƒŠƒAƒ‹’ÊM‚ğs‚¤‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief ã‚·ãƒªã‚¢ãƒ«é€šä¿¡ã‚’è¡Œã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CComm::CComm() : com_port(0)
 {
@@ -20,7 +20,7 @@ CComm::CComm() : com_port(0)
 
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CComm::~CComm()
 {
@@ -28,24 +28,24 @@ CComm::~CComm()
 
 
 /*!
- * @brief COMƒ|[ƒg‚ÌƒI[ƒvƒ“
- * ’ÊMŠJn‚É‚ÍC•K‚¸Às‚·‚é
+ * @brief COMãƒãƒ¼ãƒˆã®ã‚ªãƒ¼ãƒ—ãƒ³
+ * é€šä¿¡é–‹å§‹æ™‚ã«ã¯ï¼Œå¿…ãšå®Ÿè¡Œã™ã‚‹
  *
- * @param[in] port ƒ|[ƒg‚Ì”Ô† [1-]
- * @param[in] baudrate ƒ{[ƒŒ[ƒg(bps)
+ * @param[in] port ãƒãƒ¼ãƒˆã®ç•ªå· [1-]
+ * @param[in] baudrate ãƒœãƒ¼ãƒ¬ãƒ¼ãƒˆ(bps)
  *
- * @return true:¬Œ÷, false:¸”s
+ * @return true:æˆåŠŸ, false:å¤±æ•—
  */
 bool CComm::Open(int port, int baudrate)
 {
-	// ’ÊM—p‰Šúİ’è
+	// é€šä¿¡ç”¨åˆæœŸè¨­å®š
 	CString port_name;
 	
 	port_name.Format("COM%d",port);
 
 	hComm = CreateFile(port_name, GENERIC_READ | GENERIC_WRITE,0,NULL,OPEN_EXISTING,FILE_FLAG_OVERLAPPED,NULL);
 	if (hComm == INVALID_HANDLE_VALUE){
-		return false;		// ˆÙíI—¹
+		return false;		// ç•°å¸¸çµ‚äº†
 	} else {
 		DCB dcb;
 		GetCommState(hComm,&dcb);
@@ -54,13 +54,13 @@ bool CComm::Open(int port, int baudrate)
 		SetCommState(hComm,&dcb);
 	}
 	com_port = port;
-	return true;			// ³íI—¹
+	return true;			// æ­£å¸¸çµ‚äº†
 }
 
 
 /*!
- * @brief COMƒ|[ƒg‚ÌƒNƒ[ƒY
- * ’ÊMI—¹‚É‚ÍC•K‚¸Às‚·‚é
+ * @brief COMãƒãƒ¼ãƒˆã®ã‚¯ãƒ­ãƒ¼ã‚º
+ * é€šä¿¡çµ‚äº†æ™‚ã«ã¯ï¼Œå¿…ãšå®Ÿè¡Œã™ã‚‹
  *
  * @return true
  */
@@ -72,19 +72,19 @@ bool CComm::Close(void)
 
 
 /*!
- * @brief ƒf[ƒ^‚ğ‘—M‚·‚é
+ * @brief ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹
  *
- * @param[in] data ƒf[ƒ^‚Ìæ“ªƒAƒhƒŒƒX
- * @param[in] len •¶š”
+ * @param[in] data ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param[in] len æ–‡å­—æ•°
  *
- * @return ‘—M‚µ‚½•¶š”ilen‚Æ“¯‚¶”‚Ìê‡‚Í¬Œ÷j, -1:ƒGƒ‰[
+ * @return é€ä¿¡ã—ãŸæ–‡å­—æ•°ï¼ˆlenã¨åŒã˜æ•°ã®å ´åˆã¯æˆåŠŸï¼‰, -1:ã‚¨ãƒ©ãƒ¼
  */
 int CComm::Send(char *data, int len)
 {
 	DWORD retlen;
 
 	if(hComm == INVALID_HANDLE_VALUE) return -1;
-	if (len == 0){			// ‚à‚µ•¶š”‚ğÈ—ª‚µ‚½‚çNULL‚Ü‚Å‚Ì•¶š”
+	if (len == 0){			// ã‚‚ã—æ–‡å­—æ•°ã‚’çœç•¥ã—ãŸã‚‰NULLã¾ã§ã®æ–‡å­—æ•°
 		len = (int)strlen(data);
 	}
 	WriteFile(hComm, data, len, &retlen, &sendop);
@@ -93,12 +93,12 @@ int CComm::Send(char *data, int len)
 
 
 /*!
- * @brief ƒf[ƒ^‚ğóM‚·‚é
+ * @brief ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
  *
- * @param[in] data ƒf[ƒ^‚Ìæ“ªƒAƒhƒŒƒX
- * @param[in] max_len Å‘å•¶š”
+ * @param[in] data ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹
+ * @param[in] max_len æœ€å¤§æ–‡å­—æ•°
  *
- * @return óM‚µ‚½•¶š”, -1:ƒGƒ‰[
+ * @return å—ä¿¡ã—ãŸæ–‡å­—æ•°, -1:ã‚¨ãƒ©ãƒ¼
  */
 int CComm::Recv(char *data, int max_len)
 {
@@ -106,17 +106,17 @@ int CComm::Recv(char *data, int max_len)
 	COMSTAT Comstat;
 	DWORD NoOfByte,Error;
 
-	if(hComm == INVALID_HANDLE_VALUE) return -1;	// ƒnƒ“ƒhƒ‹‚ª‚È‚¢ê‡
+	if(hComm == INVALID_HANDLE_VALUE) return -1;	// ãƒãƒ³ãƒ‰ãƒ«ãŒãªã„å ´åˆ
 	ClearCommError(hComm,&Error,&Comstat);
-	if(!Comstat.cbInQue) return 0;					// óM‚µ‚Ä‚¢‚È‚¢ê‡
+	if(!Comstat.cbInQue) return 0;					// å—ä¿¡ã—ã¦ã„ãªã„å ´åˆ
 	if (Comstat.cbInQue > (unsigned int)max_len) len = max_len;
-	else len = Comstat.cbInQue;						// óM‚Å‚«‚éÅ‘å•¶š”‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍCmax_len‚¾‚¯óM
+	else len = Comstat.cbInQue;						// å—ä¿¡ã§ãã‚‹æœ€å¤§æ–‡å­—æ•°ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯ï¼Œmax_lenã ã‘å—ä¿¡
 	ReadFile(hComm, data, len, &NoOfByte, &recop);
 	return len;
 }
 
 /*!
- * @brief ƒf[ƒ^ƒoƒbƒtƒ@‚ğƒNƒŠƒA‚·‚é
+ * @brief ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
  *
  * @return true
  */

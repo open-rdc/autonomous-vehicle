@@ -1,13 +1,13 @@
-/*!
+ï»¿/*!
  * @file  navi.cpp
- * @brief ƒiƒrƒQ[ƒVƒ‡ƒ“‚ÌƒNƒ‰ƒX
+ * @brief ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¯ãƒ©ã‚¹
  * @date 2013.10.31
  * @author Y.Hayashibara
  *
- * ©ŒÈˆÊ’u„’èC–Ú•WŒo˜H‚Ìæ“¾Cƒ‚[ƒ^‚Ì§Œä‚ğ“Š‡‚·‚éƒiƒrƒQ[ƒVƒ‡ƒ“‚ÌƒNƒ‰ƒX
- * ‚PjInit()‚Å‰Šú‰»‚ğs‚¤D
- * ‚QjsetOdometory(x,y,the)‚ÅŒ»İ‚Ì
- * ‚Rj
+ * è‡ªå·±ä½ç½®æ¨å®šï¼Œç›®æ¨™çµŒè·¯ã®å–å¾—ï¼Œãƒ¢ãƒ¼ã‚¿ã®åˆ¶å¾¡ã‚’çµ±æ‹¬ã™ã‚‹ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¯ãƒ©ã‚¹
+ * ï¼‘ï¼‰Init()ã§åˆæœŸåŒ–ã‚’è¡Œã†ï¼
+ * ï¼’ï¼‰setOdometory(x,y,the)ã§ç¾åœ¨ã®
+ * ï¼“ï¼‰
  */
 
 #include "stdafx.h"
@@ -22,12 +22,12 @@
 
 /*!
  * @class navi
- * @brief ƒiƒrƒQ[ƒVƒ‡ƒ“‚ğs‚¤ƒNƒ‰ƒX
+ * @brief ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 navi::navi():
 step(0), is_record(0), is_play(0), seek(0), step_period(1), time0(0),
@@ -36,29 +36,29 @@ odoX0(0), odoY0(0), odoThe0(0),
 estX0(0), estY0(0), estThe0(0), estX(0), estY(0), estThe(0),
 hThread(NULL), coincidence(0),
 is_search_object(0), is_search_mode(0), search_mode(0),
-searchX(10000.0f), searchY(10000.0f),									// ”ñí‚É‰“‚¢ˆÊ’u‚ğ“ü‚ê‚é
+searchX(10000.0f), searchY(10000.0f),									// éå¸¸ã«é ã„ä½ç½®ã‚’å…¥ã‚Œã‚‹
 is_reroute_mode(0), reroute_direction(RIGHT), reroute_mode(0),
 forwardSpeed(0), rotateSpeed(0), is_need_stop(0)
 {
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 navi::~navi()
 {
 }
 
 /*!
- * @brief ‰Šú‰»
- * ‚±‚ÌƒNƒ‰ƒX‚ğg—p‚·‚é‚Æ‚«‚ÉÅ‰‚É‚P‰ñŒÄ‚Ño‚·D
- * „’è‚µ‚½©ŒÈˆÊ’u‚ğ(0,0)CŠp“x0rad‚Æ‚µ‚Ä‚¢‚éD
+ * @brief åˆæœŸåŒ–
+ * ã“ã®ã‚¯ãƒ©ã‚¹ã‚’ä½¿ç”¨ã™ã‚‹ã¨ãã«æœ€åˆã«ï¼‘å›å‘¼ã³å‡ºã™ï¼
+ * æ¨å®šã—ãŸè‡ªå·±ä½ç½®ã‚’(0,0)ï¼Œè§’åº¦0radã¨ã—ã¦ã„ã‚‹ï¼
  *
  * @return 0
  */
 int navi::Init()
 {
-//	WaitForSingleObject(hThread, 3000);						// ©ŒÈˆÊ’u‚Ì„’è‚ğs‚Á‚Ä‚¢‚éê‡‚Í‘Ò‚Â
+//	WaitForSingleObject(hThread, 3000);						// è‡ªå·±ä½ç½®ã®æ¨å®šã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã¯å¾…ã¤
 	step = 0;
 	seek = 0;
 	time0 = 0;
@@ -68,84 +68,84 @@ int navi::Init()
 	data_no = 0;
 	estX0 = estY0 = estThe0 = 0;
 	estX = estY = estThe = 0;	
-	est_pos.Init(0,0,0);									// ©ŒÈˆÊ’u„’è‚Ì‰Šú‰»
+	est_pos.Init(0,0,0);									// è‡ªå·±ä½ç½®æ¨å®šã®åˆæœŸåŒ–
 
 	return 0;
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  *
  * @return 0
  */
 int navi::Close()
 {
-	est_pos.Close();										// ©ŒÈˆÊ’u„’è‚ÌI—¹ˆ—
+	est_pos.Close();										// è‡ªå·±ä½ç½®æ¨å®šã®çµ‚äº†å‡¦ç†
 
 	return 0;
 }
 
 /*!
- * @brief ƒIƒhƒƒgƒŠ‚ğİ’è‚·‚éD
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã‚’è¨­å®šã™ã‚‹ï¼
  *
- * ƒIƒhƒƒgƒŠ‚ğ“ü—Í‚µ‚½ƒ^ƒCƒ~ƒ“ƒO‚ÅCˆÈ‰º‚Ìˆ—‚ğs‚¤D
+ * ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã‚’å…¥åŠ›ã—ãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ï¼Œä»¥ä¸‹ã®å‡¦ç†ã‚’è¡Œã†ï¼
  * [record]
- * ˆê’èüŠúiŒ»İ‚P•bj‚²‚Æ‚ÉˆÊ’u‚ğ‹L˜^‚·‚éD‚±‚ê‚ğplay‚Åwaypoint‚Æ‚µ‚Äg—p‚·‚éD
+ * ä¸€å®šå‘¨æœŸï¼ˆç¾åœ¨ï¼‘ç§’ï¼‰ã”ã¨ã«ä½ç½®ã‚’è¨˜éŒ²ã™ã‚‹ï¼ã“ã‚Œã‚’playã§waypointã¨ã—ã¦ä½¿ç”¨ã™ã‚‹ï¼
  * [play]
- * waypoint‚É“’B‚·‚é(‚ ‚é’ö“x‹ß‚Ã‚­)‚²‚Æ‚ÉˆÈ‰º‚Ìˆ—‚ğs‚¤D
- * Ÿ‚Ìwaypoint‚ÆQÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğƒ[ƒh‚µ‚ÄC‚»‚ê‚ğ©ŒÈˆÊ’u„’è‚ÌŠÖ”‚É“n‚·D
- * ‚±‚ê‚É‚æ‚èCŸ‚Ìwaypoint‚É“’B‚·‚é‚Ü‚Å‚ÉCwaypoint‚ğ’Ê‰ß‚µ‚½‚Ì©ŒÈˆÊ’u‚ğ„’è‚·‚éD
- * ©ŒÈˆÊ’u„’è‚ÌŠm“xi‹——£ƒf[ƒ^‚Ìˆê’v“xj‚ª’á‚¢ê‡‚ÍCƒIƒhƒƒgƒŠ‚Ì‚İ‚Å‘–s‚·‚éD
+ * waypointã«åˆ°é”ã™ã‚‹(ã‚ã‚‹ç¨‹åº¦è¿‘ã¥ã)ã”ã¨ã«ä»¥ä¸‹ã®å‡¦ç†ã‚’è¡Œã†ï¼
+ * æ¬¡ã®waypointã¨å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ï¼Œãã‚Œã‚’è‡ªå·±ä½ç½®æ¨å®šã®é–¢æ•°ã«æ¸¡ã™ï¼
+ * ã“ã‚Œã«ã‚ˆã‚Šï¼Œæ¬¡ã®waypointã«åˆ°é”ã™ã‚‹ã¾ã§ã«ï¼Œwaypointã‚’é€šéã—ãŸæ™‚ã®è‡ªå·±ä½ç½®ã‚’æ¨å®šã™ã‚‹ï¼
+ * è‡ªå·±ä½ç½®æ¨å®šã®ç¢ºåº¦ï¼ˆè·é›¢ãƒ‡ãƒ¼ã‚¿ã®ä¸€è‡´åº¦ï¼‰ãŒä½ã„å ´åˆã¯ï¼Œã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ã¿ã§èµ°è¡Œã™ã‚‹ï¼
  *
- * @param[in] x   ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)
- * @param[in] y   ƒIƒhƒƒgƒŠ‚ÌyÀ•W(m)
- * @param[in] the ƒIƒhƒƒgƒŠ‚ÌŠp“x(rad) -PI`PI
+ * @param[in] x   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)
+ * @param[in] y   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®yåº§æ¨™(m)
+ * @param[in] the ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦(rad) -PIï½PI
  *
- * @return 0:³íI, 1:ƒS[ƒ‹‚É“’…
+ * @return 0:æ­£å¸¸çµ‚, 1:ã‚´ãƒ¼ãƒ«ã«åˆ°ç€
  */
 int navi::setOdometory(float x, float y, float the)
 {
 	if (is_record){
-		long time = timeGetTime();									// step_periodˆÈã‚ÌŠÔŠu‚ğŠJ‚¯‚Ä•Û‘¶iƒEƒFƒCƒ|ƒCƒ“ƒg‚Æ‚È‚éj
+		long time = timeGetTime();									// step_periodä»¥ä¸Šã®é–“éš”ã‚’é–‹ã‘ã¦ä¿å­˜ï¼ˆã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã¨ãªã‚‹ï¼‰
 		if ((time - time0) > (int)(step_period * 1000)){
-			saveNextOdometory(x, y, the);							// ƒIƒhƒƒgƒŠ‚ÌˆÊ’u‚ğ•Û‘¶
-			step ++;												// ƒXƒeƒbƒv‚ğƒCƒ“ƒNƒŠƒƒ“ƒg
+			saveNextOdometory(x, y, the);							// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ä½ç½®ã‚’ä¿å­˜
+			step ++;												// ã‚¹ãƒ†ãƒƒãƒ—ã‚’ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
 			time0 = time;
 		}
 	}
 	
 	if (is_play){
-		float dx0 = x - odoX0, dy0 = y - odoY0, dthe0 = the - odoThe0;	// ƒIƒhƒƒgƒŠ‚Ì·•ª
-		float dthe = estThe0 - odoThe0;								// „’è‚µ‚½Šp“x‚ğg‚Á‚Ä•â³
+		float dx0 = x - odoX0, dy0 = y - odoY0, dthe0 = the - odoThe0;	// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å·®åˆ†
+		float dthe = estThe0 - odoThe0;								// æ¨å®šã—ãŸè§’åº¦ã‚’ä½¿ã£ã¦è£œæ­£
 		float dx = dx0 * cos(dthe) - dy0 * sin(dthe);
 		float dy = dx0 * sin(dthe) + dy0 * cos(dthe);
 		if (is_reroute_mode){
 			if (!rerouteProcess()) is_reroute_mode = 0;			
-		} else if (is_search_mode){										// ’Tõ‘ÎÛÒ‚ğ’Tõ‚·‚éƒ‚[ƒh‚Ìê‡
+		} else if (is_search_mode){										// æ¢ç´¢å¯¾è±¡è€…ã‚’æ¢ç´¢ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆ
 			if (!searchProcess()) is_search_mode = 0;			
-		} else if (isPassTarget(estX, estY, estThe)){				// waypoint‚ğƒpƒX‚µ‚½ê‡
+		} else if (isPassTarget(estX, estY, estThe)){				// waypointã‚’ãƒ‘ã‚¹ã—ãŸå ´åˆ
 			if (loadNextOdoAndData(&tarX, &tarY, &tarThe, refData, &ref_data_no, MAX_REF_DATA)){
-				return 1;											// ƒS[ƒ‹‚É“’…
+				return 1;											// ã‚´ãƒ¼ãƒ«ã«åˆ°ç€
 			}
-			step ++;												// waypoint”Ô†‚ÌƒCƒ“ƒNƒŠƒƒ“ƒg
-			if (WAIT_TIMEOUT != WaitForSingleObject(hThread, 0)){	// ƒXƒŒƒbƒh‚ªI—¹‚µ‚Ä‚¢‚éê‡
-																	// Ÿ‚Ì–Ú•WˆÊ’uCƒf[ƒ^‚Ìƒ[ƒh
-				selfLocalization(x, y, the, dx, dy, dthe0);			// ©ŒÈˆÊ’u„’è‚Ìæ“¾‹y‚Ñˆ—‚ÌŠJn
-				odoX0 = x, odoY0 = y, odoThe0 = the;				// ƒEƒFƒCƒ|ƒCƒ“ƒg’Ê‰ß‚ÌƒIƒhƒƒgƒŠ‚ğ•Û‘¶i‘Š‘Î“I‚È’l‚ğæ“¾‚·‚é‚¾‚¯‚È‚Ì‚ÅC‚¸‚ê‚Ä‚¢‚Ä‚à–â‘è‚È‚µj
-				estX0 += dx, estY0 += dy, estThe0 += dthe0;			// ƒEƒFƒCƒ|ƒCƒ“ƒg’Ê‰ß‚ÌˆÊ’u‚Ì„’è’liŸ‰ñã‘‚«‚³‚ê‚éj
-				dx0 = dy0 = dthe0 = dx = dy = 0;					// Ÿ‚Ì©ŒÈˆÊ’u‚ÌŒvZ‚Ì‚½‚ß‚ÉƒNƒŠƒA
+			step ++;												// waypointç•ªå·ã®ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ãƒˆ
+			if (WAIT_TIMEOUT != WaitForSingleObject(hThread, 0)){	// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ã¦ã„ã‚‹å ´åˆ
+																	// æ¬¡ã®ç›®æ¨™ä½ç½®ï¼Œãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
+				selfLocalization(x, y, the, dx, dy, dthe0);			// è‡ªå·±ä½ç½®æ¨å®šã®å–å¾—åŠã³å‡¦ç†ã®é–‹å§‹
+				odoX0 = x, odoY0 = y, odoThe0 = the;				// ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆé€šéæ™‚ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã‚’ä¿å­˜ï¼ˆç›¸å¯¾çš„ãªå€¤ã‚’å–å¾—ã™ã‚‹ã ã‘ãªã®ã§ï¼Œãšã‚Œã¦ã„ã¦ã‚‚å•é¡Œãªã—ï¼‰
+				estX0 += dx, estY0 += dy, estThe0 += dthe0;			// ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆé€šéæ™‚ã®ä½ç½®ã®æ¨å®šå€¤ï¼ˆæ¬¡å›ä¸Šæ›¸ãã•ã‚Œã‚‹ï¼‰
+				dx0 = dy0 = dthe0 = dx = dy = 0;					// æ¬¡ã®è‡ªå·±ä½ç½®ã®è¨ˆç®—ã®ãŸã‚ã«ã‚¯ãƒªã‚¢
 			}
-			data_no = 0;											// ƒf[ƒ^‚ÌƒNƒŠƒA
+			data_no = 0;											// ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
 		}
 		if (is_search_object){
-			if (isPassSearchObject(estX, estY, estThe)){			// ’Tõ‘ÎÛ‚ª‰¡‚É—ˆ‚½
-				is_search_mode = 1;									// ’Tõƒ‚[ƒh‚ÉˆÚs
-				search_mode = 0;									// ’Tõ‚ÌƒV[ƒPƒ“ƒXˆ—‚Ég—p‚·‚é’l‚ğƒNƒŠƒA‚·‚é
-				is_search_object = 0;								// ’Tõ‘ÎÛ‚ğƒNƒŠƒA‚·‚é
-				retX = estX, retY = estY;							// –ß‚éˆÊ’u‚ğ•Û‘¶
+			if (isPassSearchObject(estX, estY, estThe)){			// æ¢ç´¢å¯¾è±¡ãŒæ¨ªã«æ¥ãŸæ™‚
+				is_search_mode = 1;									// æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
+				search_mode = 0;									// æ¢ç´¢ã®ã‚·ãƒ¼ã‚±ãƒ³ã‚¹å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹å€¤ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+				is_search_object = 0;								// æ¢ç´¢å¯¾è±¡ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
+				retX = estX, retY = estY;							// æˆ»ã‚‹ä½ç½®ã‚’ä¿å­˜
 			}
 		}
-		// ˆÊ’u‚Ì„’è’l‚ğŒvZ
+		// ä½ç½®ã®æ¨å®šå€¤ã‚’è¨ˆç®—
 		estX   = dx    + estX0  ;
 		estY   = dy    + estY0  ;
 		estThe = dthe0 + estThe0;
@@ -156,64 +156,64 @@ int navi::setOdometory(float x, float y, float the)
 
 
 /*!
- * @brief ©ŒÈˆÊ’u„’è‚ğs‚¤D
+ * @brief è‡ªå·±ä½ç½®æ¨å®šã‚’è¡Œã†ï¼
  *
- * 1) ©ŒÈˆÊ’u„’è‚ÌƒXƒŒƒbƒh‚ªI—¹‚µ‚Ä‚¢‚é‚©‚ğƒ`ƒFƒbƒNDI—¹‚µ‚Ä‚¢‚È‚¯‚ê‚Îreturn
- * 2) „’è‚µ‚½©ŒÈˆÊ’u‚ğæ“¾D•ªU‚Æˆê’v“x‚ª“K³‚È”ÍˆÍ‚Å‚ ‚ê‚ÎC‚»‚Ì’l‚ğwaypoint’Ê‰ß‚Ì„’è’l‚Æ‚·‚éD
- * 3) estimatePos(©ŒÈˆÊ’u„’è‚ÌƒNƒ‰ƒX)‚ÉCQÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğ“n‚·D
- * 4) estimatePos‚ÉŒv‘ª‚µ‚½áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğ“n‚·D
- * 5) estimatePos‚ÉˆÚ“®‚µ‚½·•ª‚ğ“n‚·D
- * 6) estimatePos‚ÉŒ»İ‚ÌƒIƒhƒƒgƒŠ‚Ì’l‚ğ“n‚·D
- * 7) ©ŒÈˆÊ’u‚ğŒvZ‚·‚éƒXƒŒƒbƒh‚ÌŠJn
+ * 1) è‡ªå·±ä½ç½®æ¨å®šã®ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ã¦ã„ã‚‹ã‹ã‚’ãƒã‚§ãƒƒã‚¯ï¼çµ‚äº†ã—ã¦ã„ãªã‘ã‚Œã°return
+ * 2) æ¨å®šã—ãŸè‡ªå·±ä½ç½®ã‚’å–å¾—ï¼åˆ†æ•£ã¨ä¸€è‡´åº¦ãŒé©æ­£ãªç¯„å›²ã§ã‚ã‚Œã°ï¼Œãã®å€¤ã‚’waypointé€šéæ™‚ã®æ¨å®šå€¤ã¨ã™ã‚‹ï¼
+ * 3) estimatePos(è‡ªå·±ä½ç½®æ¨å®šã®ã‚¯ãƒ©ã‚¹)ã«ï¼Œå‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã™ï¼
+ * 4) estimatePosã«è¨ˆæ¸¬ã—ãŸéšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã™ï¼
+ * 5) estimatePosã«ç§»å‹•ã—ãŸå·®åˆ†ã‚’æ¸¡ã™ï¼
+ * 6) estimatePosã«ç¾åœ¨ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å€¤ã‚’æ¸¡ã™ï¼
+ * 7) è‡ªå·±ä½ç½®ã‚’è¨ˆç®—ã™ã‚‹ã‚¹ãƒ¬ãƒƒãƒ‰ã®é–‹å§‹
  *
- * @param[in] x    ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)
- * @param[in] y    ƒIƒhƒƒgƒŠ‚ÌyÀ•W(m)
- * @param[in] the  ƒIƒhƒƒgƒŠ‚ÌŠp“x(rad) -PI`PI
- * @param[in] dx   ˆÚ“®‚µ‚½xÀ•W‚Ì’l(m)
- * @param[in] dy   ˆÚ“®‚µ‚½yÀ•W‚Ì’l(m)
- * @param[in] dthe ˆÚ“®‚µ‚½‰ñ“]Šp“x(rad) -PI`PI
+ * @param[in] x    ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)
+ * @param[in] y    ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®yåº§æ¨™(m)
+ * @param[in] the  ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦(rad) -PIï½PI
+ * @param[in] dx   ç§»å‹•ã—ãŸxåº§æ¨™ã®å€¤(m)
+ * @param[in] dy   ç§»å‹•ã—ãŸyåº§æ¨™ã®å€¤(m)
+ * @param[in] dthe ç§»å‹•ã—ãŸå›è»¢è§’åº¦(rad) -PIï½PI
  *
- * @return -1:©ŒÈˆÊ’u„’èŒvZ’†‚Ì‚½‚ßCˆ—‚ğs‚í‚È‚¢D0:ˆ—‚ğŠJn
+ * @return -1:è‡ªå·±ä½ç½®æ¨å®šè¨ˆç®—ä¸­ã®ãŸã‚ï¼Œå‡¦ç†ã‚’è¡Œã‚ãªã„ï¼0:å‡¦ç†ã‚’é–‹å§‹
  */
 int navi::selfLocalization(float x, float y, float the, float dx, float dy, float dthe)
 {
 	static float max_var = 100000.0f, min_coin = 0.1f;
 	
-	// ƒXƒŒƒbƒh‚ªI—¹‚µ‚Ä‚¢‚È‚¢ê‡‚ÍCˆ—‚ğ‚¹‚¸-1‚ğ–ß‚·
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ãŒçµ‚äº†ã—ã¦ã„ãªã„å ´åˆã¯ï¼Œå‡¦ç†ã‚’ã›ãš-1ã‚’æˆ»ã™
 	if (WAIT_TIMEOUT == WaitForSingleObject(hThread, 0)) return -1;
 
 	float ex, ey, ethe, var;
 	est_pos.getEstimatedPosition(&ex, &ey, &ethe, &var, &coincidence);
-	int lv = (int)(coincidence * 10);					// Šm“x‚ğ10’iŠK‚É‚µ‚ÄC‰¹º‚Åo—Í‚·‚éD
+	int lv = (int)(coincidence * 10);					// ç¢ºåº¦ã‚’10æ®µéšã«ã—ã¦ï¼ŒéŸ³å£°ã§å‡ºåŠ›ã™ã‚‹ï¼
 	if ((lv >= 0)&&(lv <= 10)){
 		char fn[10];
 		sprintf(fn, "%d.wav", lv);
 		PlaySound(fn, NULL, SND_FILENAME | SND_ASYNC);
 	}
 
-	if ((var < max_var)&&(coincidence > min_coin)){		// M—Š‚ª‚¨‚¯‚é’l‚Ìê‡‚Í“ü‚ê‘Ö‚¦
+	if ((var < max_var)&&(coincidence > min_coin)){		// ä¿¡é ¼ãŒãŠã‘ã‚‹å€¤ã®å ´åˆã¯å…¥ã‚Œæ›¿ãˆ
 		estX0 = ex, estY0 = ey, estThe0 = ethe;
 	}
-	// Ÿ‚Ì–Ú•WˆÊ’uCƒf[ƒ^‚Ìƒ[ƒh
+	// æ¬¡ã®ç›®æ¨™ä½ç½®ï¼Œãƒ‡ãƒ¼ã‚¿ã®ãƒ­ãƒ¼ãƒ‰
 	est_pos.addRefData(refData, ref_data_no);
 	est_pos.setData(data, data_no);
-	est_pos.setDeltaPosition(dx, dy, dthe);				// ƒIƒhƒƒgƒŠ‚Ì·•ª‚Æ‚µ‚Ä“ü—Í‚·‚éi„’èŠp“x‚Å•â³Œãj
-	est_pos.setOdometory(x, y, the);					// ƒIƒhƒƒgƒŠ‚ÌˆÊ’u‚ğ’¼Ú“ü—Í‚·‚é
-	// ©ŒÈˆÊ’u‚ÌŒvZ‚ÌƒXƒŒƒbƒh‚ğŠJn
+	est_pos.setDeltaPosition(dx, dy, dthe);				// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å·®åˆ†ã¨ã—ã¦å…¥åŠ›ã™ã‚‹ï¼ˆæ¨å®šè§’åº¦ã§è£œæ­£å¾Œï¼‰
+	est_pos.setOdometory(x, y, the);					// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ä½ç½®ã‚’ç›´æ¥å…¥åŠ›ã™ã‚‹
+	// è‡ªå·±ä½ç½®ã®è¨ˆç®—ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹å§‹
 	hThread = CreateThread(NULL, 0, ThreadFunc, (LPVOID)this, 0, &threadId); 
-	// ƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ğ‰º‚°‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’ä¸‹ã’ã‚‹
 	SetThreadPriority(hThread, THREAD_PRIORITY_BELOW_NORMAL);
 	
 	return 0;
 }
 
 /*!
- * @brief waypoint‚Ì”Ô†‚ğƒZƒbƒg‚·‚é@y–¢ƒ`ƒFƒbƒNŠÖ”z
- * “r’†‚©‚çŠJn‚·‚é‚½‚ß‚ÉÀ‘•‚µ‚½‚ªC“®ì‚·‚é‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚µ‚Ä‚¢‚È‚¢D
+ * @brief waypointã®ç•ªå·ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ã€€ã€æœªãƒã‚§ãƒƒã‚¯é–¢æ•°ã€‘
+ * é€”ä¸­ã‹ã‚‰é–‹å§‹ã™ã‚‹ãŸã‚ã«å®Ÿè£…ã—ãŸãŒï¼Œå‹•ä½œã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ãªã„ï¼
  *
- * @param[in] num waypoint‚Ì”Ô†
+ * @param[in] num waypointã®ç•ªå·
  *
- * @return -1:playƒ‚[ƒh‚Å‚Í‚È‚¢D0:³íI—¹
+ * @return -1:playãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ï¼0:æ­£å¸¸çµ‚äº†
  */
 int navi::setStep(int num)
 {
@@ -225,9 +225,9 @@ int navi::setStep(int num)
 }
 
 /*!
- * @brief waypoint‚Ì”Ô†‚ğæ“¾‚·‚é
+ * @brief waypointã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
  *
- * @return waypoint‚Ì”Ô†
+ * @return waypointã®ç•ªå·
  */
 int navi::getStep()
 {
@@ -235,23 +235,23 @@ int navi::getStep()
 }
 
 /*!
- * @brief áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìİ’è
+ * @brief éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
  * [record]
- * áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì•Û‘¶
+ * éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
  * [play]
- * waypointŠÔ‚ÌáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğ•Û‘¶‚µ‚ÄC©ŒÈˆÊ’u„’è‚ªs‚¦‚é‚æ‚¤‚É€”õ‚·‚é
- * MAX_DATA(10000)ˆÈã‚Ìƒf[ƒ^‚Í–³‹‚³‚ê‚éD
+ * waypointé–“ã®éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã—ã¦ï¼Œè‡ªå·±ä½ç½®æ¨å®šãŒè¡Œãˆã‚‹ã‚ˆã†ã«æº–å‚™ã™ã‚‹
+ * MAX_DATA(10000)ä»¥ä¸Šã®ãƒ‡ãƒ¼ã‚¿ã¯ç„¡è¦–ã•ã‚Œã‚‹ï¼
  *
- * @param[in] p áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in] num áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @param[in] p éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in] num éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  *
- * @return Œ»İ•Û‘¶‚µ‚Ä‚¢‚éƒf[ƒ^‚Ì”(play‚Ìê‡‚Í0)
+ * @return ç¾åœ¨ä¿å­˜ã—ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ•°(playã®å ´åˆã¯0)
  */
 int navi::setData(pos *p, int num)
 {
 	if (is_record) saveNextData(p, num);
-	if (is_play){								// MAX_DATA‚Ü‚Åƒf[ƒ^‚ğ’Ç‰Á‚µ‚Ä‚¢‚­
+	if (is_play){								// MAX_DATAã¾ã§ãƒ‡ãƒ¼ã‚¿ã‚’è¿½åŠ ã—ã¦ã„ã
 		num = min(num, MAX_DATA - data_no);
 		for(int i = 0; i < num; i ++){
 			data[data_no + i] = p[i];
@@ -263,11 +263,11 @@ int navi::setData(pos *p, int num)
 }
 
 /*!
- * @brief „’è‚µ‚½ˆÊ’u‚Ìæ“¾
+ * @brief æ¨å®šã—ãŸä½ç½®ã®å–å¾—
  *
- * @param[out] x   „’è‚µ‚½xÀ•W‚Ì’l(m)
- * @param[out] y   „’è‚µ‚½yÀ•W‚Ì’l(m)
- * @param[out] the „’è‚µ‚½‰ñ“]Šp“x(rad)
+ * @param[out] x   æ¨å®šã—ãŸxåº§æ¨™ã®å€¤(m)
+ * @param[out] y   æ¨å®šã—ãŸyåº§æ¨™ã®å€¤(m)
+ * @param[out] the æ¨å®šã—ãŸå›è»¢è§’åº¦(rad)
  *
  * @return 0
  */
@@ -281,11 +281,11 @@ int navi::getEstimatedPosition(float *x, float *y, float *the)
 }
 
 /*!
- * @brief QÆƒf[ƒ^‚Ìæ“¾
- * •\¦‹y‚ÑŒŸØ‚Ì‚½‚ß‚ÉCŒ»İQÆ‚µ‚Ä‚¢‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğ–ß‚·
+ * @brief å‚ç…§ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+ * è¡¨ç¤ºåŠã³æ¤œè¨¼ã®ãŸã‚ã«ï¼Œç¾åœ¨å‚ç…§ã—ã¦ã„ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’æˆ»ã™
  *
- * @param[out] p QÆ‚µ‚Ä‚¢‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^
- * @param[out] num ˆÊ’uƒf[ƒ^‚Ì”
+ * @param[out] p å‚ç…§ã—ã¦ã„ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * @param[out] num ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  *
  * @return 0
  */
@@ -301,12 +301,12 @@ int navi::getRefData(pos *p, int *num, int max_num)
 }
 
 /*!
- * @brief waypoint‚Ìæ“¾
+ * @brief waypointã®å–å¾—
  *
- * @param[out] x waypoint‚ÌxÀ•W‚Ì’l(m)
- * @param[out] y waypoint‚ÌyÀ•W‚Ì’l(m)
- * @param[out] the waypoint‚ÌŠp“x(rad)
- * @param[out] period “’B‚Ü‚Å‚ÌŠÔ(sec) y–¢g—pz
+ * @param[out] x waypointã®xåº§æ¨™ã®å€¤(m)
+ * @param[out] y waypointã®yåº§æ¨™ã®å€¤(m)
+ * @param[out] the waypointã®è§’åº¦(rad)
+ * @param[out] period åˆ°é”ã¾ã§ã®æ™‚é–“(sec) ã€æœªä½¿ç”¨ã€‘
  *
  * @return 0
  */
@@ -315,16 +315,16 @@ int navi::getTargetPosition(float *x, float *y, float *the, float *period)
 	*x = tarX;
 	*y = tarY;
 	*the = tarThe;
-	*period = 0;		// —v•ÏX
+	*period = 0;		// è¦å¤‰æ›´
 
 	return 0;
 }
 
 
 /*!
- * @brief ƒf[ƒ^‚ğ•Û‘¶‚·‚éƒtƒ@ƒCƒ‹–¼‚ğw’è‚·‚é
+ * @brief ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã™ã‚‹
  *
- * @param[in] filename ƒtƒ@ƒCƒ‹–¼(NULL‚Ìê‡©“®“I‚Éƒtƒ@ƒCƒ‹–¼‚ª¶¬‚³‚ê‚é)
+ * @param[in] filename ãƒ•ã‚¡ã‚¤ãƒ«å(NULLã®å ´åˆè‡ªå‹•çš„ã«ãƒ•ã‚¡ã‚¤ãƒ«åãŒç”Ÿæˆã•ã‚Œã‚‹)
  *
  * @return 0
  */
@@ -343,11 +343,11 @@ int navi::setTargetFilename(char *filename)
 }
 
 /*!
- * @brief ƒIƒhƒƒgƒŠ‚Ì•Û‘¶
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ä¿å­˜
  *
- * @param[in] x ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)
- * @param[in] y ƒIƒhƒƒgƒŠ‚ÌyÀ•W(m)
- * @param[in] the ƒIƒhƒƒgƒŠ‚ÌŠp“x(rad) -PI`PI
+ * @param[in] x ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)
+ * @param[in] y ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®yåº§æ¨™(m)
+ * @param[in] the ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦(rad) -PIï½PI
  *
  * @return 
  */
@@ -363,10 +363,10 @@ int navi::saveNextOdometory(float x, float y, float the)
 }
 
 /*!
- * @brief áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì•Û‘¶
+ * @brief éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
  *
- * @param[in] p áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[in] num áŠQ•¨‚Ì”
+ * @param[in] p éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in] num éšœå®³ç‰©ã®æ•°
  *
  * @return 0
  */
@@ -384,16 +384,16 @@ int navi::saveNextData(pos *p, int num)
 }
 
 /*!
- * @brief Ÿ‚Ìwaypoint‚ÆáŠQ•¨‚Ì‹——£ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+ * @brief æ¬¡ã®waypointã¨éšœå®³ç‰©ã®è·é›¢ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
  *
- * @param[out] x waypoint‚ÌxÀ•W(m)
- * @param[out] y waypoint‚ÌyÀ•W(m)
- * @param[out] the waypoint‚ÌŠp“x(rad) -PI`PI
- * @param[out] p áŠQ•¨‚ÌˆÊ’uƒf[ƒ^
- * @param[out] num áŠQ•¨‚Ì”
- * @param[out] max_num æ“¾‚·‚éáŠQ•¨‚ÌÅ‘å’l (num‚Í‚±‚êˆÈã‚Ì”‚É‚È‚ç‚È‚¢)
+ * @param[out] x waypointã®xåº§æ¨™(m)
+ * @param[out] y waypointã®yåº§æ¨™(m)
+ * @param[out] the waypointã®è§’åº¦(rad) -PIï½PI
+ * @param[out] p éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * @param[out] num éšœå®³ç‰©ã®æ•°
+ * @param[out] max_num å–å¾—ã™ã‚‹éšœå®³ç‰©ã®æœ€å¤§å€¤ (numã¯ã“ã‚Œä»¥ä¸Šã®æ•°ã«ãªã‚‰ãªã„)
  *
- * @return 0:Ÿ‚Ì–Ú•WˆÊ’u‚ª‚ ‚éê‡C-1:Ÿ‚Ì–Ú•WˆÊ’u‚ª–³‚¢ê‡iƒS[ƒ‹‚É“’…j
+ * @return 0:æ¬¡ã®ç›®æ¨™ä½ç½®ãŒã‚ã‚‹å ´åˆï¼Œ-1:æ¬¡ã®ç›®æ¨™ä½ç½®ãŒç„¡ã„å ´åˆï¼ˆã‚´ãƒ¼ãƒ«ã«åˆ°ç€ï¼‰
  */
 int navi::loadNextOdoAndData(float *x, float *y, float *the, pos *p, int *num, int max_num)
 {
@@ -411,7 +411,7 @@ int navi::loadNextOdoAndData(float *x, float *y, float *the, pos *p, int *num, i
 		if (EOF == fscanf(fp, "%c, %d, %d, %d", &c, &d0, &d1, &d2)) break;
 		ret = 0;
 		if (c == 'o'){
-			if (is_first_odo == 0) break;			// ‚QŒÂ–Ú‚ÌƒIƒhƒƒgƒŠ‚ÅI—¹
+			if (is_first_odo == 0) break;			// ï¼’å€‹ç›®ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã§çµ‚äº†
 			*x   = (float)d0 / 1000.0f;
 			*y   = (float)d1 / 1000.0f;
 			*the = (float)d2 * M_PI / 180.0f; 
@@ -427,18 +427,18 @@ int navi::loadNextOdoAndData(float *x, float *y, float *the, pos *p, int *num, i
 	}
 	fclose(fp);
 
-	seek = seek0;									// ƒIƒhƒƒgƒŠ‚Ì’¼‘O‚Ì”Ô’n‚ğ•Û‘¶
+	seek = seek0;									// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ç›´å‰ã®ç•ªåœ°ã‚’ä¿å­˜
 	*num = n;
 
 	return ret;
 }
 
 /*!
- * @brief w’è‚µ‚½waypoint‚Ì”Ô†‚Ü‚ÅCƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İˆÊ’u‚ğˆÚ“®‚·‚é@y–¢ŒŸØz
+ * @brief æŒ‡å®šã—ãŸwaypointã®ç•ªå·ã¾ã§ï¼Œãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ä½ç½®ã‚’ç§»å‹•ã™ã‚‹ã€€ã€æœªæ¤œè¨¼ã€‘
  *
- * @param[in] num waypoint‚Ì”Ô†
+ * @param[in] num waypointã®ç•ªå·
  *
- * @return ƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İˆÊ’u
+ * @return ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ä½ç½®
  */
 long navi::getSeek(int num)
 {
@@ -465,41 +465,41 @@ long navi::getSeek(int num)
 }
 
 /*!
- * @brief •Û‘¶ƒ‚[ƒh‚Ìİ’è
- * •Û‘¶ƒ‚[ƒh‚ğ‘I‘ğ‚µ‚½ê‡CÄ¶ƒ‚[ƒh‚ÍC‰ğœ‚³‚ê‚éD
+ * @brief ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+ * ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã‚’é¸æŠã—ãŸå ´åˆï¼Œå†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã¯ï¼Œè§£é™¤ã•ã‚Œã‚‹ï¼
  *
- * @param[in] is_recode •Û‘¶ƒ‚[ƒh‚É‚·‚é‚©‚Ìƒtƒ‰ƒO(1:•Û‘¶ƒ‚[ƒhC0:•Û‘¶ƒ‚[ƒh‚ğ‰ğœ)
+ * @param[in] is_recode ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°(1:ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ï¼Œ0:ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã‚’è§£é™¤)
  *
  * @return 0
  */
 int navi::setRecordMode(int is_record)
 {
-	if (is_record) is_play = 0;				// •Û‘¶‚ÆÄ¶‚Ì”r‘¼ˆ—
+	if (is_record) is_play = 0;				// ä¿å­˜ã¨å†ç”Ÿã®æ’ä»–å‡¦ç†
 	this->is_record = is_record;
 	
 	return 0;
 }
 
 /*!
- * @brief Ä¶ƒ‚[ƒh‚Ìİ’è
- * Ä¶ƒ‚[ƒh‚ğ‘I‘ğ‚µ‚½ê‡C•Û‘¶ƒ‚[ƒh‚ÍC‰ğœ‚³‚ê‚éD
+ * @brief å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+ * å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‚’é¸æŠã—ãŸå ´åˆï¼Œä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã¯ï¼Œè§£é™¤ã•ã‚Œã‚‹ï¼
  *
- * @param[in] is_play Ä¶ƒ‚[ƒh‚É‚·‚é‚©‚Ìƒtƒ‰ƒO(1:Ä¶ƒ‚[ƒhC0:Ä¶ƒ‚[ƒh‚ğ‰ğœ)
+ * @param[in] is_play å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°(1:å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ï¼Œ0:å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‚’è§£é™¤)
  *
  * @return 0
  */
 int navi::setPlayMode(int is_play)
 {
-	if (is_play) is_record = 0;				// •Û‘¶‚ÆÄ¶‚Ì”r‘¼ˆ—
+	if (is_play) is_record = 0;				// ä¿å­˜ã¨å†ç”Ÿã®æ’ä»–å‡¦ç†
 	this->is_play = is_play;
 
 	return 0;
 }
 
 /*!
- * @brief Ä¶ƒ‚[ƒh‚©‚Ç‚¤‚©‚ğ–ß‚·D
+ * @brief å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã‚’æˆ»ã™ï¼
  *
- * @return 0:playƒ‚[ƒh‚Å‚Í‚È‚¢D1:playƒ‚[ƒh
+ * @return 0:playãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„ï¼1:playãƒ¢ãƒ¼ãƒ‰
  */
 int navi::isPlayMode()
 {
@@ -507,58 +507,58 @@ int navi::isPlayMode()
 }
 
 /*!
- * @brief waypoint‚É‹ß‚Ã‚¢‚½‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+ * @brief waypointã«è¿‘ã¥ã„ãŸã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
  *
- * @param[in] x ƒƒ{ƒbƒg‚ÌxÀ•W‚ÌˆÊ’u(m)
- * @param[in] y ƒƒ{ƒbƒg‚ÌyÀ•W‚ÌˆÊ’u(m)
- * @param[in] the ƒƒ{ƒbƒg‚ÌŠp“x(rad)
+ * @param[in] x ãƒ­ãƒœãƒƒãƒˆã®xåº§æ¨™ã®ä½ç½®(m)
+ * @param[in] y ãƒ­ãƒœãƒƒãƒˆã®yåº§æ¨™ã®ä½ç½®(m)
+ * @param[in] the ãƒ­ãƒœãƒƒãƒˆã®è§’åº¦(rad)
  *
- * @return 0:‹ß‚Ã‚¢‚Ä‚¢‚È‚¢C1:‹ß‚Ã‚¢‚Ä‚¢‚é
+ * @return 0:è¿‘ã¥ã„ã¦ã„ãªã„ï¼Œ1:è¿‘ã¥ã„ã¦ã„ã‚‹
  */
 int navi::isPassTarget(float x, float y, float the)
 {
-	const float MARGIN = -0.5f;				// ‚Ç‚Ì’ö“x‘O‚É—ˆ‚½‚çƒEƒFƒCƒ|ƒCƒ“ƒg’Ê‰ß‚Æ‚İ‚È‚·‚©
+	const float MARGIN = -0.5f;				// ã©ã®ç¨‹åº¦å‰ã«æ¥ãŸã‚‰ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆé€šéã¨ã¿ãªã™ã‹
 	float dx, dy, tx, ty;
 
-	dx = x - tarX;							// target‚©‚ç‚Ì‘Š‘ÎˆÊ’u‚É•ÏŠ·
+	dx = x - tarX;							// targetã‹ã‚‰ã®ç›¸å¯¾ä½ç½®ã«å¤‰æ›
 	dy = y - tarY;
 				
-	// ‚³‚ç‚Étarget‚ÌŒü‚«‚É‡‚í‚¹‚Ä•ÏŠ·
+	// ã•ã‚‰ã«targetã®å‘ãã«åˆã‚ã›ã¦å¤‰æ›
 	tx =   dx * cos(tarThe) + dy * sin(tarThe);
 	ty = - dx * sin(tarThe) + dy * cos(tarThe);
 
-	return (tx >= MARGIN);					// ƒƒ{ƒbƒg‚ÌxÀ•W‚ª0.3‚ğ’´‚¦‚Ä‚¢‚ê‚ÎƒpƒX
+	return (tx >= MARGIN);					// ãƒ­ãƒœãƒƒãƒˆã®xåº§æ¨™ãŒ0.3ã‚’è¶…ãˆã¦ã„ã‚Œã°ãƒ‘ã‚¹
 }
 
 /*!
- * @brief ’Tõ‘ÎÛ•¨‚É‹ß‚Ã‚¢‚½‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+ * @brief æ¢ç´¢å¯¾è±¡ç‰©ã«è¿‘ã¥ã„ãŸã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
  *
- * @param[in] x ƒƒ{ƒbƒg‚ÌxÀ•W‚ÌˆÊ’u(m)
- * @param[in] y ƒƒ{ƒbƒg‚ÌyÀ•W‚ÌˆÊ’u(m)
- * @param[in] the ƒƒ{ƒbƒg‚ÌŠp“x(rad)
+ * @param[in] x ãƒ­ãƒœãƒƒãƒˆã®xåº§æ¨™ã®ä½ç½®(m)
+ * @param[in] y ãƒ­ãƒœãƒƒãƒˆã®yåº§æ¨™ã®ä½ç½®(m)
+ * @param[in] the ãƒ­ãƒœãƒƒãƒˆã®è§’åº¦(rad)
  *
- * @return 0:‹ß‚Ã‚¢‚Ä‚¢‚È‚¢C1:‹ß‚Ã‚¢‚Ä‚¢‚é
+ * @return 0:è¿‘ã¥ã„ã¦ã„ãªã„ï¼Œ1:è¿‘ã¥ã„ã¦ã„ã‚‹
  */
 int navi::isPassSearchObject(float x, float y, float the)
 {
-	const float MARGIN = -0.5f;				// ‚Ç‚Ì’ö“x‘O‚É—ˆ‚½‚çƒEƒFƒCƒ|ƒCƒ“ƒg’Ê‰ß‚Æ‚İ‚È‚·‚©
+	const float MARGIN = -0.5f;				// ã©ã®ç¨‹åº¦å‰ã«æ¥ãŸã‚‰ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆé€šéã¨ã¿ãªã™ã‹
 	float dx, dy, tx, ty;
 
-	dx = x - searchX;						// ’Tõ‘ÎÛ‚©‚ç‚Ì‘Š‘ÎˆÊ’u‚É•ÏŠ·
+	dx = x - searchX;						// æ¢ç´¢å¯¾è±¡ã‹ã‚‰ã®ç›¸å¯¾ä½ç½®ã«å¤‰æ›
 	dy = y - searchY;
 				
-	// ‚³‚ç‚Étarget‚ÌŒü‚«‚É‡‚í‚¹‚Ä•ÏŠ·
+	// ã•ã‚‰ã«targetã®å‘ãã«åˆã‚ã›ã¦å¤‰æ›
 	tx =   dx * cos(tarThe) + dy * sin(tarThe);
 	ty = - dx * sin(tarThe) + dy * cos(tarThe);
 
-	return (tx >= MARGIN);					// ƒƒ{ƒbƒg‚ÌxÀ•W‚ª0.3‚ğ’´‚¦‚Ä‚¢‚ê‚ÎƒpƒX
+	return (tx >= MARGIN);					// ãƒ­ãƒœãƒƒãƒˆã®xåº§æ¨™ãŒ0.3ã‚’è¶…ãˆã¦ã„ã‚Œã°ãƒ‘ã‚¹
 }
 
 
 /*!
- * @brief ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+ * @brief ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
  *
- * @param[in] lpParameter ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] lpParameter ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return S_OK
  */
@@ -568,14 +568,14 @@ DWORD WINAPI navi::ThreadFunc(LPVOID lpParameter)
 }
 
 /*!
- * @brief •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
- * ƒp[ƒeƒBƒNƒ‹ƒtƒBƒ‹ƒ^‚ÌŒvZ‚ğ•ÊƒXƒŒƒbƒh‚Ås‚¤D
+ * @brief åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+ * ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ã®è¨ˆç®—ã‚’åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§è¡Œã†ï¼
  *
  * @return S_OK
  */
 DWORD WINAPI navi::ExecThread()
 {
-	for(int i = 0; i < 10;i ++){	// ƒRƒ“ƒsƒ…[ƒ^‚ÌŒvZ”\—Í‚É‚æ‚è’²®‚·‚é
+	for(int i = 0; i < 10;i ++){	// ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã®è¨ˆç®—èƒ½åŠ›ã«ã‚ˆã‚Šèª¿æ•´ã™ã‚‹
 		est_pos.calcualte();
 	}
 
@@ -583,10 +583,10 @@ DWORD WINAPI navi::ExecThread()
 }
 
 /*!
- * @brief waypoint‚ÉŒü‚©‚¤ƒƒ{ƒbƒg‚Ì‘¬“x‚Æ‰ñ“]”¼Œa‚ğ‹‚ß‚é
+ * @brief waypointã«å‘ã‹ã†ãƒ­ãƒœãƒƒãƒˆã®é€Ÿåº¦ã¨å›è»¢åŠå¾„ã‚’æ±‚ã‚ã‚‹
  *
- * @param[out] front ‘OŒã•ûŒü‚Ì‘¬“x(m/s)
- * @param[out] radius ‰ñ“]”¼Œa(m)
+ * @param[out] front å‰å¾Œæ–¹å‘ã®é€Ÿåº¦(m/s)
+ * @param[out] radius å›è»¢åŠå¾„(m)
  *
  * @return 0
  */
@@ -622,12 +622,12 @@ int navi::getTargetArcSpeed(float *front, float *radius)
 }
 
 /*!
- * @brief ƒp[ƒeƒBƒNƒ‹‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
- * •\¦‚ÆŒŸØ—p‚Éƒp[ƒeƒBƒNƒ‹‚Ìƒf[ƒ^‚ğæ“¾‚·‚éŠÖ”
+ * @brief ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+ * è¡¨ç¤ºã¨æ¤œè¨¼ç”¨ã«ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹é–¢æ•°
  *
- * @param[out] particle ƒp[ƒeƒBƒNƒ‹‚Ìƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[out] num ƒp[ƒeƒBƒNƒ‹‚Ì”
- * @param[out] max_num ƒp[ƒeƒBƒNƒ‹‚Ìƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
+ * @param[out] particle ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[out] num ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®æ•°
+ * @param[out] max_num ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
  *
  * @return 0
  */
@@ -646,9 +646,9 @@ int navi::getParticle(struct particle_T *particle, int *num, int max_num)
 }
 
 /*!
- * @brief ˆê’v“x‚ğæ“¾
+ * @brief ä¸€è‡´åº¦ã‚’å–å¾—
  *
- * @param[out] coincidence ˆê’v“x
+ * @param[out] coincidence ä¸€è‡´åº¦
  *
  * @return 0
  */
@@ -660,32 +660,32 @@ int navi::getCoincidence(float *coincidence)
 }
 
 /*!
- * @brief ’Tõ‘ÎÛ‚ÌŒó•â“_‚ğİ’è
- * ‚±‚ÌŠÖ”‚ğŒÄ‚Ño‚·‚Æb‚­‚±‚Ì“_‚ÉŒü‚©‚Á‚Äƒƒ{ƒbƒg‚ªˆÚ“®‚·‚éD
+ * @brief æ¢ç´¢å¯¾è±¡ã®å€™è£œç‚¹ã‚’è¨­å®š
+ * ã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã¨æš«ãã“ã®ç‚¹ã«å‘ã‹ã£ã¦ãƒ­ãƒœãƒƒãƒˆãŒç§»å‹•ã™ã‚‹ï¼
  *
- * @param[in] p ’Tõ‘ÎÛ‚ÌŒó•â“_
+ * @param[in] p æ¢ç´¢å¯¾è±¡ã®å€™è£œç‚¹
  *
  * @return 0
  */
 int navi::setSearchPoint(pos p)
 {
-	searchX = p.x / 1000.0f;	// ’Tõ‚·‚é‘ÎÛ•¨‚ÌˆÊ’u
-	searchY = p.y / 1000.0f;	// ’Tõ‚·‚é‘ÎÛ•¨‚ÌˆÊ’u
-	is_search_object = 1;		// ’Tõ‚·‚é‘ÎÛ•¨‚Ì—L–³
+	searchX = p.x / 1000.0f;	// æ¢ç´¢ã™ã‚‹å¯¾è±¡ç‰©ã®ä½ç½®
+	searchY = p.y / 1000.0f;	// æ¢ç´¢ã™ã‚‹å¯¾è±¡ç‰©ã®ä½ç½®
+	is_search_object = 1;		// æ¢ç´¢ã™ã‚‹å¯¾è±¡ç‰©ã®æœ‰ç„¡
 
 	return 0;
 }
 
 /*!
- * @brief ’Tõ‚ÌƒvƒƒZƒX
+ * @brief æ¢ç´¢ã®ãƒ—ãƒ­ã‚»ã‚¹
  *
- * @return 1:Œp‘±’†C0:I—¹
+ * @return 1:ç¶™ç¶šä¸­ï¼Œ0:çµ‚äº†
  */
 int navi::searchProcess()
 {
-	const float MARGIN_ANGLE = 0.1f;		// Ÿ‚Ìƒ‚[ƒh‚ÉˆÚ‚éŠp“xŒë·(rad)
-	const float MARGIN_DIST_HUMAN = 1.0f;	// l‚É‹ß‚Ã‚­‹——£(m)
-	const float MARGIN_DIST_RETURN = 0.1f;	// Œo˜H‚É–ß‚é‚Æ‚«‚ÉŸ‚Ìƒ‚[ƒh‚ÉˆÚ‚éˆÊ’uŒë·(m)
+	const float MARGIN_ANGLE = 0.1f;		// æ¬¡ã®ãƒ¢ãƒ¼ãƒ‰ã«ç§»ã‚‹è§’åº¦èª¤å·®(rad)
+	const float MARGIN_DIST_HUMAN = 1.0f;	// äººã«è¿‘ã¥ãè·é›¢(m)
+	const float MARGIN_DIST_RETURN = 0.1f;	// çµŒè·¯ã«æˆ»ã‚‹ã¨ãã«æ¬¡ã®ãƒ¢ãƒ¼ãƒ‰ã«ç§»ã‚‹ä½ç½®èª¤å·®(m)
 
 	enum SEQUENCE {
 		INIT = 0,
@@ -701,8 +701,8 @@ int navi::searchProcess()
 	
 	int res = 1;
 
-	static long time_mode0 = 0;				// ‘O‰ñmode‚ğØ‚è‘Ö‚¦‚½‚ÌŠÔ(ms)
-	static int search_mode0 = -1;			// ‘O‰ñ‚Ìsearch_mode
+	static long time_mode0 = 0;				// å‰å›modeã‚’åˆ‡ã‚Šæ›¿ãˆãŸæ™‚ã®æ™‚é–“(ms)
+	static int search_mode0 = -1;			// å‰å›ã®search_mode
 	if (search_mode != search_mode0){
 		search_mode0 = search_mode;
 		time_mode0 = timeGetTime();
@@ -714,7 +714,7 @@ int navi::searchProcess()
 	else {
 		switch(search_mode){
 			case INIT:{
-				stop();					// ’â~
+				stop();					// åœæ­¢
 				if (mode_period >= 1.0f) search_mode ++;
 				break;
 				   }
@@ -723,8 +723,8 @@ int navi::searchProcess()
 				break;
 				   }
 			case MOVE_TARGET:{
-				if (mode_period >= 10.0f) search_mode ++;				// 10•bŠÔŒo‰ß‚µ‚Ä‚àğŒ‚ğ–‚½‚³‚È‚¢ê‡‚ÍCŸ‚Ìƒ‚[ƒh‚ÉˆÚ‚éD
-																		// áŠQ•¨‚Å’â~‚µ‚Ä‚µ‚Ü‚¤‚±‚Æ‚ÉŠÖ‚·‚é‘Îô
+				if (mode_period >= 10.0f) search_mode ++;				// 10ç§’é–“çµŒéã—ã¦ã‚‚æ¡ä»¶ã‚’æº€ãŸã•ãªã„å ´åˆã¯ï¼Œæ¬¡ã®ãƒ¢ãƒ¼ãƒ‰ã«ç§»ã‚‹ï¼
+																		// éšœå®³ç‰©ã§åœæ­¢ã—ã¦ã—ã¾ã†ã“ã¨ã«é–¢ã™ã‚‹å¯¾ç­–
 				if (!moveToPos(searchX, searchY, MARGIN_DIST_HUMAN)) search_mode ++;
 				break;
 				   }
@@ -734,7 +734,7 @@ int navi::searchProcess()
 				break;
 				   }
 			case INDICATE_FIND_WAIT:{
-				stop();					// ’â~
+				stop();					// åœæ­¢
 				if (mode_period >= 2.0f) search_mode ++;
 				break;
 				   }
@@ -751,7 +751,7 @@ int navi::searchProcess()
 				break;
 				   }
 			case FINISH:{
-				data_no = 0;											// ƒf[ƒ^‚ÌƒNƒŠƒA
+				data_no = 0;											// ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
 				is_search_mode = 0;
 				break;
 				   }
@@ -762,7 +762,7 @@ int navi::searchProcess()
 }
 
 /*!
- * @brief ’â~‚·‚éi’Tõƒ‚[ƒh‚Ì‚İj
+ * @brief åœæ­¢ã™ã‚‹ï¼ˆæ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã®ã¿ï¼‰
  *
  * @return 0
  */
@@ -775,13 +775,13 @@ int navi::stop()
 }
 
 /*!
- * @brief –Ú•W(x,y)‚ÉŒü‚«’¼‚é
+ * @brief ç›®æ¨™(x,y)ã«å‘ãç›´ã‚‹
  *
- * @param[in] x –Ú•W‚ÌxÀ•W(m) ƒOƒ[ƒoƒ‹À•W
- * @param[in] y –Ú•W‚ÌyÀ•W(m) ƒOƒ[ƒoƒ‹À•W
- * @param[in] margin_angle I—¹‚·‚éŠp“xŒë·(rad)
+ * @param[in] x ç›®æ¨™ã®xåº§æ¨™(m) ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
+ * @param[in] y ç›®æ¨™ã®yåº§æ¨™(m) ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
+ * @param[in] margin_angle çµ‚äº†ã™ã‚‹è§’åº¦èª¤å·®(rad)
  *
- * @return 1:Œp‘±’†C0:I—¹
+ * @return 1:ç¶™ç¶šä¸­ï¼Œ0:çµ‚äº†
  */
 int navi::turnToPos(float x, float y, float margin_angle)
 {
@@ -797,20 +797,20 @@ int navi::turnToPos(float x, float y, float margin_angle)
 		else				rotateSpeed = -ROTATE_SPEED;
 	} else {
 		rotateSpeed = 0.0f;
-		ret = 0;				// ƒ^ƒXƒN‚ªI—¹
+		ret = 0;				// ã‚¿ã‚¹ã‚¯ãŒçµ‚äº†
 	}
 
 	return ret;
 }
 
 /*!
- * @brief –Ú•W(x,y)‚É‹ßŠñ‚é
+ * @brief ç›®æ¨™(x,y)ã«è¿‘å¯„ã‚‹
  *
- * @param[in] x –Ú•W‚ÌxÀ•W(m) ƒOƒ[ƒoƒ‹À•W
- * @param[in] y –Ú•W‚ÌyÀ•W(m) ƒOƒ[ƒoƒ‹À•W
- * @param[in] margin_distance I—¹‚·‚é‹——£(m)
+ * @param[in] x ç›®æ¨™ã®xåº§æ¨™(m) ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
+ * @param[in] y ç›®æ¨™ã®yåº§æ¨™(m) ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™
+ * @param[in] margin_distance çµ‚äº†ã™ã‚‹è·é›¢(m)
  *
- * @return 1:Œp‘±’†C0:I—¹
+ * @return 1:ç¶™ç¶šä¸­ï¼Œ0:çµ‚äº†
  */
 int navi::moveToPos(float x, float y, float margin_distance)
 {
@@ -836,9 +836,9 @@ int navi::moveToPos(float x, float y, float margin_distance)
 }
 
 /*!
- * @brief ’Tõƒ‚[ƒh‚©‚Ç‚¤‚©‚ğ–ß‚·(j
+ * @brief æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã‚’æˆ»ã™(ï¼‰
  *
- * @return 0:’Tõƒ‚[ƒh‚Å‚È‚¢C1:’Tõƒ‚[ƒh
+ * @return 0:æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã§ãªã„ï¼Œ1:æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰
  */
 int navi::isSearchMode()
 {
@@ -846,10 +846,10 @@ int navi::isSearchMode()
 }
 
 /*!
- * @brief ‘¬“x‚Ìw—ß’l‚ğ–ß‚·
+ * @brief é€Ÿåº¦ã®æŒ‡ä»¤å€¤ã‚’æˆ»ã™
  *
- * @param[out] front  ‘OŒã‚Ì‘¬“x(m/s)
- * @param[out] radius ‰ñ“]”¼Œa(m)
+ * @param[out] front  å‰å¾Œã®é€Ÿåº¦(m/s)
+ * @param[out] radius å›è»¢åŠå¾„(m)
  *
  * @return 0
  */
@@ -862,9 +862,9 @@ int navi::getSpeed(float *forward, float *rotate)
 }
 
 /*!
- * @brief ‘O‰ñ‚Ì’Tõ‘ÎÛ‚©‚ç‚Ì‹——£‚ğ–ß‚·
+ * @brief å‰å›ã®æ¢ç´¢å¯¾è±¡ã‹ã‚‰ã®è·é›¢ã‚’æˆ»ã™
  *
- * @return ‘O‰ñ‚Ì’Tõ‘ÎÛ‚©‚ç‚Ì‹——£(m)
+ * @return å‰å›ã®æ¢ç´¢å¯¾è±¡ã‹ã‚‰ã®è·é›¢(m)
  */
 float navi::distaceFromPreviousSearchPoint()
 {
@@ -875,9 +875,9 @@ float navi::distaceFromPreviousSearchPoint()
 }
 
 /*!
- * @brief ƒŠƒ‹[ƒgƒ‚[ƒh‚É‚·‚éD
+ * @brief ãƒªãƒ«ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ï¼
  *
- * @param[in] direction ƒŠƒ‹[ƒg‚Ì•ûŒü
+ * @param[in] direction ãƒªãƒ«ãƒ¼ãƒˆã®æ–¹å‘
  *
  * @return 0
  */
@@ -896,18 +896,18 @@ int navi::isRerouteMode()
 }
 
 /*!
- * @brief ’Tõ‚ÌƒvƒƒZƒX
+ * @brief æ¢ç´¢ã®ãƒ—ãƒ­ã‚»ã‚¹
  *
- * @return 1:Œp‘±’†C0:I—¹
+ * @return 1:ç¶™ç¶šä¸­ï¼Œ0:çµ‚äº†
  */
 int navi::rerouteProcess()
 {
 	LOG("reroute_process, reroute_mode : %d\n", reroute_mode);
 
 
-	const float MARGIN_ANGLE = 0.1f;		// Ÿ‚Ìƒ‚[ƒh‚ÉˆÚ‚éŠp“xŒë·(rad)
-	const float MARGIN_DIST_HUMAN = 1.0f;	// l‚É‹ß‚Ã‚­‹——£(m)
-	const float MARGIN_DIST_RETURN = 0.1f;	// Œo˜H‚É–ß‚é‚Æ‚«‚ÉŸ‚Ìƒ‚[ƒh‚ÉˆÚ‚éˆÊ’uŒë·(m)
+	const float MARGIN_ANGLE = 0.1f;		// æ¬¡ã®ãƒ¢ãƒ¼ãƒ‰ã«ç§»ã‚‹è§’åº¦èª¤å·®(rad)
+	const float MARGIN_DIST_HUMAN = 1.0f;	// äººã«è¿‘ã¥ãè·é›¢(m)
+	const float MARGIN_DIST_RETURN = 0.1f;	// çµŒè·¯ã«æˆ»ã‚‹ã¨ãã«æ¬¡ã®ãƒ¢ãƒ¼ãƒ‰ã«ç§»ã‚‹ä½ç½®èª¤å·®(m)
 
 	enum SEQUENCE {
 		INIT = 0,
@@ -923,8 +923,8 @@ int navi::rerouteProcess()
 	
 	int res = 1;
 
-	static long time_mode0 = 0;				// ‘O‰ñmode‚ğØ‚è‘Ö‚¦‚½‚ÌŠÔ(ms)
-	static int reroute_mode0 = -1;			// ‘O‰ñ‚Ìsearch_mode
+	static long time_mode0 = 0;				// å‰å›modeã‚’åˆ‡ã‚Šæ›¿ãˆãŸæ™‚ã®æ™‚é–“(ms)
+	static int reroute_mode0 = -1;			// å‰å›ã®search_mode
 	if (reroute_mode != reroute_mode0){
 		reroute_mode0 = reroute_mode;
 		time_mode0 = timeGetTime();
@@ -984,9 +984,9 @@ int navi::rerouteProcess()
 }
 
 /*!
- * @brief 90“x‰ñ“]‚·‚éD
+ * @brief 90åº¦å›è»¢ã™ã‚‹ï¼
  *
- * @return 1:Œp‘±’†C0:I—¹
+ * @return 1:ç¶™ç¶šä¸­ï¼Œ0:çµ‚äº†
  */
 int navi::turn90deg(int direction, float the0, float margin_angle)
 {
@@ -1007,16 +1007,16 @@ int navi::turn90deg(int direction, float the0, float margin_angle)
 		else				rotateSpeed = -ROTATE_SPEED;
 	} else {
 		rotateSpeed = 0.0f;
-		ret = 0;				// ƒ^ƒXƒN‚ªI—¹
+		ret = 0;				// ã‚¿ã‚¹ã‚¯ãŒçµ‚äº†
 	}
 
 	return ret;
 }
 
 /*!
- * @brief ‚ ‚é‹——£‚¾‚¯‘–s
+ * @brief ã‚ã‚‹è·é›¢ã ã‘èµ°è¡Œ
  *
- * @return 1:Œp‘±’†C0:I—¹
+ * @return 1:ç¶™ç¶šä¸­ï¼Œ0:çµ‚äº†
  */
 int navi::moveForward(float length, float x0, float y0)
 {
@@ -1039,7 +1039,7 @@ int navi::moveForward(float length, float x0, float y0)
 }
 
 /*!
- * @brief Œ¸‘¬‚ÌŒW”‚ğƒZƒbƒg‚·‚éD
+ * @brief æ¸›é€Ÿã®ä¿‚æ•°ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ï¼
  *
  * @return 0
  */

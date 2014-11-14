@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file  detectTarget.cpp
- * @brief ‚Â‚­‚Îƒ`ƒƒƒŒƒ“ƒW—p’Tõ‘ÎÛÒŒŸoƒvƒƒOƒ‰ƒ€
+ * @brief ã¤ãã°ãƒãƒ£ãƒ¬ãƒ³ã‚¸ç”¨æ¢ç´¢å¯¾è±¡è€…æ¤œå‡ºãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @date 2013.10.31
  * @author Y.Hayashibara
  */
@@ -9,7 +9,7 @@
 #include "detectTarget.h"
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 detectTarget::detectTarget(void):
 	intensity_data_no(0), slate_point_no(0), search_point_no(0),
@@ -18,48 +18,48 @@ detectTarget::detectTarget(void):
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 detectTarget::~detectTarget(void)
 {
 }
 
 /*!
- * @brief ‰Šú‰»
+ * @brief åˆæœŸåŒ–
  *
  * @return 0
  */
-int detectTarget::Init()									// ‰Šú‰»
+int detectTarget::Init()									// åˆæœŸåŒ–
 {
 	mutex = CreateMutex(NULL, FALSE, _T("DETECT_TARGET_RESULT"));
 
-	// ‘¬“x§Œä‚ÌƒXƒŒƒbƒh‚ğŠJn
+	// é€Ÿåº¦åˆ¶å¾¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹å§‹
 	DWORD threadId;	
 	HANDLE hThread = CreateThread(NULL, 0, ThreadFunc, (LPVOID)this, 0, &threadId); 
-	// ƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ğã‚°‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’ä¸Šã’ã‚‹
 	SetThreadPriority(hThread, THREAD_PRIORITY_NORMAL);
 
 	return 0;
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  *
  * @return 0
  */
-int detectTarget::Close()									// I—¹ˆ—
+int detectTarget::Close()									// çµ‚äº†å‡¦ç†
 {
-	terminate = 1;											// ’Tõ‘ÎÛŒŸoƒXƒŒƒbƒh‚Ì’â~
+	terminate = 1;											// æ¢ç´¢å¯¾è±¡æ¤œå‡ºã‚¹ãƒ¬ãƒƒãƒ‰ã®åœæ­¢
 	CloseHandle(mutex);
 	return 0;
 }
 
 /*!
- * @brief ”½Ë‹­“xƒf[ƒ^‚ğƒZƒbƒg
- * ŒvZ‚ğ‚·‚é‘O‚ÉC•K‚¸“ü—Í‚·‚éD
+ * @brief åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆ
+ * è¨ˆç®—ã‚’ã™ã‚‹å‰ã«ï¼Œå¿…ãšå…¥åŠ›ã™ã‚‹ï¼
  *
- * @param[in] p   ”½Ë‹­“xƒf[ƒ^(m)iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] num ”½Ë‹­“xƒf[ƒ^‚ÌŒÂ”
+ * @param[in] p   åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿(m)ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] num åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *
  * @return 0
  */
@@ -74,10 +74,10 @@ int detectTarget::addIntensityData(pos_inten *p, int num)
 }
 
 /*!
- * @brief ’Tõ‘ÎÛ‚ÌˆÊ’u‚ÆŠm—¦‚ğ–ß‚·
+ * @brief æ¢ç´¢å¯¾è±¡ã®ä½ç½®ã¨ç¢ºç‡ã‚’æˆ»ã™
  *
- * @param[out] p   ’Tõ‘ÎÛ‚ÌˆÊ’u‚ÆŠm—¦iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[out] num ’Tõ‘ÎÛ‚ÌŒÂ”
+ * @param[out] p   æ¢ç´¢å¯¾è±¡ã®ä½ç½®ã¨ç¢ºç‡ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[out] num æ¢ç´¢å¯¾è±¡ã®å€‹æ•°
  *
  * @return 0
  */
@@ -93,17 +93,17 @@ int detectTarget::getTargetPos(pos_slate *p, int *num)
 }
 
 /*!
- * @brief Å‹ß–_‚Ì’Tõ‘ÎÛ‚ÌˆÊ’u
+ * @brief æœ€è¿‘æ£’ã®æ¢ç´¢å¯¾è±¡ã®ä½ç½®
  *
- * @param[out] p   Å‹ß–T‚Ì’Tõ‘ÎÛ‚ÌˆÊ’uiŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] self_loc   ƒƒ{ƒbƒg‚ÌŒ»İˆÊ’uiŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] radius   @ƒƒ{ƒbƒg‚Ì’Tõ”ÍˆÍ(m)
+ * @param[out] p   æœ€è¿‘å‚ã®æ¢ç´¢å¯¾è±¡ã®ä½ç½®ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] self_loc   ãƒ­ãƒœãƒƒãƒˆã®ç¾åœ¨ä½ç½®ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] radius   ã€€ãƒ­ãƒœãƒƒãƒˆã®æ¢ç´¢ç¯„å›²(m)
  *
- * @return 0:’Tõ‘ÎÛ–³‚µC1:’Tõ‘ÎÛ—L‚è
+ * @return 0:æ¢ç´¢å¯¾è±¡ç„¡ã—ï¼Œ1:æ¢ç´¢å¯¾è±¡æœ‰ã‚Š
  */
 int detectTarget::getSearchPos(pos *p, pos self_loc, float radius)
 {
-	const float MIN_PROBABILITY = 0.2f;		//! ToDo: Šm—¦‚Ì‚µ‚«‚¢’li•¡”ŒÂ”­Œ©‚·‚é‚±‚Æ‚ÅCŠm—¦‚ªã‚ª‚éD”’l‚ğ‘å‚«‚­‚·‚é‚ÆŒë”F¯‚ªŒ¸‚éDj
+	const float MIN_PROBABILITY = 0.2f;		//! ToDo: ç¢ºç‡ã®ã—ãã„å€¤ï¼ˆè¤‡æ•°å€‹ç™ºè¦‹ã™ã‚‹ã“ã¨ã§ï¼Œç¢ºç‡ãŒä¸ŠãŒã‚‹ï¼æ•°å€¤ã‚’å¤§ããã™ã‚‹ã¨èª¤èªè­˜ãŒæ¸›ã‚‹ï¼ï¼‰
 
 	int res = 0;
 
@@ -122,13 +122,13 @@ int detectTarget::getSearchPos(pos *p, pos self_loc, float radius)
 
 
 /*!
- * @brief ”½Ë‹­“x‚©‚ç’Tõ‘ÎÛ‚ÌŒó•â‚ğŒvZ‚·‚éD
+ * @brief åå°„å¼·åº¦ã‹ã‚‰æ¢ç´¢å¯¾è±¡ã®å€™è£œã‚’è¨ˆç®—ã™ã‚‹ï¼
  *
  * @return 0
  */
 int detectTarget::calculateIntensity()
 {
-	const float INTEGRATE_RADIUS = 1.0;		// “‡‚·‚é”¼Œa(m)
+	const float INTEGRATE_RADIUS = 1.0;		// çµ±åˆã™ã‚‹åŠå¾„(m)
 	const int DETECT_MIN_NUM = 5;
 	const int DETECT_MAX_NUM = 15;
 	
@@ -153,13 +153,13 @@ int detectTarget::calculateIntensity()
 }
 
 /*!
- * @brief ’Tõ‘ÎÛƒ|ƒCƒ“ƒg‚ğŒvZ‚·‚éD
+ * @brief æ¢ç´¢å¯¾è±¡ãƒã‚¤ãƒ³ãƒˆã‚’è¨ˆç®—ã™ã‚‹ï¼
  *
  * @return 0
  */
 int detectTarget::calculateSearchPoint()
 {
-	static const float INTEGRATE_RADIUS = 1.0f;		// “‡‚·‚é”¼Œa(m)
+	static const float INTEGRATE_RADIUS = 1.0f;		// çµ±åˆã™ã‚‹åŠå¾„(m)
 	static const float UP_PROBABILITY   = 0.1f;
 	static const float DOWN_PROBABILITY = 0.1f;
 
@@ -177,7 +177,7 @@ int detectTarget::calculateSearchPoint()
 				break;
 			}
 		}
-		if (j == search_point_no){					// “¯‚¶êŠ‚ª‚È‚©‚Á‚½ê‡C’Tõƒ|ƒCƒ“ƒg‚ğ’Ç‰Á
+		if (j == search_point_no){					// åŒã˜å ´æ‰€ãŒãªã‹ã£ãŸå ´åˆï¼Œæ¢ç´¢ãƒã‚¤ãƒ³ãƒˆã‚’è¿½åŠ 
 			if (search_point_no < MAX_SEARCH_POINT){
 				search_point[search_point_no] = slate_point[i];
 				search_point[search_point_no].probability = (DOWN_PROBABILITY + UP_PROBABILITY * slate_point[i].probability);
@@ -187,7 +187,7 @@ int detectTarget::calculateSearchPoint()
 	}
 	qsort(search_point, search_point_no, sizeof(struct pos_slate_T), comp_slate);
 	
-	for(i = 0; i < search_point_no; i ++){		// Šm—¦‚ğ‰º‚°‚ÄC0ˆÈ‰º‚É‚È‚Á‚½‚ç’Tõ‘ÎÛ‚©‚çŠO‚·
+	for(i = 0; i < search_point_no; i ++){		// ç¢ºç‡ã‚’ä¸‹ã’ã¦ï¼Œ0ä»¥ä¸‹ã«ãªã£ãŸã‚‰æ¢ç´¢å¯¾è±¡ã‹ã‚‰å¤–ã™
 		search_point[i].probability -= DOWN_PROBABILITY;
 		if (search_point[i].probability <= 0.0f) break;
 	}
@@ -198,7 +198,7 @@ int detectTarget::calculateSearchPoint()
 
 
 /*!
- * @brief üŠú“I‚Èˆ—i1s’ö“xj
+ * @brief å‘¨æœŸçš„ãªå‡¦ç†ï¼ˆ1sç¨‹åº¦ï¼‰
  *
  * @return 0
  */
@@ -211,12 +211,12 @@ int detectTarget::update()
 }
 
 /*!
- * @brief ‹——£‚ğ‹‚ß‚é
+ * @brief è·é›¢ã‚’æ±‚ã‚ã‚‹
  *
- * @param[in]  p   À•W“_‚P
- * @param[in]  p   À•W“_‚Q
+ * @param[in]  p   åº§æ¨™ç‚¹ï¼‘
+ * @param[in]  p   åº§æ¨™ç‚¹ï¼’
  *
- * @return ‹——£(m)
+ * @return è·é›¢(m)
  */
 float detectTarget::distance_xy2(pos p, pos q){
 	float dx = (p.x - q.x) / 1000.0f;
@@ -226,12 +226,12 @@ float detectTarget::distance_xy2(pos p, pos q){
 }
 
 /*!
- * @brief pos_intenŒ^‚Ìƒ\[ƒg‚Ì‚½‚ß‚Ì”äŠrŠÖ”
+ * @brief pos_intenå‹ã®ã‚½ãƒ¼ãƒˆã®ãŸã‚ã®æ¯”è¼ƒé–¢æ•°
  *
- * @param[in] c1 “‡‚µ‚½ˆÊ’u‚P‚Ìƒ|ƒCƒ“ƒ^
- * @param[in] c2 “‡‚µ‚½ˆÊ’u‚Q‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] c1 çµ±åˆã—ãŸä½ç½®ï¼‘ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in] c2 çµ±åˆã—ãŸä½ç½®ï¼’ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return 1:c1‚ÌŒÂ”‚ª‘½‚¢C0:ŒÂ”‚ª“¯‚¶C-1:c2‚ÌŒÂ”‚ª­‚È‚¢
+ * @return 1:c1ã®å€‹æ•°ãŒå¤šã„ï¼Œ0:å€‹æ•°ãŒåŒã˜ï¼Œ-1:c2ã®å€‹æ•°ãŒå°‘ãªã„
  */
 int detectTarget::comp_inten(const void *c1, const void *c2)
 {
@@ -245,12 +245,12 @@ int detectTarget::comp_inten(const void *c1, const void *c2)
 
 
 /*!
- * @brief pos_slateŒ^‚Ìƒ\[ƒg‚Ì‚½‚ß‚Ì”äŠrŠÖ”
+ * @brief pos_slateå‹ã®ã‚½ãƒ¼ãƒˆã®ãŸã‚ã®æ¯”è¼ƒé–¢æ•°
  *
- * @param[in] c1 “‡‚µ‚½ˆÊ’u‚P‚Ìƒ|ƒCƒ“ƒ^
- * @param[in] c2 “‡‚µ‚½ˆÊ’u‚Q‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] c1 çµ±åˆã—ãŸä½ç½®ï¼‘ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in] c2 çµ±åˆã—ãŸä½ç½®ï¼’ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return 1:c1‚ÌŒÂ”‚ª‘½‚¢C0:ŒÂ”‚ª“¯‚¶C-1:c2‚ÌŒÂ”‚ª­‚È‚¢
+ * @return 1:c1ã®å€‹æ•°ãŒå¤šã„ï¼Œ0:å€‹æ•°ãŒåŒã˜ï¼Œ-1:c2ã®å€‹æ•°ãŒå°‘ãªã„
  */
 int detectTarget::comp_slate(const void *c1, const void *c2)
 {
@@ -264,13 +264,13 @@ int detectTarget::comp_slate(const void *c1, const void *c2)
 
 
 /*!
- * @brief ”½Ë‹­“x‚Ì‘å‚«‚¢“_‚ğ“‡‚·‚éD
+ * @brief åå°„å¼·åº¦ã®å¤§ãã„ç‚¹ã‚’çµ±åˆã™ã‚‹ï¼
  *
- * @param[in]  p   ‚µ‚«‚¢’lˆÈã‚Ì”½Ë‹­“xƒf[ƒ^(m)iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in]  num ‚µ‚«‚¢’lˆÈã‚Ì”½Ë‹­“xƒf[ƒ^‚ÌŒÂ”
- * @param[out] q   “‡‚µ‚½”½Ë‹­“x‚Ì‘å‚«‚ÈˆÊ’u(m)iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[out] num_pos_integrate “‡‚µ‚½”½Ë‹­“x‚Ì‘å‚«‚ÈˆÊ’u‚ÌŒÂ”
- * @param[in]  radius “‡‚·‚é”¼Œa
+ * @param[in]  p   ã—ãã„å€¤ä»¥ä¸Šã®åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿(m)ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in]  num ã—ãã„å€¤ä»¥ä¸Šã®åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
+ * @param[out] q   çµ±åˆã—ãŸåå°„å¼·åº¦ã®å¤§ããªä½ç½®(m)ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[out] num_pos_integrate çµ±åˆã—ãŸåå°„å¼·åº¦ã®å¤§ããªä½ç½®ã®å€‹æ•°
+ * @param[in]  radius çµ±åˆã™ã‚‹åŠå¾„
  *
  * @return 0
  */
@@ -299,9 +299,9 @@ int detectTarget::integratePoints(pos_inten *p, int num, pos_integrate *q, int *
 		}
 	}
 
-	// ŒÂ”‚É‚æ‚èƒ\[ƒeƒBƒ“ƒO
+	// å€‹æ•°ã«ã‚ˆã‚Šã‚½ãƒ¼ãƒ†ã‚£ãƒ³ã‚°
 	qsort(q, n, sizeof(struct pos_integrate_T), comp_inten);
-	for(i = 0; i < n; i ++){				// ƒf[ƒ^‚ğ‘O‚É‹l‚ß‚é
+	for(i = 0; i < n; i ++){				// ãƒ‡ãƒ¼ã‚¿ã‚’å‰ã«è©°ã‚ã‚‹
 		if (!q[i].count) break;
 	}
 	*num_pos_integrate = i;
@@ -310,9 +310,9 @@ int detectTarget::integratePoints(pos_inten *p, int num, pos_integrate *q, int *
 }
 
 /*!
- * @brief ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+ * @brief ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
  *
- * @param[in] lpParameter ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] lpParameter ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return S_OK
  */
@@ -322,8 +322,8 @@ DWORD WINAPI detectTarget::ThreadFunc(LPVOID lpParameter)
 }
 
 /*!
- * @brief •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
- * ƒƒ{ƒbƒg‚Ì§Œä‚ğ•ÊƒXƒŒƒbƒh‚Ås‚¤D
+ * @brief åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+ * ãƒ­ãƒœãƒƒãƒˆã®åˆ¶å¾¡ã‚’åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§è¡Œã†ï¼
  *
  * @return S_OK
  */

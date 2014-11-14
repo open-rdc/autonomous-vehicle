@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "comm.h"
 #include "dataType.h"
 
@@ -7,18 +7,18 @@ class CURG
 {
 
 public:
-	CURG();								// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~CURG();					// ƒfƒXƒgƒ‰ƒNƒ^
+	CURG();								// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~CURG();					// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 public:
-	static const int n_data = 641;		// URG‚Åæ“¾‚·‚éƒf[ƒ^‚ÌŒÂ” (10`170deg)
-	CComm comm;							// ’ÊM‚ÌƒNƒ‰ƒX
+	static const int n_data = 641;		// URGã§å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•° (10ï½170deg)
+	CComm comm;							// é€šä¿¡ã®ã‚¯ãƒ©ã‚¹
 
-	int Init(int com_port);				// ‰Šúİ’è
-	int Close();						// I—¹ˆ—
-	int StartMeasure();					// URG‚ÌŒv‘ªŠJn
+	int Init(int com_port);				// åˆæœŸè¨­å®š
+	int Close();						// çµ‚äº†å‡¦ç†
+	int StartMeasure();					// URGã®è¨ˆæ¸¬é–‹å§‹
 	int GetData(int length[n_data], int intensity[n_data]);
-										// óMƒoƒbƒtƒ@‚É‚½‚Ü‚Á‚½‹——£ƒf[ƒ^‚ğæ“¾‚·‚é
+										// å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãŸã¾ã£ãŸè·é›¢ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
 	int TranslateCartesian(float tilt, int data[n_data], pos p[n_data]);
-										// ƒfƒJƒ‹ƒgÀ•WŒn‚Ö‚Ì•ÏŠ·
+										// ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã¸ã®å¤‰æ›
 };

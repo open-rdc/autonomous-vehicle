@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "comm.h"
 
 #define	IMU_COM_PORT	4
@@ -6,15 +6,15 @@
 class imu
 {
 public:
-	imu();										// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~imu();								// ƒfƒXƒgƒ‰ƒNƒ^
+	imu();										// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~imu();								// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 public:
-	CComm comm;									// ’ÊMƒ|[ƒg‚ÌƒNƒ‰ƒX
+	CComm comm;									// é€šä¿¡ãƒãƒ¼ãƒˆã®ã‚¯ãƒ©ã‚¹
 
-	int Init(int com_port);						// ‰Šú‰»
-	int Close();								// I—¹ˆ—
-	int Reset();								// IMU‚ÌƒŠƒZƒbƒg
-	int GetAngleStart();						// Šp“x‚Ìæ“¾‚ÌŠJn
-	int GetAngle(float *x, float *y, float *z);	// Šp“x‚Ìæ“¾
+	int Init(int com_port);						// åˆæœŸåŒ–
+	int Close();								// çµ‚äº†å‡¦ç†
+	int Reset();								// IMUã®ãƒªã‚»ãƒƒãƒˆ
+	int GetAngleStart();						// è§’åº¦ã®å–å¾—ã®é–‹å§‹
+	int GetAngle(float *x, float *y, float *z);	// è§’åº¦ã®å–å¾—
 };

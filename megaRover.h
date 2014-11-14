@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <windows.h>
 
@@ -12,40 +12,40 @@
 class megaRover
 {
 private:
-	static const int TREAD = 280;				//! ƒgƒŒƒbƒhiƒzƒC[ƒ‹‚Ì‹——£j(mm)
-	const float MAX_SPEED;						//! Å‘å‘¬“x(m/s)
+	static const int TREAD = 280;				//! ãƒˆãƒ¬ãƒƒãƒ‰ï¼ˆãƒ›ã‚¤ãƒ¼ãƒ«ã®è·é›¢ï¼‰(mm)
+	const float MAX_SPEED;						//! æœ€å¤§é€Ÿåº¦(m/s)
 
-	int is_speed_control_mode;					//! ‘¬“x§Œäƒ‚[ƒhi1:‘¬“x§Œäƒ‚[ƒhC0:‚»‚Ì‘¼j
-	float refSpeedRight, refSpeedLeft;			//! ¶‰EƒzƒC[ƒ‹‚Ì–Ú•W‘¬“x(m/s)
-	float speedRight, speedLeft;				//! ¶‰EƒzƒC[ƒ‹‚Ì‘¬“x(m/s)
-	float odoX, odoY, odoThe;					//! ƒIƒhƒƒgƒŠ‚ÌˆÊ’u(m)Cp¨(rad)
-	int deltaR, deltaL;							//! ¶‰EƒzƒC[ƒ‹‚Ì‰Á‘¬“x(m/s^2)
-	int terminate;								//! ƒXƒŒƒbƒh‚Ì”jŠüi1:”jŠü, 0:Œp‘±j
-	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
-	DWORD WINAPI ExecThread();					// •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
-	int Update();								// üŠú“I‚És‚¤ˆ—
-	HANDLE mutex, comMutex;						// COMƒ|[ƒg‚Ì”r‘¼§Œä
+	int is_speed_control_mode;					//! é€Ÿåº¦åˆ¶å¾¡ãƒ¢ãƒ¼ãƒ‰ï¼ˆ1:é€Ÿåº¦åˆ¶å¾¡ãƒ¢ãƒ¼ãƒ‰ï¼Œ0:ãã®ä»–ï¼‰
+	float refSpeedRight, refSpeedLeft;			//! å·¦å³ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç›®æ¨™é€Ÿåº¦(m/s)
+	float speedRight, speedLeft;				//! å·¦å³ãƒ›ã‚¤ãƒ¼ãƒ«ã®é€Ÿåº¦(m/s)
+	float odoX, odoY, odoThe;					//! ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ä½ç½®(m)ï¼Œå§¿å‹¢(rad)
+	int deltaR, deltaL;							//! å·¦å³ãƒ›ã‚¤ãƒ¼ãƒ«ã®åŠ é€Ÿåº¦(m/s^2)
+	int terminate;								//! ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç ´æ£„ï¼ˆ1:ç ´æ£„, 0:ç¶™ç¶šï¼‰
+	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+	DWORD WINAPI ExecThread();					// åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+	int Update();								// å‘¨æœŸçš„ã«è¡Œã†å‡¦ç†
+	HANDLE mutex, comMutex;						// COMãƒãƒ¼ãƒˆã®æ’ä»–åˆ¶å¾¡
 	int getEncoder(unsigned int *right, unsigned int *left);
-												// ƒGƒ“ƒR[ƒ_‚Ì’l‚Ìæ“¾
+												// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®å€¤ã®å–å¾—
 public:
-	megaRover();								// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~megaRover();								// ƒfƒXƒgƒ‰ƒNƒ^
+	megaRover();								// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~megaRover();								// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	int init();									// ‰Šú‰»
-	int close();								// I—¹ˆ—
-	int servoOn(int gain);						// ƒT[ƒ{ƒIƒ“(gain:100)
-	int setDelta(int right, int left);			// •Ï‰»—Ê‚ğw’è
-	int setMotor(int right, int left);			// ƒ‚[ƒ^‚Ö‚Ìƒgƒ‹ƒN“ü—Í(-127-127)
+	int init();									// åˆæœŸåŒ–
+	int close();								// çµ‚äº†å‡¦ç†
+	int servoOn(int gain);						// ã‚µãƒ¼ãƒœã‚ªãƒ³(gain:100)
+	int setDelta(int right, int left);			// å¤‰åŒ–é‡ã‚’æŒ‡å®š
+	int setMotor(int right, int left);			// ãƒ¢ãƒ¼ã‚¿ã¸ã®ãƒˆãƒ«ã‚¯å…¥åŠ›(-127-127)
 
 	// speed control mode
-	int setSpeedControlMode(int is_on);			// ‘¬“x§Œäƒ‚[ƒh‚Ö‚ÌØ‚è‘Ö‚¦(1:‘¬“x§ŒäC0:ƒIƒt)
-	int setSpeed(float front, float rotate);	// ƒzƒC[ƒ‹‚Ì–Ú•W‘¬“x(m/s)
-	int setArcSpeed(float front, float radius);	// ƒƒ{ƒbƒg‚Ì–Ú•W‘¬“x(‘OŒãC‰ñ“])
-	int getOdometory(float *x, float *y, float *the, int is_clear);	// ƒIƒhƒƒgƒŠ‚Ìæ“¾(m, rad) 1:ƒNƒŠƒA
+	int setSpeedControlMode(int is_on);			// é€Ÿåº¦åˆ¶å¾¡ãƒ¢ãƒ¼ãƒ‰ã¸ã®åˆ‡ã‚Šæ›¿ãˆ(1:é€Ÿåº¦åˆ¶å¾¡ï¼Œ0:ã‚ªãƒ•)
+	int setSpeed(float front, float rotate);	// ãƒ›ã‚¤ãƒ¼ãƒ«ã®ç›®æ¨™é€Ÿåº¦(m/s)
+	int setArcSpeed(float front, float radius);	// ãƒ­ãƒœãƒƒãƒˆã®ç›®æ¨™é€Ÿåº¦(å‰å¾Œï¼Œå›è»¢)
+	int getOdometory(float *x, float *y, float *the, int is_clear);	// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å–å¾—(m, rad) 1:ã‚¯ãƒªã‚¢
 	int getJoyStick(float *x, float *y, int *b);
-												// ƒWƒ‡ƒCƒXƒeƒBƒbƒNî•ñ‚Ìæ“¾
+												// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯æƒ…å ±ã®å–å¾—
 	int getReferenceSpeed(float *right, float *left);
-	int setOdometoryAngle(float angle);			// ƒWƒƒƒCƒƒIƒhƒƒgƒŠ‚Ì‚½‚ß‚É•ûˆÊ‚ğİ’è‚·‚é(rad)
+	int setOdometoryAngle(float angle);			// ã‚¸ãƒ£ã‚¤ãƒ­ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ãŸã‚ã«æ–¹ä½ã‚’è¨­å®šã™ã‚‹(rad)
 	int getSpeed(float *rightSpeed, float *leftSpeed);
-	int megaRover::clearOdometory();			// ƒIƒhƒƒgƒŠ‚Ì’l‚ğƒNƒŠƒA‚·‚éD
+	int megaRover::clearOdometory();			// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å€¤ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ï¼
 };

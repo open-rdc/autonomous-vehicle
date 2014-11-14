@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include <math.h>
 #include <mmsystem.h>
 #include "memoryMap.h"
@@ -11,12 +11,12 @@
 
 /*!
  * @class megaRover
- * @brief Mega Rover‚ð§Œä‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief Mega Roverã‚’åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 megaRover::megaRover():
 is_speed_control_mode(0), refSpeedRight(0), refSpeedLeft(0),terminate(0),
@@ -30,14 +30,14 @@ odoX(0), odoY(0), odoThe(0),deltaL(0),deltaR(0), mutex(NULL), comMutex(NULL),
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 megaRover::~megaRover()
 {
 }
 
 /*!
- * @brief ‰Šú‰»
+ * @brief åˆæœŸåŒ–
  *
  * @return 0
  */
@@ -45,46 +45,46 @@ int megaRover::init()
 {
 	if(!CWRC_Connect()) return -1;
 
-	// ”r‘¼ˆ—
+	// æŽ’ä»–å‡¦ç†
 	mutex = CreateMutex(NULL, FALSE, _T("MEGA_ROVER_ODOMETORY"));
 	comMutex = CreateMutex(NULL, FALSE, _T("MEGA_ROVER_COM_MUTEX"));
 
-	// ƒGƒ“ƒR[ƒ_‚Ì‰Šú‰»
-	SetMem_UByte(Flag, 0x02);	// ƒGƒ“ƒR[ƒ_‚ðON‚É‚·‚é
+	// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®åˆæœŸåŒ–
+	SetMem_UByte(Flag, 0x02);	// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã‚’ONã«ã™ã‚‹
 	CWRC_WriteExecute(FALSE);
 
-	SetMem_SWord(EncoderA, 0);	// Œ»Ý‚ÌƒGƒ“ƒR[ƒ_’l‚ð0‚É–ß‚·
+	SetMem_SWord(EncoderA, 0);	// ç¾åœ¨ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€å€¤ã‚’0ã«æˆ»ã™
 	SetMem_SWord(EncoderB, 0);
 	CWRC_WriteExecute(FALSE);
 
-	// ‘¬“x§Œä‚ÌƒXƒŒƒbƒh‚ðŠJŽn
+	// é€Ÿåº¦åˆ¶å¾¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹å§‹
 	DWORD threadId;	
 	HANDLE hThread = CreateThread(NULL, 0, ThreadFunc, (LPVOID)this, 0, &threadId); 
-	// ƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ðã‚°‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’ä¸Šã’ã‚‹
 	SetThreadPriority(hThread, THREAD_PRIORITY_TIME_CRITICAL);
 	
 	return 0;
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  *
  * @return 0
  */
 int megaRover::close()
 {
-	terminate = 1;				// ‘¬“x§ŒäƒXƒŒƒbƒh‚Ì’âŽ~
+	terminate = 1;				// é€Ÿåº¦åˆ¶å¾¡ã‚¹ãƒ¬ãƒƒãƒ‰ã®åœæ­¢
 	CloseHandle(mutex);
 	CloseHandle(comMutex);
-	setMotor(0, 0);				// ƒƒ{ƒbƒg‚ðŽ~‚ß‚é
-	servoOn(0);					// ƒ‚[ƒ^‚ðOFF‚É‚·‚é
-	CWRC_Disconnect();			// ƒƒ{ƒbƒg‚Æ‚Ì’ÊM‚ðØ’f‚·‚é
+	setMotor(0, 0);				// ãƒ­ãƒœãƒƒãƒˆã‚’æ­¢ã‚ã‚‹
+	servoOn(0);					// ãƒ¢ãƒ¼ã‚¿ã‚’OFFã«ã™ã‚‹
+	CWRC_Disconnect();			// ãƒ­ãƒœãƒƒãƒˆã¨ã®é€šä¿¡ã‚’åˆ‡æ–­ã™ã‚‹
 
 	return 0;
 }
 
 /*!
- * @brief ƒT[ƒ{ON/OFF
+ * @brief ã‚µãƒ¼ãƒœON/OFF
  *
  * @param[in] gain 0:OFF, 1-255:on (servo gain)
  *
@@ -92,7 +92,7 @@ int megaRover::close()
  */
 int megaRover::servoOn(int gain)
 {
-	// ƒ‚[ƒ^‚ðON‚É‚·‚é‚½‚ß‚É‚ÍAƒƒ‚ƒŠƒ}ƒbƒv‚Ì0x04iModej‚ð1‚ÉA0x08,0x09i¶‰EŽÔ—Ö‚ÌƒQƒCƒ“j‚ðˆê’èˆÈã‚Ì’l‚É‘‚«Š·‚¦‚Ü‚·
+	// ãƒ¢ãƒ¼ã‚¿ã‚’ONã«ã™ã‚‹ãŸã‚ã«ã¯ã€ãƒ¡ãƒ¢ãƒªãƒžãƒƒãƒ—ã®0x04ï¼ˆModeï¼‰ã‚’1ã«ã€0x08,0x09ï¼ˆå·¦å³è»Šè¼ªã®ã‚²ã‚¤ãƒ³ï¼‰ã‚’ä¸€å®šä»¥ä¸Šã®å€¤ã«æ›¸ãæ›ãˆã¾ã™
 	SetMem_UByte(CpuMode     , gain > 0);
 	SetMem_UByte(MotorGainCh1, gain);
 	SetMem_UByte(MotorGainCh2, gain);
@@ -105,11 +105,11 @@ int megaRover::servoOn(int gain)
 }
 
 /*!
- * @brief ‰Á‘¬“x‚ÌÝ’è
- * ‹}‚È‰ÁŒ¸‘¬‚ð–hŽ~‚·‚é‚½‚ß
+ * @brief åŠ é€Ÿåº¦ã®è¨­å®š
+ * æ€¥ãªåŠ æ¸›é€Ÿã‚’é˜²æ­¢ã™ã‚‹ãŸã‚
  *
- * @param[in] right ‰EƒzƒC[ƒ‹‚Ì‰Á‘¬“x(m/s^2)
- * @param[in] left  ¶ƒzƒC[ƒ‹‚Ì‰Á‘¬“x(m/s^2)
+ * @param[in] right å³ãƒ›ã‚¤ãƒ¼ãƒ«ã®åŠ é€Ÿåº¦(m/s^2)
+ * @param[in] left  å·¦ãƒ›ã‚¤ãƒ¼ãƒ«ã®åŠ é€Ÿåº¦(m/s^2)
  *
  * @return 0
  */
@@ -122,10 +122,10 @@ int megaRover::setDelta(int right, int left)
 }
 
 /*!
- * @brief ƒ‚[ƒ^‘¬“x‚ÌÝ’è
+ * @brief ãƒ¢ãƒ¼ã‚¿é€Ÿåº¦ã®è¨­å®š
  *
- * @param[in] right ‰EƒzƒC[ƒ‹‚Ìƒgƒ‹ƒN@(-1000~1000)
- * @param[in] left  ¶ƒzƒC[ƒ‹‚Ìƒgƒ‹ƒN@(-1000~1000)
+ * @param[in] right å³ãƒ›ã‚¤ãƒ¼ãƒ«ã®ãƒˆãƒ«ã‚¯ã€€(-1000~1000)
+ * @param[in] left  å·¦ãƒ›ã‚¤ãƒ¼ãƒ«ã®ãƒˆãƒ«ã‚¯ã€€(-1000~1000)
  *
  * @return 0
  */
@@ -153,8 +153,8 @@ int megaRover::setMotor(int right, int left)
 
 	if (comMutex == NULL) return -1;
 	WaitForSingleObject(comMutex, INFINITE); 
-//	SetMem_SWord(MotorSpeedCh1, (int)(right * 0.93f));	// ToDo ƒoƒ‰ƒ“ƒX‚ðŽæ‚é
-	SetMem_SWord(MotorSpeedCh1, (int)(right * 1.00f));	// ToDo ƒoƒ‰ƒ“ƒX‚ðŽæ‚é
+//	SetMem_SWord(MotorSpeedCh1, (int)(right * 0.93f));	// ToDo ãƒãƒ©ãƒ³ã‚¹ã‚’å–ã‚‹
+	SetMem_SWord(MotorSpeedCh1, (int)(right * 1.00f));	// ToDo ãƒãƒ©ãƒ³ã‚¹ã‚’å–ã‚‹
 	SetMem_SWord(MotorSpeedCh2, (int)(left  * 1.00f));
 	CWRC_WriteExecute(FALSE);
 	ReleaseMutex(comMutex);
@@ -166,16 +166,16 @@ int megaRover::setMotor(int right, int left)
 }
 
 /*!
- * @brief ƒGƒ“ƒR[ƒ_‚Ì’l‚ÌŽæ“¾
+ * @brief ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®å€¤ã®å–å¾—
  *
- * @param[out] right ‰EƒzƒC[ƒ‹‚ÌƒGƒ“ƒR[ƒ_‚Ì’l
- * @param[out] left  ¶ƒzƒC[ƒ‹‚ÌƒGƒ“ƒR[ƒ_‚Ì’l
+ * @param[out] right å³ãƒ›ã‚¤ãƒ¼ãƒ«ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®å€¤
+ * @param[out] left  å·¦ãƒ›ã‚¤ãƒ¼ãƒ«ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®å€¤
  *
  * @return 0
  */
 int megaRover::getEncoder(unsigned int *right, unsigned int *left)
 {
-	// ƒGƒ“ƒR[ƒ_‚ÌŒ»Ý’l‚ðŽæ“¾
+	// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ã®ç¾åœ¨å€¤ã‚’å–å¾—
 	if (comMutex == NULL) return -1;
 	WaitForSingleObject(comMutex, INFINITE); 
 	CWRC_ReadMemMap(EncoderA, 4);
@@ -189,9 +189,9 @@ int megaRover::getEncoder(unsigned int *right, unsigned int *left)
 }
 
 /*!
- * @brief ‘¬“x§Œäƒ‚[ƒh‚ÌÝ’è
+ * @brief é€Ÿåº¦åˆ¶å¾¡ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
  *
- * @param[in] is_on 1:‘¬“x§Œäƒ‚[ƒhC0:‰ðœ
+ * @param[in] is_on 1:é€Ÿåº¦åˆ¶å¾¡ãƒ¢ãƒ¼ãƒ‰ï¼Œ0:è§£é™¤
  *
  * @return 0
  */
@@ -203,10 +203,10 @@ int megaRover::setSpeedControlMode(int is_on)
 }
 
 /*!
- * @brief ‘¬“x‚Ì§Œä
+ * @brief é€Ÿåº¦ã®åˆ¶å¾¡
  *
- * @param[in] front ‘OŒã•ûŒü‚Ì‘¬“x(m/s)
- * @param[in] rotate Šp‘¬“x(rad/s)
+ * @param[in] front å‰å¾Œæ–¹å‘ã®é€Ÿåº¦(m/s)
+ * @param[in] rotate è§’é€Ÿåº¦(rad/s)
  *
  * @return 0
  */
@@ -217,7 +217,7 @@ int megaRover::setSpeed(float front, float rotate)
 
 	float maxSpeed = max(fabs(refSpeedRight), fabs(refSpeedLeft));
 	if (maxSpeed > MAX_SPEED){
-		refSpeedRight *= (MAX_SPEED / maxSpeed);						// ’´‚¦‚éê‡‚ÍC‰ñ“]”¼Œa‚ð•Ï‚¦‚È‚¢‚æ‚¤‚É—¼•û“¯‚¶”ä—¦‚Å‘¬“x‚ð‰º‚°‚éD
+		refSpeedRight *= (MAX_SPEED / maxSpeed);						// è¶…ãˆã‚‹å ´åˆã¯ï¼Œå›žè»¢åŠå¾„ã‚’å¤‰ãˆãªã„ã‚ˆã†ã«ä¸¡æ–¹åŒã˜æ¯”çŽ‡ã§é€Ÿåº¦ã‚’ä¸‹ã’ã‚‹ï¼Ž
 		refSpeedLeft  *= (MAX_SPEED / maxSpeed);
 	}
 
@@ -225,10 +225,10 @@ int megaRover::setSpeed(float front, float rotate)
 }
 
 /*!
- * @brief ‘OŒã‚Ì‘¬“x‚Æ‰ñ“]”¼Œa
+ * @brief å‰å¾Œã®é€Ÿåº¦ã¨å›žè»¢åŠå¾„
  *
- * @param[in] front  ‘OŒã‚Ì‘¬“x(m/s)
- * @param[in] radius ‰ñ“]”¼Œa(m)
+ * @param[in] front  å‰å¾Œã®é€Ÿåº¦(m/s)
+ * @param[in] radius å›žè»¢åŠå¾„(m)
  *
  * @return 0
  */
@@ -242,7 +242,7 @@ int megaRover::setArcSpeed(float front, float radius)
 
 	float maxSpeed = max(fabs(refSpeedRight), fabs(refSpeedLeft));
 	if (maxSpeed > MAX_SPEED){
-		refSpeedRight *= (MAX_SPEED / maxSpeed);					// ’´‚¦‚éê‡‚ÍC‰ñ“]”¼Œa‚ð•Ï‚¦‚È‚¢‚æ‚¤‚É—¼•û“¯‚¶”ä—¦‚Å‘¬“x‚ð‰º‚°‚éD
+		refSpeedRight *= (MAX_SPEED / maxSpeed);					// è¶…ãˆã‚‹å ´åˆã¯ï¼Œå›žè»¢åŠå¾„ã‚’å¤‰ãˆãªã„ã‚ˆã†ã«ä¸¡æ–¹åŒã˜æ¯”çŽ‡ã§é€Ÿåº¦ã‚’ä¸‹ã’ã‚‹ï¼Ž
 		refSpeedLeft  *= (MAX_SPEED / maxSpeed);
 	}
 
@@ -250,12 +250,12 @@ int megaRover::setArcSpeed(float front, float radius)
 }
 
 /*!
- * @brief ƒIƒhƒƒgƒŠ‚ÌŽæ“¾
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å–å¾—
  *
- * @param[out] x   ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)
- * @param[out] y   ƒIƒhƒƒgƒŠ‚ÌyÀ•W(m)
- * @param[out] the ƒIƒhƒƒgƒŠ‚ÌŠp“x(rad)
- * @param[in]  is_clear ƒIƒhƒƒgƒŠ‚Ì’l‚ðƒNƒŠƒA‚·‚é‚©‚Ìƒtƒ‰ƒO(1:ƒNƒŠƒA,0:ƒNƒŠƒA‚µ‚È‚¢)
+ * @param[out] x   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)
+ * @param[out] y   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®yåº§æ¨™(m)
+ * @param[out] the ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦(rad)
+ * @param[in]  is_clear ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å€¤ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°(1:ã‚¯ãƒªã‚¢,0:ã‚¯ãƒªã‚¢ã—ãªã„)
  *
  * @return 0
  */
@@ -275,10 +275,10 @@ int megaRover::getOdometory(float *x, float *y, float *the, int is_clear)
 }
 
 /*!
- * @brief ¶‰E‚ÌƒzƒC[ƒ‹‚Ì‘¬“x‚ÌŽæ“¾
+ * @brief å·¦å³ã®ãƒ›ã‚¤ãƒ¼ãƒ«ã®é€Ÿåº¦ã®å–å¾—
  *
- * @param[out] rightSpeed	‰E‚ÌƒzƒC[ƒ‹‚Ì‘¬“x(m)
- * @param[out] leftSpeed	¶‚ÌƒIƒC[ƒ‹‚Ì‘¬“x(m)
+ * @param[out] rightSpeed	å³ã®ãƒ›ã‚¤ãƒ¼ãƒ«ã®é€Ÿåº¦(m)
+ * @param[out] leftSpeed	å·¦ã®ã‚ªã‚¤ãƒ¼ãƒ«ã®é€Ÿåº¦(m)
  *
  * @return 0
  */
@@ -290,9 +290,9 @@ int megaRover::getSpeed(float *rightSpeed, float *leftSpeed)
 }
 
 /*!
- * @brief ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+ * @brief ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
  *
- * @param[in] lpParameter ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] lpParameter ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return S_OK
  */
@@ -302,8 +302,8 @@ DWORD WINAPI megaRover::ThreadFunc(LPVOID lpParameter)
 }
 
 /*!
- * @brief •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
- * ƒƒ{ƒbƒg‚Ì§Œä‚ð•ÊƒXƒŒƒbƒh‚Ås‚¤D
+ * @brief åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+ * ãƒ­ãƒœãƒƒãƒˆã®åˆ¶å¾¡ã‚’åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§è¡Œã†ï¼Ž
  *
  * @return S_OK
  */
@@ -317,13 +317,13 @@ DWORD WINAPI megaRover::ExecThread()
 }
 
 /*!
- * @brief ’èŠú“I(20ms)‚ÉŒÄ‚Ño‚·ŠÖ”
+ * @brief å®šæœŸçš„(20ms)ã«å‘¼ã³å‡ºã™é–¢æ•°
  *
  * @return 0
  */
 int megaRover::Update()
 {
-	const float coef = 1.0f;					// —v’²®ŒÂ‘Ì·‚ ‚è
+	const float coef = 1.0f;					// è¦èª¿æ•´å€‹ä½“å·®ã‚ã‚Š
 
 	const int MAX_SHORT = 256 * 256;
 	static unsigned int r0 = 0, l0 = 0;
@@ -336,21 +336,21 @@ int megaRover::Update()
 
 	getEncoder(&r, &l);
 	rd =    r - r0;
-	ld  = -(int)(l - l0);	// ¶‚Íƒ}ƒCƒiƒX‚ª‘Oi
+	ld  = -(int)(l - l0);	// å·¦ã¯ãƒžã‚¤ãƒŠã‚¹ãŒå‰é€²
 	r0 = r, l0 = l;
 	if (rd >= ( MAX_SHORT / 2)) rd -= MAX_SHORT;
 	if (rd <= (-MAX_SHORT / 2)) rd += MAX_SHORT;
 	if (ld >= ( MAX_SHORT / 2)) ld -= MAX_SHORT;
 	if (ld <= (-MAX_SHORT / 2)) ld += MAX_SHORT;
 #ifdef MEGA_ROVER_1_1
-	right = (float)rd / (13 * 71.2f * 4) * 150 * M_PI / 1000.0f;		// ‰EŽÔ—Ö‚ÌˆÚ“®—Ê(m)
-	left  = (float)ld / (13 * 71.2f * 4) * 150 * M_PI / 1000.0f * coef;	// ¶ŽÔ—Ö‚ÌˆÚ“®—Ê(m)
+	right = (float)rd / (13 * 71.2f * 4) * 150 * M_PI / 1000.0f;		// å³è»Šè¼ªã®ç§»å‹•é‡(m)
+	left  = (float)ld / (13 * 71.2f * 4) * 150 * M_PI / 1000.0f * coef;	// å·¦è»Šè¼ªã®ç§»å‹•é‡(m)
 #else
-	right = (float)rd / (48 * 104 * 4) * 150 * M_PI / 1000.0f;			// ‰EŽÔ—Ö‚ÌˆÚ“®—Ê(m)
-	left  = (float)ld / (48 * 104 * 4) * 150 * M_PI / 1000.0f * coef;	// ¶ŽÔ—Ö‚ÌˆÚ“®—Ê(m)
+	right = (float)rd / (48 * 104 * 4) * 150 * M_PI / 1000.0f;			// å³è»Šè¼ªã®ç§»å‹•é‡(m)
+	left  = (float)ld / (48 * 104 * 4) * 150 * M_PI / 1000.0f * coef;	// å·¦è»Šè¼ªã®ç§»å‹•é‡(m)
 #endif
-	v = (right + left) / 2.0f;						// ‘OŒã‚Ì‘¬“x
-	w = (right - left) / (TREAD / 1000.0f);			// ‰ñ“]‘¬“x
+	v = (right + left) / 2.0f;						// å‰å¾Œã®é€Ÿåº¦
+	w = (right - left) / (TREAD / 1000.0f);			// å›žè»¢é€Ÿåº¦
 
 	if (mutex == NULL) return -1;
 	WaitForSingleObject(mutex, INFINITE);
@@ -393,13 +393,13 @@ int megaRover::Update()
 }
 
 /*!
- * @brief MegaRover‚ÌƒWƒ‡ƒCƒXƒeƒBƒbƒN‚Ìó‘Ô‚ðŽæ“¾‚·‚é
+ * @brief MegaRoverã®ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®çŠ¶æ…‹ã‚’å–å¾—ã™ã‚‹
  * x, y (0-1)
- * ƒQ[ƒ€ƒpƒbƒh‚Ìƒ{ƒ^ƒ“(¶,‰º,‰E,ã,½À°Ä,R3,L3,¾Ú¸Ä, ,~,›,¢,R1,L1,R2,L2)
+ * ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®ãƒœã‚¿ãƒ³(å·¦,ä¸‹,å³,ä¸Š,ï½½ï¾€ï½°ï¾„,R3,L3,ï½¾ï¾šï½¸ï¾„,â–¡,Ã—,â—‹,â–³,R1,L1,R2,L2)
  *
- * @param[in] x ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚ÌxŽ²‚Ì’l(-1`1)
- * @param[in] y ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚ÌyŽ²‚Ì’l(-1`1)
- * @param[in] b ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚Ìƒ{ƒ^ƒ“‚Ì’l
+ * @param[in] x ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®xè»¸ã®å€¤(-1ï½ž1)
+ * @param[in] y ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®yè»¸ã®å€¤(-1ï½ž1)
+ * @param[in] b ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®ãƒœã‚¿ãƒ³ã®å€¤
  *
  * @return 0
  */
@@ -428,10 +428,10 @@ int megaRover::getReferenceSpeed(float *right, float *left){
 
 
 /*!
- * @brief ƒIƒhƒƒgƒŠ‚ÌŠp“x‚ÌÝ’è
- * ƒWƒƒƒCƒƒIƒhƒƒgƒŠ‚Ì‚½‚ß‚É•ûˆÊ‚ðÝ’è‚·‚é(rad)
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦ã®è¨­å®š
+ * ã‚¸ãƒ£ã‚¤ãƒ­ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ãŸã‚ã«æ–¹ä½ã‚’è¨­å®šã™ã‚‹(rad)
  *
- * @param[in] angle ƒIƒhƒƒgƒŠ‚ÌŠp“x(rad)
+ * @param[in] angle ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦(rad)
  *
  * @return 0
  */
@@ -448,7 +448,7 @@ int megaRover::setOdometoryAngle(float angle)
 }
 
 /*!
- * @brief ƒIƒhƒƒgƒŠ‚Ì’l‚ðƒNƒŠƒA‚·‚éD
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å€¤ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ï¼Ž
  *
  * @return 0
  */

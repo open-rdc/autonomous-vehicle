@@ -1,4 +1,4 @@
-// futaba‚ÌƒTƒ“ƒvƒ‹ƒvƒƒOƒ‰ƒ€‚ğ‚Ù‚Ú‚»‚Ì‚Ü‚Üg—p‚³‚¹‚Ä’¸‚¢‚Ä‚¢‚Ü‚·D
+ï»¿// futabaã®ã‚µãƒ³ãƒ—ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚’ã»ã¼ãã®ã¾ã¾ä½¿ç”¨ã•ã›ã¦é ‚ã„ã¦ã„ã¾ã™ï¼
 
 #include "stdafx.h"
 #include <stdio.h>
@@ -7,21 +7,21 @@
 #include "rs405cb.h"
 
 /*!
- * @brief ’ÊMƒ|[ƒg‚ğŠJ‚­
- * ’ÊM‘¬“x‚ÍA460800bpsŒÅ’è
+ * @brief é€šä¿¡ãƒãƒ¼ãƒˆã‚’é–‹ã
+ * é€šä¿¡é€Ÿåº¦ã¯ã€460800bpså›ºå®š
  *
- * @param[in] pport ’ÊMƒ|[ƒg–¼(ƒT[ƒ{‚Æ’ÊM‰Â”\‚Èƒ|[ƒg–¼)
+ * @param[in] pport é€šä¿¡ãƒãƒ¼ãƒˆå(ã‚µãƒ¼ãƒœã¨é€šä¿¡å¯èƒ½ãªãƒãƒ¼ãƒˆå)
  *
- * @return 0:’ÊMƒnƒ“ƒhƒ‹ƒGƒ‰[,0‚Å‚È‚¢’l:¬Œ÷(’ÊM—pƒnƒ“ƒhƒ‹)
+ * @return 0:é€šä¿¡ãƒãƒ³ãƒ‰ãƒ«ã‚¨ãƒ©ãƒ¼,0ã§ãªã„å€¤:æˆåŠŸ(é€šä¿¡ç”¨ãƒãƒ³ãƒ‰ãƒ«)
  */
 HANDLE CommOpen( char *pport )
 {
-	HANDLE			hComm;		// ’ÊM—pƒnƒ“ƒhƒ‹
-	DCB				cDcb;		// ’ÊMİ’è—p
-	COMMTIMEOUTS	cTimeouts;	// ’ÊMƒ|[ƒgƒ^ƒCƒ€ƒAƒEƒg—p
+	HANDLE			hComm;		// é€šä¿¡ç”¨ãƒãƒ³ãƒ‰ãƒ«
+	DCB				cDcb;		// é€šä¿¡è¨­å®šç”¨
+	COMMTIMEOUTS	cTimeouts;	// é€šä¿¡ãƒãƒ¼ãƒˆã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆç”¨
 
 
-	// ’ÊMƒ|[ƒg‚ğŠJ‚­
+	// é€šä¿¡ãƒãƒ¼ãƒˆã‚’é–‹ã
 	hComm = CreateFileA( pport,
 						GENERIC_READ | GENERIC_WRITE,
 						0,
@@ -29,29 +29,29 @@ HANDLE CommOpen( char *pport )
 						OPEN_EXISTING,
 						0,
 						NULL );
-	// ƒnƒ“ƒhƒ‹‚ÌŠm”F
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ç¢ºèª
 	if( hComm == INVALID_HANDLE_VALUE ){
 		hComm = NULL;
 		goto FuncEnd;
 	}
 
 
-	// ’ÊMİ’è
+	// é€šä¿¡è¨­å®š
 	if( !GetCommState( hComm, &cDcb )){
-		// ’ÊMİ’èƒGƒ‰[‚Ìê‡
+		// é€šä¿¡è¨­å®šã‚¨ãƒ©ãƒ¼ã®å ´åˆ
 		printf( "ERROR:GetCommState error\n" );
 		CommClose( hComm );
 		hComm = NULL;
 		goto FuncEnd;
 	}
-	cDcb.BaudRate = 460800;				// ’ÊM‘¬“x
-	cDcb.ByteSize = 8;					// ƒf[ƒ^ƒrƒbƒg’·
-	cDcb.fParity  = TRUE;				// ƒpƒŠƒeƒBƒ`ƒFƒbƒN
-	cDcb.Parity   = NOPARITY;			// ƒm[ƒpƒŠƒeƒB
-	cDcb.StopBits = ONESTOPBIT;			// 1ƒXƒgƒbƒvƒrƒbƒg
+	cDcb.BaudRate = 460800;				// é€šä¿¡é€Ÿåº¦
+	cDcb.ByteSize = 8;					// ãƒ‡ãƒ¼ã‚¿ãƒ“ãƒƒãƒˆé•·
+	cDcb.fParity  = TRUE;				// ãƒ‘ãƒªãƒ†ã‚£ãƒã‚§ãƒƒã‚¯
+	cDcb.Parity   = NOPARITY;			// ãƒãƒ¼ãƒ‘ãƒªãƒ†ã‚£
+	cDcb.StopBits = ONESTOPBIT;			// 1ã‚¹ãƒˆãƒƒãƒ—ãƒ“ãƒƒãƒˆ
 
 	if( !SetCommState( hComm, &cDcb )){
-		// ’ÊMİ’èƒGƒ‰[‚Ìê‡
+		// é€šä¿¡è¨­å®šã‚¨ãƒ©ãƒ¼ã®å ´åˆ
 		printf( "ERROR:GetCommState error\n" );
 		CommClose( hComm );
 		hComm = NULL;
@@ -59,18 +59,18 @@ HANDLE CommOpen( char *pport )
 	}
 
 
-	// ’ÊMİ’è(’ÊMƒ^ƒCƒ€ƒAƒEƒgİ’è)
-	// •¶š‚Ì“Ç‚İ‚İ‘Ò‚¿ŠÔ(ms)
+	// é€šä¿¡è¨­å®š(é€šä¿¡ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆè¨­å®š)
+	// æ–‡å­—ã®èª­ã¿è¾¼ã¿å¾…ã¡æ™‚é–“(ms)
 	cTimeouts.ReadIntervalTimeout			= 50;
-	// “Ç‚İ‚İ‚Ì‚P•¶š‚ ‚½‚è‚ÌŠÔ(ms)
+	// èª­ã¿è¾¼ã¿ã®ï¼‘æ–‡å­—ã‚ãŸã‚Šã®æ™‚é–“(ms)
 	cTimeouts.ReadTotalTimeoutMultiplier	= 50;
-	// “Ç‚İ‚İ‚Ì’è”ŠÔ(ms)
+	// èª­ã¿è¾¼ã¿ã®å®šæ•°æ™‚é–“(ms)
 	cTimeouts.ReadTotalTimeoutConstant		= 50;
-	// ‘‚«‚İ‚Ì‚P•¶š‚ ‚½‚è‚ÌŠÔ(ms)
+	// æ›¸ãè¾¼ã¿ã®ï¼‘æ–‡å­—ã‚ãŸã‚Šã®æ™‚é–“(ms)
 	cTimeouts.WriteTotalTimeoutMultiplier	= 0;
 
 	if( !SetCommTimeouts( hComm, &cTimeouts )){
-		// ’ÊMİ’èƒGƒ‰[‚Ìê‡
+		// é€šä¿¡è¨­å®šã‚¨ãƒ©ãƒ¼ã®å ´åˆ
 		printf( "ERROR:SetCommTimeouts error\n" );
 		CommClose( hComm );
 		hComm = NULL;
@@ -78,7 +78,7 @@ HANDLE CommOpen( char *pport )
 	}
 
 
-	// ’ÊMƒoƒbƒtƒ@ƒNƒŠƒA
+	// é€šä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	PurgeComm( hComm, PURGE_RXCLEAR );
 
 
@@ -87,11 +87,11 @@ FuncEnd:
 }
 
 /*!
- * @brief ’ÊMƒ|[ƒg‚ğ•Â‚¶‚é
+ * @brief é€šä¿¡ãƒãƒ¼ãƒˆã‚’é–‰ã˜ã‚‹
  *
- * @param[in] hComm ’ÊMƒ|[ƒg‚Ìƒnƒ“ƒhƒ‹
+ * @param[in] hComm é€šä¿¡ãƒãƒ¼ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
  *
- * @return 1:¬Œ÷
+ * @return 1:æˆåŠŸ
  */
 int CommClose( HANDLE hComm )
 {
@@ -103,13 +103,13 @@ int CommClose( HANDLE hComm )
 }
 
 /*!
- * @brief ƒT[ƒ{‚Ìo—ÍŠp‚ğw’è
+ * @brief ã‚µãƒ¼ãƒœã®å‡ºåŠ›è§’ã‚’æŒ‡å®š
  *
- * @param[in] hComm ’ÊMƒ|[ƒg‚Ìƒnƒ“ƒhƒ‹
- * @param[in] sPos  ˆÚ“®ˆÊ’u(sPos x 0.1deg)
- * @param[in] sTime ˆÚ“®ŠÔ(sTime x 10ms)
+ * @param[in] hComm é€šä¿¡ãƒãƒ¼ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param[in] sPos  ç§»å‹•ä½ç½®(sPos x 0.1deg)
+ * @param[in] sTime ç§»å‹•æ™‚é–“(sTime x 10ms)
  *
- * @return 0ˆÈã:¬Œ÷,0–¢–:ƒGƒ‰[
+ * @return 0ä»¥ä¸Š:æˆåŠŸ,0æœªæº€:ã‚¨ãƒ©ãƒ¼
  */
 int RSMove( HANDLE hComm, short sPos, unsigned short sTime )
 {
@@ -120,48 +120,48 @@ int RSMove( HANDLE hComm, short sPos, unsigned short sTime )
 	unsigned long	len;
 
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( !hComm ){
 		return -1;
 	}
 
-	// ƒoƒbƒtƒ@ƒNƒŠƒA
+	// ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	memset( sendbuf, 0x00, sizeof( sendbuf ));
 
-	// ƒpƒPƒbƒgì¬
-	sendbuf[0]  = (unsigned char)0xFA;				    // ƒwƒbƒ_[1
-	sendbuf[1]  = (unsigned char)0xAF;				    // ƒwƒbƒ_[2
-	sendbuf[2]  = (unsigned char)SERVO_ID;			    // ƒT[ƒ{ID
-	sendbuf[3]  = (unsigned char)0x00;				    // ƒtƒ‰ƒO
-	sendbuf[4]  = (unsigned char)0x1E;				    // ƒAƒhƒŒƒX(0x1E=30)
-	sendbuf[5]  = (unsigned char)0x04;				    // ’·‚³(4byte)
-	sendbuf[6]  = (unsigned char)0x01;				    // ŒÂ”
-	sendbuf[7]  = (unsigned char)(sPos&0x00FF);		    // ˆÊ’u
-	sendbuf[8]  = (unsigned char)((sPos&0xFF00)>>8);	// ˆÊ’u
-	sendbuf[9]  = (unsigned char)(sTime&0x00FF);	    // ŠÔ
-	sendbuf[10] = (unsigned char)((sTime&0xFF00)>>8);	// ŠÔ
-	// ƒ`ƒFƒbƒNƒTƒ€‚ÌŒvZ
+	// ãƒ‘ã‚±ãƒƒãƒˆä½œæˆ
+	sendbuf[0]  = (unsigned char)0xFA;				    // ãƒ˜ãƒƒãƒ€ãƒ¼1
+	sendbuf[1]  = (unsigned char)0xAF;				    // ãƒ˜ãƒƒãƒ€ãƒ¼2
+	sendbuf[2]  = (unsigned char)SERVO_ID;			    // ã‚µãƒ¼ãƒœID
+	sendbuf[3]  = (unsigned char)0x00;				    // ãƒ•ãƒ©ã‚°
+	sendbuf[4]  = (unsigned char)0x1E;				    // ã‚¢ãƒ‰ãƒ¬ã‚¹(0x1E=30)
+	sendbuf[5]  = (unsigned char)0x04;				    // é•·ã•(4byte)
+	sendbuf[6]  = (unsigned char)0x01;				    // å€‹æ•°
+	sendbuf[7]  = (unsigned char)(sPos&0x00FF);		    // ä½ç½®
+	sendbuf[8]  = (unsigned char)((sPos&0xFF00)>>8);	// ä½ç½®
+	sendbuf[9]  = (unsigned char)(sTime&0x00FF);	    // æ™‚é–“
+	sendbuf[10] = (unsigned char)((sTime&0xFF00)>>8);	// æ™‚é–“
+	// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®è¨ˆç®—
 	sum = sendbuf[2];
 	for( i = 3; i < 11; i++ ){
 		sum = (unsigned char)(sum ^ sendbuf[i]);
 	}
-	sendbuf[11] = sum;								// ƒ`ƒFƒbƒNƒTƒ€
+	sendbuf[11] = sum;								// ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 
-	// ’ÊMƒoƒbƒtƒ@ƒNƒŠƒA
+	// é€šä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	PurgeComm( hComm, PURGE_RXCLEAR );
 
-	// ‘—M
+	// é€ä¿¡
 	ret = WriteFile( hComm, &sendbuf, 12, &len, NULL );
 
 	return ret;
 }
 
 /*!
- * @brief ƒT[ƒ{‚ÌŒ»İŠp“x‚Ìæ“¾‚ğŠJn‚·‚é
- * æ“¾‚Í•Ê‚ÌŠÖ” RSGetAngle(hComm)
- * ‘Ò‚¿ŠÔ‚ğ—LŒø‚ÉŠˆ—p‚·‚é‚½‚ß‚ÉC•Ê‚ÌŠÖ”‚ÅÀ‘•‚µ‚½
+ * @brief ã‚µãƒ¼ãƒœã®ç¾åœ¨è§’åº¦ã®å–å¾—ã‚’é–‹å§‹ã™ã‚‹
+ * å–å¾—ã¯åˆ¥ã®é–¢æ•° RSGetAngle(hComm)
+ * å¾…ã¡æ™‚é–“ã‚’æœ‰åŠ¹ã«æ´»ç”¨ã™ã‚‹ãŸã‚ã«ï¼Œåˆ¥ã®é–¢æ•°ã§å®Ÿè£…ã—ãŸ
  *
- * @param[in] hComm ’ÊMƒ|[ƒg‚Ìƒnƒ“ƒhƒ‹
+ * @param[in] hComm é€šä¿¡ãƒãƒ¼ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
  *
  * @return 0
  */
@@ -173,49 +173,49 @@ short RSStartGetAngle( HANDLE hComm )
 	int				ret;
 	unsigned long	len;
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( !hComm ){
 		return -1;
 	}
 
-	// ƒoƒbƒtƒ@ƒNƒŠƒA
+	// ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	memset( sendbuf, 0x00, sizeof( sendbuf ));
 
-	// ƒpƒPƒbƒgì¬
-	sendbuf[0]  = (unsigned char)0xFA;				// ƒwƒbƒ_[1
-	sendbuf[1]  = (unsigned char)0xAF;				// ƒwƒbƒ_[2
-	sendbuf[2]  = (unsigned char)SERVO_ID;			// ƒT[ƒ{ID
-	sendbuf[3]  = (unsigned char)0x09;				// ƒtƒ‰ƒO(0x01 | 0x04<<1)
-	sendbuf[4]  = (unsigned char)0x00;				// ƒAƒhƒŒƒX(0x00)
-	sendbuf[5]  = (unsigned char)0x00;				// ’·‚³(0byte)
-	sendbuf[6]  = (unsigned char)0x01;				// ŒÂ”
-	// ƒ`ƒFƒbƒNƒTƒ€‚ÌŒvZ
+	// ãƒ‘ã‚±ãƒƒãƒˆä½œæˆ
+	sendbuf[0]  = (unsigned char)0xFA;				// ãƒ˜ãƒƒãƒ€ãƒ¼1
+	sendbuf[1]  = (unsigned char)0xAF;				// ãƒ˜ãƒƒãƒ€ãƒ¼2
+	sendbuf[2]  = (unsigned char)SERVO_ID;			// ã‚µãƒ¼ãƒœID
+	sendbuf[3]  = (unsigned char)0x09;				// ãƒ•ãƒ©ã‚°(0x01 | 0x04<<1)
+	sendbuf[4]  = (unsigned char)0x00;				// ã‚¢ãƒ‰ãƒ¬ã‚¹(0x00)
+	sendbuf[5]  = (unsigned char)0x00;				// é•·ã•(0byte)
+	sendbuf[6]  = (unsigned char)0x01;				// å€‹æ•°
+	// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®è¨ˆç®—
 	sum = sendbuf[2];
 	for( i = 3; i < 7; i++ ){
 		sum = (unsigned char)(sum ^ sendbuf[i]);
 	}
-	sendbuf[7] = sum;								// ƒ`ƒFƒbƒNƒTƒ€
+	sendbuf[7] = sum;								// ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 
-	// ’ÊMƒoƒbƒtƒ@ƒNƒŠƒA
+	// é€šä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	PurgeComm( hComm, PURGE_RXCLEAR );
 
-	// ‘—M
+	// é€ä¿¡
 	ret = WriteFile( hComm, &sendbuf, 8, &len, NULL );
 	if( len < 8 ){
 		printf("writeError\n");
-		// ‘—MƒGƒ‰[
+		// é€ä¿¡ã‚¨ãƒ©ãƒ¼
 		return -1;
 	}
 	return 0;
 }
 
 /*!
- * @brief ƒT[ƒ{‚ÌŒ»İŠp“x‚ğæ“¾‚·‚é
- * æ“¾‚ğŠJn‚·‚éŠÖ”RSStartGetAngle(hComm)‚ğ—\‚ßÀs‚µ‚ÄCŠÔ‚ğ‚¨‚¢‚Ä‚©‚çŒÄ‚Ño‚·D
+ * @brief ã‚µãƒ¼ãƒœã®ç¾åœ¨è§’åº¦ã‚’å–å¾—ã™ã‚‹
+ * å–å¾—ã‚’é–‹å§‹ã™ã‚‹é–¢æ•°RSStartGetAngle(hComm)ã‚’äºˆã‚å®Ÿè¡Œã—ã¦ï¼Œé–“ã‚’ãŠã„ã¦ã‹ã‚‰å‘¼ã³å‡ºã™ï¼
  *
- * @param[in] hComm ’ÊMƒ|[ƒg‚Ìƒnƒ“ƒhƒ‹
+ * @param[in] hComm é€šä¿¡ãƒãƒ¼ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
  *
- * @return 0ˆÈã:ƒT[ƒ{‚ÌŒ»İŠp“x(0.1“x=1),0–¢–:ƒGƒ‰[
+ * @return 0ä»¥ä¸Š:ã‚µãƒ¼ãƒœã®ç¾åœ¨è§’åº¦(0.1åº¦=1),0æœªæº€:ã‚¨ãƒ©ãƒ¼
  */
 short RSGetAngle( HANDLE hComm )
 {
@@ -227,32 +227,32 @@ short RSGetAngle( HANDLE hComm )
 	unsigned char	readbuf[MAX_LEN];
 	short			angle;
 
-	// “Ç‚İ‚İ
+	// èª­ã¿è¾¼ã¿
 	memset( readbuf, 0x00, sizeof( readbuf ));
 	len = 0;
 
 	COMSTAT Comstat;
 	DWORD Error;
 	ClearCommError(hComm,&Error,&Comstat);
-	if(!Comstat.cbInQue) return 0;					// óM‚µ‚Ä‚¢‚È‚¢ê‡
+	if(!Comstat.cbInQue) return 0;					// å—ä¿¡ã—ã¦ã„ãªã„å ´åˆ
 	if (Comstat.cbInQue > MAX_LEN) readlen = MAX_LEN;
-	else readlen = Comstat.cbInQue;						// óM‚Å‚«‚éÅ‘å•¶š”‚ğ’´‚¦‚Ä‚¢‚éê‡‚ÍCmax_len‚¾‚¯óM
+	else readlen = Comstat.cbInQue;						// å—ä¿¡ã§ãã‚‹æœ€å¤§æ–‡å­—æ•°ã‚’è¶…ãˆã¦ã„ã‚‹å ´åˆã¯ï¼Œmax_lenã ã‘å—ä¿¡
 
 	ret = ReadFile( hComm, readbuf, readlen, &len, NULL );
 	if( len < 26 ){
 		printf("readError\n");
-		// óMƒGƒ‰[
+		// å—ä¿¡ã‚¨ãƒ©ãƒ¼
 		return -2;
 	}
 
-	// óMƒf[ƒ^‚ÌŠm”F(ƒTƒ€ƒ`ƒFƒbƒN)
+	// å—ä¿¡ãƒ‡ãƒ¼ã‚¿ã®ç¢ºèª(ã‚µãƒ ãƒã‚§ãƒƒã‚¯)
 	for( i = 3; i < 26; i++ ){
 		sum = sum ^ readbuf[i];
 	}
-	//ƒ`ƒFƒbƒNƒTƒ€‚Íƒoƒbƒtƒ@‚Ì27ƒoƒCƒg–Ú‚É“ü‚Á‚Ä‚é
+	//ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã¯ãƒãƒƒãƒ•ã‚¡ã®27ãƒã‚¤ãƒˆç›®ã«å…¥ã£ã¦ã‚‹
 	if( sum != readbuf[26] ){
 		printf("sumError\n");
-		// ƒ`ƒFƒbƒNƒTƒ€ƒGƒ‰[
+		// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã‚¨ãƒ©ãƒ¼
 		return -3;
 	}
 
@@ -261,12 +261,12 @@ short RSGetAngle( HANDLE hComm )
 }
 
 /*!
- * @brief ƒT[ƒ{‚Ìƒgƒ‹ƒN‚ğON/OFF‚·‚é
+ * @brief ã‚µãƒ¼ãƒœã®ãƒˆãƒ«ã‚¯ã‚’ON/OFFã™ã‚‹
  *
- * @param[in] hComm ’ÊMƒ|[ƒg‚Ìƒnƒ“ƒhƒ‹
- * @param[in] sMode 1:ƒgƒ‹ƒNON,0:ƒgƒ‹ƒNOFF
+ * @param[in] hComm é€šä¿¡ãƒãƒ¼ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param[in] sMode 1:ãƒˆãƒ«ã‚¯ON,0:ãƒˆãƒ«ã‚¯OFF
  *
- * @return 0ˆÈã:¬Œ÷,0–¢–:ƒGƒ‰[
+ * @return 0ä»¥ä¸Š:æˆåŠŸ,0æœªæº€:ã‚¨ãƒ©ãƒ¼
  */
 int RSTorqueOnOff( HANDLE hComm, short sMode )
 {
@@ -277,46 +277,46 @@ int RSTorqueOnOff( HANDLE hComm, short sMode )
 	unsigned long	len;
 
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( !hComm ){
 		return -1;
 	}
 
-	// ƒoƒbƒtƒ@ƒNƒŠƒA
+	// ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	memset( sendbuf, 0x00, sizeof( sendbuf ));
 
-	// ƒpƒPƒbƒgì¬
-	sendbuf[0]  = (unsigned char)0xFA;				// ƒwƒbƒ_[1
-	sendbuf[1]  = (unsigned char)0xAF;				// ƒwƒbƒ_[2
-	sendbuf[2]  = (unsigned char)SERVO_ID;			// ƒT[ƒ{ID
-	sendbuf[3]  = (unsigned char)0x00;				// ƒtƒ‰ƒO
-	sendbuf[4]  = (unsigned char)0x24;				// ƒAƒhƒŒƒX(0x24=36)
-	sendbuf[5]  = (unsigned char)0x01;				// ’·‚³(4byte)
-	sendbuf[6]  = (unsigned char)0x01;				// ŒÂ”
-	sendbuf[7]  = (unsigned char)(sMode&0x00FF);	// ON/OFFƒtƒ‰ƒO
-	// ƒ`ƒFƒbƒNƒTƒ€‚ÌŒvZ
+	// ãƒ‘ã‚±ãƒƒãƒˆä½œæˆ
+	sendbuf[0]  = (unsigned char)0xFA;				// ãƒ˜ãƒƒãƒ€ãƒ¼1
+	sendbuf[1]  = (unsigned char)0xAF;				// ãƒ˜ãƒƒãƒ€ãƒ¼2
+	sendbuf[2]  = (unsigned char)SERVO_ID;			// ã‚µãƒ¼ãƒœID
+	sendbuf[3]  = (unsigned char)0x00;				// ãƒ•ãƒ©ã‚°
+	sendbuf[4]  = (unsigned char)0x24;				// ã‚¢ãƒ‰ãƒ¬ã‚¹(0x24=36)
+	sendbuf[5]  = (unsigned char)0x01;				// é•·ã•(4byte)
+	sendbuf[6]  = (unsigned char)0x01;				// å€‹æ•°
+	sendbuf[7]  = (unsigned char)(sMode&0x00FF);	// ON/OFFãƒ•ãƒ©ã‚°
+	// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®è¨ˆç®—
 	sum = sendbuf[2];
 	for( i = 3; i < 8; i++ ){
 		sum = (unsigned char)(sum ^ sendbuf[i]);
 	}
-	sendbuf[8] = sum;								// ƒ`ƒFƒbƒNƒTƒ€
+	sendbuf[8] = sum;								// ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 
-	// ’ÊMƒoƒbƒtƒ@ƒNƒŠƒA
+	// é€šä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	PurgeComm( hComm, PURGE_RXCLEAR );
 
-	// ‘—M
+	// é€ä¿¡
 	ret = WriteFile( hComm, &sendbuf, 9, &len, NULL );
 
 	return ret;
 }
 
 /*!
- * @brief ƒT[ƒ{‚Ìƒgƒ‹ƒN‚ğİ’è‚·‚é
+ * @brief ã‚µãƒ¼ãƒœã®ãƒˆãƒ«ã‚¯ã‚’è¨­å®šã™ã‚‹
  *
- * @param[in] hComm ’ÊMƒ|[ƒg‚Ìƒnƒ“ƒhƒ‹
- * @param[in] maxTorque Å‘åƒgƒ‹ƒN‚Ìİ’è
+ * @param[in] hComm é€šä¿¡ãƒãƒ¼ãƒˆã®ãƒãƒ³ãƒ‰ãƒ«
+ * @param[in] maxTorque æœ€å¤§ãƒˆãƒ«ã‚¯ã®è¨­å®š
  *
- * @return 0ˆÈã:¬Œ÷,0–¢–:ƒGƒ‰[
+ * @return 0ä»¥ä¸Š:æˆåŠŸ,0æœªæº€:ã‚¨ãƒ©ãƒ¼
  */
 int RSMaxTorque( HANDLE hComm , int maxTorque)
 {
@@ -327,34 +327,34 @@ int RSMaxTorque( HANDLE hComm , int maxTorque)
 	unsigned long	len;
 
 
-	// ƒnƒ“ƒhƒ‹ƒ`ƒFƒbƒN
+	// ãƒãƒ³ãƒ‰ãƒ«ãƒã‚§ãƒƒã‚¯
 	if( !hComm ){
 		return -1;
 	}
 
-	// ƒoƒbƒtƒ@ƒNƒŠƒA
+	// ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	memset( sendbuf, 0x00, sizeof( sendbuf ));
 
-	// ƒpƒPƒbƒgì¬
-	sendbuf[0]  = (unsigned char)0xFA;				// ƒwƒbƒ_[1
-	sendbuf[1]  = (unsigned char)0xAF;				// ƒwƒbƒ_[2
-	sendbuf[2]  = (unsigned char)SERVO_ID;			// ƒT[ƒ{ID
-	sendbuf[3]  = (unsigned char)0x00;				// ƒtƒ‰ƒO
-	sendbuf[4]  = (unsigned char)0x23;				// ƒAƒhƒŒƒX(0x24=36)
-	sendbuf[5]  = (unsigned char)0x01;				// ’·‚³(1byte)
-	sendbuf[6]  = (unsigned char)0x01;				// ŒÂ”
-	sendbuf[7]  = (unsigned char)MAX_TORQUE;		// ƒgƒ‹ƒNÅ‘å’l•\‹L(MAX=0x64)
-	// ƒ`ƒFƒbƒNƒTƒ€‚ÌŒvZ
+	// ãƒ‘ã‚±ãƒƒãƒˆä½œæˆ
+	sendbuf[0]  = (unsigned char)0xFA;				// ãƒ˜ãƒƒãƒ€ãƒ¼1
+	sendbuf[1]  = (unsigned char)0xAF;				// ãƒ˜ãƒƒãƒ€ãƒ¼2
+	sendbuf[2]  = (unsigned char)SERVO_ID;			// ã‚µãƒ¼ãƒœID
+	sendbuf[3]  = (unsigned char)0x00;				// ãƒ•ãƒ©ã‚°
+	sendbuf[4]  = (unsigned char)0x23;				// ã‚¢ãƒ‰ãƒ¬ã‚¹(0x24=36)
+	sendbuf[5]  = (unsigned char)0x01;				// é•·ã•(1byte)
+	sendbuf[6]  = (unsigned char)0x01;				// å€‹æ•°
+	sendbuf[7]  = (unsigned char)MAX_TORQUE;		// ãƒˆãƒ«ã‚¯æœ€å¤§å€¤è¡¨è¨˜(MAX=0x64)
+	// ãƒã‚§ãƒƒã‚¯ã‚µãƒ ã®è¨ˆç®—
 	sum = sendbuf[2];
 	for( i = 3; i < 8; i++ ){
 		sum = (unsigned char)(sum ^ sendbuf[i]);
 	}
-	sendbuf[8] = sum;								// ƒ`ƒFƒbƒNƒTƒ€
+	sendbuf[8] = sum;								// ãƒã‚§ãƒƒã‚¯ã‚µãƒ 
 
-	// ’ÊMƒoƒbƒtƒ@ƒNƒŠƒA
+	// é€šä¿¡ãƒãƒƒãƒ•ã‚¡ã‚¯ãƒªã‚¢
 	PurgeComm( hComm, PURGE_RXCLEAR );
 
-	// ‘—M
+	// é€ä¿¡
 	ret = WriteFile( hComm, &sendbuf, 9, &len, NULL );
 
 	return ret;

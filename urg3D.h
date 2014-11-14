@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <vector>
 #include "URG.h"
 #include "rs405cb.h"
@@ -6,10 +6,10 @@
 class urg3D
 {
 private:
-	static const int SERVO_OFFSET = -5;		// ƒT[ƒ{‚ÌƒIƒtƒZƒbƒg(æ•t‚¯Šp“x‚ğŒ©‚È‚ª‚çİ’è)
-	static const int MAX_NUM = 100000;		// (1081“_ * 20‰ñ)/•b - Œ»“_‚Å5•b’ö“x‚Ìƒf[ƒ^‚ğ•Û‘¶‰Â”\‚È—Ìˆæ
+	static const int SERVO_OFFSET = -5;		// ã‚µãƒ¼ãƒœã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ(å–ä»˜ã‘è§’åº¦ã‚’è¦‹ãªãŒã‚‰è¨­å®š)
+	static const int MAX_NUM = 100000;		// (1081ç‚¹ * 20å›)/ç§’ - ç¾æ™‚ç‚¹ã§5ç§’ç¨‹åº¦ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜å¯èƒ½ãªé ˜åŸŸ
 
-	CURG urg;								// URG‚ÌƒNƒ‰ƒX
+	CURG urg;								// URGã®ã‚¯ãƒ©ã‚¹
 	int num;
 	pos_inten upos_inten[MAX_NUM];
 	HANDLE hComm;
@@ -17,26 +17,26 @@ private:
 	int tilt_low, tilt_high;
 	float tilt_period;
 	int terminate;
-	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
-	DWORD WINAPI ExecThread();				// •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
-	int Update();							// ’èŠú“I(50ms)‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
+	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+	DWORD WINAPI ExecThread();				// åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+	int Update();							// å®šæœŸçš„(50ms)ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
 
 public:
-	urg3D();								// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~urg3D();						// ƒfƒXƒgƒ‰ƒNƒ^
-	int Init();								// ‰Šúİ’è
-	int Close();							// I—¹ˆ—
-	int GetAllData(pos_inten *p, int max_no);		// URG‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
+	urg3D();								// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~urg3D();						// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	int Init();								// åˆæœŸè¨­å®š
+	int Close();							// çµ‚äº†å‡¦ç†
+	int GetAllData(pos_inten *p, int max_no);		// URGã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	int GetSelectedData(int low, int high, pos *p, int max_no);
-											// ‚‚³‚ğw’è‚µ‚Äurg‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
+											// é«˜ã•ã‚’æŒ‡å®šã—ã¦urgã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	int Get2SelectedData(int low1, int high1, pos *p1, int *no1, int max_no1,
 		int low2, int high2, pos *p2, int *no2, int max_no2);
-											// ‚Q‚Â‚Ì‚‚³‚ğw’è‚µ‚Äurg‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
+											// ï¼’ã¤ã®é«˜ã•ã‚’æŒ‡å®šã—ã¦urgã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	int Get3SelectedData(int low1, int high1, pos *p1, int *no1, int max_no1,
 		int low2, int high2, pos *p2, int *no2, int max_no2,
 		int low3, int high3, pos_inten *p3, int *no3, int max_no3, int min_intensity);
-											// ‚R‚Â‚Ì‚‚³‚ğw’è‚µ‚Äurg‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
+											// ï¼“ã¤ã®é«˜ã•ã‚’æŒ‡å®šã—ã¦urgã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	int SetTiltAngle(int low, int high, float period);
-											// ƒ`ƒ‹ƒgƒAƒ“ƒOƒ‹‚Ì“®‚«‚Ìİ’è
-	int ClearData();						// ƒf[ƒ^‚ğƒNƒŠƒA‚·‚é
+											// ãƒãƒ«ãƒˆã‚¢ãƒ³ã‚°ãƒ«ã®å‹•ãã®è¨­å®š
+	int ClearData();						// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 };

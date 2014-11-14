@@ -1,6 +1,6 @@
-/*!
+ï»¿/*!
  * @file  estimatePos.cpp
- * @brief ƒ‚ƒ“ƒeƒJƒ‹ƒ©ŒÈˆÊ’u„’èƒvƒƒOƒ‰ƒ€
+ * @brief ãƒ¢ãƒ³ãƒ†ã‚«ãƒ«ãƒ­è‡ªå·±ä½ç½®æ¨å®šãƒ—ãƒ­ã‚°ãƒ©ãƒ 
  * @date 2013.10.31
  * @author Y.Hayashibara
  */
@@ -12,11 +12,11 @@
 #define	M_PI	3.14159f
 
 /*!
- * @brief Šp“x‚ğ-PI`PI‚É•ÏŠ·‚·‚é‚½‚ß‚ÌŠÖ”
+ * @brief è§’åº¦ã‚’-PIï½PIã«å¤‰æ›ã™ã‚‹ãŸã‚ã®é–¢æ•°
  *
- * @param[in] rad Šp“x(rad)
+ * @param[in] rad è§’åº¦(rad)
  *
- * @return -PI`PI‚É•ÏŠ·‚µ‚½Šp“x
+ * @return -PIï½PIã«å¤‰æ›ã—ãŸè§’åº¦
  */
 float maxPI(float rad){
 	while(rad >  M_PI) rad -= (2.0f * M_PI);
@@ -26,12 +26,12 @@ float maxPI(float rad){
 
 /*!
  * @class estimatePos
- * @brief ©ŒÈˆÊ’u„’è‚ğs‚¤‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief è‡ªå·±ä½ç½®æ¨å®šã‚’è¡Œã†ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 estimatePos::estimatePos():
 odoX(0), odoY(0), odoThe(0), ref_data_no(0), is_ref_data_full(0), data_no(0),
@@ -41,7 +41,7 @@ estX(0), estY(0), estThe(0), estVar(0), coincidence(0)
 
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 estimatePos::~estimatePos()
 {
@@ -49,17 +49,17 @@ estimatePos::~estimatePos()
 
 
 /*!
- * @brief ‰Šú‰»
+ * @brief åˆæœŸåŒ–
  *
- * @param[in] x   ©ŒÈˆÊ’u‚ÌxÀ•W(m)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] y   ©ŒÈˆÊ’u‚ÌyÀ•W(m)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] the ©ŒÈˆÊ’u‚ÌŠp“x(rad)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
+ * @param[in] x   è‡ªå·±ä½ç½®ã®xåº§æ¨™(m)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] y   è‡ªå·±ä½ç½®ã®yåº§æ¨™(m)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] the è‡ªå·±ä½ç½®ã®è§’åº¦(rad)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
  *
  * @return 0
  */
 int estimatePos::Init(float x, float y, float the)
 {
-	// •Ï”‚Ì‰Šú‰»
+	// å¤‰æ•°ã®åˆæœŸåŒ–
 	odoX = x, odoY = y, odoThe = the;
 	estX = x, estY = y, estThe = the;
 	ref_data_no = is_ref_data_full = 0;
@@ -67,14 +67,14 @@ int estimatePos::Init(float x, float y, float the)
 	estVar = coincidence = 0;
 	the = maxPI(the);
 	
-	// ƒp[ƒeƒBƒNƒ‹‚Ì‰Šú‰»
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®åˆæœŸåŒ–
 	for(int i = 0; i < MAX_PARTICLE; i ++){
 		particle[i].x    = x  ;
 		particle[i].y    = y  ;
 		particle[i].the  = the;
 		particle[i].eval = 0  ;
 	}
-	// QÆƒf[ƒ^‚ÌƒNƒŠƒA
+	// å‚ç…§ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
 	memset(refData, 0, sizeof(pos) * MAX_REF_DATA);
 
 	return 0;
@@ -82,7 +82,7 @@ int estimatePos::Init(float x, float y, float the)
 
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  *
  * @return 0
  */
@@ -93,12 +93,12 @@ int estimatePos::Close()
 
 
 /*!
- * @brief ƒIƒhƒƒgƒŠƒf[ƒ^‚Ì“ü—Í
- * ŒvZ‚ğ‚·‚é‘O‚ÉC•K‚¸“ü—Í‚·‚éDiáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ÌŠî€‚Æ‚È‚éj
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªãƒ‡ãƒ¼ã‚¿ã®å…¥åŠ›
+ * è¨ˆç®—ã‚’ã™ã‚‹å‰ã«ï¼Œå¿…ãšå…¥åŠ›ã™ã‚‹ï¼ï¼ˆéšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®åŸºæº–ã¨ãªã‚‹ï¼‰
  *
- * @param[in] x   ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] y   ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] the ƒIƒhƒƒgƒŠ‚ÌŠp“x(rad)iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
+ * @param[in] x   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] y   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] the ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦(rad)ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
  *
  * @return 0
  */
@@ -113,19 +113,19 @@ int estimatePos::setOdometory(float x, float y, float the)
 
 
 /*!
- * @brief „’è‚µ‚½ˆÚ“®—Ê‚Ì“ü—Í
+ * @brief æ¨å®šã—ãŸç§»å‹•é‡ã®å…¥åŠ›
  *
- * @param[in] dx   „’è‚µ‚½ˆÚ“®—Ê‚ÌxÀ•W(m)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] dy   „’è‚µ‚½ˆÚ“®—Ê‚ÌyÀ•W(m)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] dthe „’è‚µ‚½ˆÚ“®—Ê‚ÌŠp“x(rad)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
+ * @param[in] dx   æ¨å®šã—ãŸç§»å‹•é‡ã®xåº§æ¨™(m)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] dy   æ¨å®šã—ãŸç§»å‹•é‡ã®yåº§æ¨™(m)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] dthe æ¨å®šã—ãŸç§»å‹•é‡ã®è§’åº¦(rad)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
  *
  * @return 0
  */
 int estimatePos::setDeltaPosition(float dx, float dy, float dthe)	// m, rad
 {
-	const float thre = 0.5f;					// Ÿ‚Ì¢‘ã‚É¶‚«c‚éŠ„‡
+	const float thre = 0.5f;					// æ¬¡ã®ä¸–ä»£ã«ç”Ÿãæ®‹ã‚‹å‰²åˆ
 	const float var_fb = 0.01f, var_ang = 0.005f;
-	int num = (int)(MAX_PARTICLE * thre);		// ¶‚«c‚è‚Ì”
+	int num = (int)(MAX_PARTICLE * thre);		// ç”Ÿãæ®‹ã‚Šã®æ•°
 
 	for(int i = MAX_PARTICLE - 1; i >= 0; i --){
 		particle[i].x   = particle[i % num].x + dx + cos(particle[i % num].the) * gaussian() * var_fb;
@@ -138,22 +138,22 @@ int estimatePos::setDeltaPosition(float dx, float dy, float dthe)	// m, rad
 
 
 /*!
- * @brief ƒp[ƒeƒBƒNƒ‹ƒtƒBƒ‹ƒ^‚ğg‚Á‚½©ŒÈˆÊ’u„’è‚Ìˆ—
+ * @brief ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ•ã‚£ãƒ«ã‚¿ã‚’ä½¿ã£ãŸè‡ªå·±ä½ç½®æ¨å®šã®å‡¦ç†
  *
  * @return 0
  */
 int estimatePos::calcualte()
 {
-	evaluate();										// ƒp[ƒeƒBƒNƒ‹‚Ì•]‰¿
-	estVar = getVariance(&estX, &estY, &estThe);	// ƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒn‚É‚¨‚¯‚é„’èˆÊ’u‚ğ‹‚ß‚éD
+	evaluate();										// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è©•ä¾¡
+	estVar = getVariance(&estX, &estY, &estThe);	// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã«ãŠã‘ã‚‹æ¨å®šä½ç½®ã‚’æ±‚ã‚ã‚‹ï¼
 	
 	return 0;
 }
 
 
 /*!
- * @brief ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚ÌƒNƒŠƒA
- * ‚±‚ÌŠÖ”‚ªŒÄ‚Ño‚³‚ê‚é‚Ü‚ÅCƒŠƒtƒ@ƒŒƒ“ƒX‚Ì‹——£ƒf[ƒ^‚Í’~Ï‚³‚ê‘±‚¯‚éD
+ * @brief ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®ã‚¯ãƒªã‚¢
+ * ã“ã®é–¢æ•°ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹ã¾ã§ï¼Œãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®è·é›¢ãƒ‡ãƒ¼ã‚¿ã¯è“„ç©ã•ã‚Œç¶šã‘ã‚‹ï¼
  *
  * @return 0
  */
@@ -166,10 +166,10 @@ int estimatePos::clearRefData()
 
 
 /*!
- * @brief ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚Ì’Ç‰Á
+ * @brief ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ 
  *
- * @param[in] p ƒŠƒtƒ@ƒŒƒ“ƒX‚Æ‚È‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] num ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚ÌŒÂ”
+ * @param[in] p ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã¨ãªã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] num ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *
  * @return 0
  */
@@ -188,10 +188,10 @@ int estimatePos::addRefData(pos *p, int num)
 
 
 /*!
- * @brief Œv‘ªƒf[ƒ^‚ğİ’è‚·‚é
+ * @brief è¨ˆæ¸¬ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®šã™ã‚‹
  *
- * @param[in] p Œv‘ª‚µ‚½áŠQ•¨‚ÌˆÊ’uƒf[ƒ^iŒ»İ‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] num ƒf[ƒ^‚ÌŒÂ”
+ * @param[in] p è¨ˆæ¸¬ã—ãŸéšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ï¼ˆç¾åœ¨ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] num ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  *
  * @return 0
  */
@@ -206,13 +206,13 @@ int estimatePos::setData(pos *p, int num)
 
 
 /*!
- * @brief „’èˆÊ’u‚Ìæ“¾
+ * @brief æ¨å®šä½ç½®ã®å–å¾—
  *
- * @param[in] x    „’è‚µ‚½ˆÊ’u‚ÌxÀ•W(m)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] y    „’è‚µ‚½ˆÊ’u‚ÌyÀ•W(m)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] the  „’è‚µ‚½ˆÊ’u‚ÌŠp“x(rad)iƒŠƒtƒ@ƒŒƒ“ƒX‚Ìƒ[ƒ‹ƒhÀ•WŒnj
- * @param[in] var  •ªU(0.0-1.0)
- * @param[in] coin ˆê’v“x(0.0-1.0)
+ * @param[in] x    æ¨å®šã—ãŸä½ç½®ã®xåº§æ¨™(m)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] y    æ¨å®šã—ãŸä½ç½®ã®yåº§æ¨™(m)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] the  æ¨å®šã—ãŸä½ç½®ã®è§’åº¦(rad)ï¼ˆãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ã®ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * @param[in] var  åˆ†æ•£(0.0-1.0)
+ * @param[in] coin ä¸€è‡´åº¦(0.0-1.0)
  *
  * @return 0
  */
@@ -229,9 +229,9 @@ int estimatePos::getEstimatedPosition(float *x, float *y, float *the, float *var
 
 
 /*!
- * @brief ƒKƒEƒX•ª•z‚·‚é—”‚ğ”­¶
+ * @brief ã‚¬ã‚¦ã‚¹åˆ†å¸ƒã™ã‚‹ä¹±æ•°ã‚’ç™ºç”Ÿ
  *
- * @return ƒKƒEƒX•ª•z‚·‚é—”
+ * @return ã‚¬ã‚¦ã‚¹åˆ†å¸ƒã™ã‚‹ä¹±æ•°
  */
 float estimatePos::gaussian()
 {
@@ -239,26 +239,26 @@ float estimatePos::gaussian()
 
 	do{
 		x = (float)rand()/RAND_MAX;
-	} while (x == 0.0);											// x‚ª0‚É‚È‚é‚Ì‚ğ”ğ‚¯‚é
+	} while (x == 0.0);											// xãŒ0ã«ãªã‚‹ã®ã‚’é¿ã‘ã‚‹
 	y = (float)rand()/RAND_MAX;
 	s = sqrt(-2.0f * log(x));
 	t = 2.0f * M_PI * y;
 
-	return s * cos(t);											// •W€³‹K•ª•z‚É]‚¤‹[——”
+	return s * cos(t);											// æ¨™æº–æ­£è¦åˆ†å¸ƒã«å¾“ã†æ“¬ä¼¼ä¹±æ•°
 }
 
 
 /*!
- * @brief ƒp[ƒeƒBƒNƒ‹‚Ì•]‰¿‚Æƒ\[ƒg
+ * @brief ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è©•ä¾¡ã¨ã‚½ãƒ¼ãƒˆ
  *
  * @return 0
  */
 int estimatePos::evaluate()
 {
-	static const int point_wide = 4;							// “¾“_‚ğ—^‚¦‚é—×‚Ì”
-	static const int point[point_wide + 1] = {16,8,4,2,1};		// —^‚¦‚é“¾“_
-	static const int wide = point_wide * 2 + 1;					// ƒe[ƒuƒ‹‚Ìx•ûŒü‚ÌƒTƒCƒY
-	static char table[wide][wide];								// “¾“_‚Ìƒe[ƒuƒ‹
+	static const int point_wide = 4;							// å¾—ç‚¹ã‚’ä¸ãˆã‚‹éš£ã®æ•°
+	static const int point[point_wide + 1] = {16,8,4,2,1};		// ä¸ãˆã‚‹å¾—ç‚¹
+	static const int wide = point_wide * 2 + 1;					// ãƒ†ãƒ¼ãƒ–ãƒ«ã®xæ–¹å‘ã®ã‚µã‚¤ã‚º
+	static char table[wide][wide];								// å¾—ç‚¹ã®ãƒ†ãƒ¼ãƒ–ãƒ«
 
 	static const int num_x = (search_x1 - search_x0)/dot_per_mm;
 	static const int num_y = (search_y1 - search_y0)/dot_per_mm;
@@ -268,20 +268,20 @@ int estimatePos::evaluate()
 	static const int max_y = search_y1 / dot_per_mm;
 	static char map[num_y][num_x];
 
-	// ƒe[ƒuƒ‹‚Ìì¬
+	// ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ
 	for(int i = 0; i < wide; i ++){
 		for(int j = 0; j < wide; j ++){
 			table[i][j] = point[max(abs(i - point_wide), abs(j - point_wide))];
 		}
 	}
 
-	// ƒ}ƒbƒv‚Ìì¬ (estX, estY)‚ğ’†S
-	memset(map, 0, num_x*num_y);								// map‚ÌƒNƒŠƒA
+	// ãƒãƒƒãƒ—ã®ä½œæˆ (estX, estY)ã‚’ä¸­å¿ƒ
+	memset(map, 0, num_x*num_y);								// mapã®ã‚¯ãƒªã‚¢
 	int ref_no = ref_data_no;
-	if (is_ref_data_full) ref_no = MAX_REF_DATA;				// QÆ‚·‚éƒf[ƒ^‚Ì”
+	if (is_ref_data_full) ref_no = MAX_REF_DATA;				// å‚ç…§ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æ•°
 
 	for(int i = 0;i < ref_no; i ++){
-		int x = (int)((refData[i].x - estX * 1000) / dot_per_mm) - min_x;		// ƒ}ƒbƒvã‚ÌˆÊ’u‚ğŒvZ
+		int x = (int)((refData[i].x - estX * 1000) / dot_per_mm) - min_x;		// ãƒãƒƒãƒ—ä¸Šã®ä½ç½®ã‚’è¨ˆç®—
 		int y = (int)((refData[i].y - estY * 1000) / dot_per_mm) - min_y;		
 		if ((x < point_wide)||(x >= (num_x - point_wide))||
 			(y < point_wide)||(y >= (num_y - point_wide))) continue;
@@ -289,37 +289,37 @@ int estimatePos::evaluate()
 			for(int xp = 0; xp < wide; xp ++){
 				int xt = x + (xp - point_wide);
 				int yt = y + (yp - point_wide);
-				map[yt][xt] = max(map[yt][xt], table[yp][xp]);	// ‚æ‚è•]‰¿‚Ì‚‚¢‚à‚Ì‚ğÌ—p
+				map[yt][xt] = max(map[yt][xt], table[yp][xp]);	// ã‚ˆã‚Šè©•ä¾¡ã®é«˜ã„ã‚‚ã®ã‚’æ¡ç”¨
 			}			
 		}
 	}
 
-	// ƒp[ƒeƒBƒNƒ‹‚Ì•]‰¿
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è©•ä¾¡
 	pos p;
 	for(int i = 0;i < MAX_PARTICLE; i ++){
-		float px   = particle[i].x * 1000;				// Œ»İ‚Ìƒp[ƒeƒBƒNƒ‹‚ÌˆÊ’u(m->mm)
+		float px   = particle[i].x * 1000;				// ç¾åœ¨ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ä½ç½®(m->mm)
 		float py   = particle[i].y * 1000;
 		float pthe = particle[i].the;
-		particle[i].eval = 0;							// •]‰¿‚ğ0‚É–ß‚·
+		particle[i].eval = 0;							// è©•ä¾¡ã‚’0ã«æˆ»ã™
 		for(int j = 0; j < data_no; j ++){
 			float dx0 = data[j].x - odoX * 1000;
 			float dy0 = data[j].y - odoY * 1000;
-			float dx  =   dx0 * cos(odoThe) + dy0 * sin(odoThe);		// Œ»İŒv‘ª‚µ‚Ä‚¢‚é‹——£ƒf[ƒ^iƒƒ{ƒbƒgÀ•Wj
+			float dx  =   dx0 * cos(odoThe) + dy0 * sin(odoThe);		// ç¾åœ¨è¨ˆæ¸¬ã—ã¦ã„ã‚‹è·é›¢ãƒ‡ãƒ¼ã‚¿ï¼ˆãƒ­ãƒœãƒƒãƒˆåº§æ¨™ï¼‰
 			float dy  = - dx0 * sin(odoThe) + dy0 * cos(odoThe);
-			// Œv‘ªƒf[ƒ^‚ğƒp[ƒeƒBƒNƒ‹‚ÌˆÊ’u‚ğŠî€‚É•ÏŠ·
+			// è¨ˆæ¸¬ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ä½ç½®ã‚’åŸºæº–ã«å¤‰æ›
 			p.x = (int)(dx * cos(pthe) - dy * sin(pthe) + px);
 			p.y = (int)(dx * sin(pthe) + dy * cos(pthe) + py);
-			int xt = (int)((p.x - estX * 1000) / dot_per_mm) - min_x;	// ƒ}ƒbƒvã‚ÌˆÊ’u‚ğŒvZ
+			int xt = (int)((p.x - estX * 1000) / dot_per_mm) - min_x;	// ãƒãƒƒãƒ—ä¸Šã®ä½ç½®ã‚’è¨ˆç®—
 			int yt = (int)((p.y - estY * 1000) / dot_per_mm) - min_y;
 			if ((xt >= 0)&&(xt < num_x)&&(yt >= 0)&&(yt < num_y)){
 				particle[i].eval += map[yt][xt];
 			}
 		}
 	}
-	// •]‰¿‚É‚æ‚èƒ\[ƒeƒBƒ“ƒO
+	// è©•ä¾¡ã«ã‚ˆã‚Šã‚½ãƒ¼ãƒ†ã‚£ãƒ³ã‚°
 	qsort(particle, MAX_PARTICLE, sizeof(struct particle_T), comp);
 	
-	// ˆê’v“x‚ğŒvZ@(0-1)
+	// ä¸€è‡´åº¦ã‚’è¨ˆç®—ã€€(0-1)
 	coincidence = 0;
 	for(int i = 0;i < MAX_PARTICLE; i ++){
 		coincidence += particle[i].eval;
@@ -333,12 +333,12 @@ int estimatePos::evaluate()
 }
 
 /*!
- * @brief ƒ\[ƒg‚Ì‚½‚ß‚Ì”äŠrŠÖ”
+ * @brief ã‚½ãƒ¼ãƒˆã®ãŸã‚ã®æ¯”è¼ƒé–¢æ•°
  *
- * @param[in] c1 ƒp[ƒeƒBƒNƒ‹‚P‚Ìƒ|ƒCƒ“ƒ^
- * @param[in] c2 ƒp[ƒeƒBƒNƒ‹‚Q‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] c1 ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ï¼‘ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[in] c2 ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ï¼’ã®ãƒã‚¤ãƒ³ã‚¿
  *
- * @return 1:c1‚Ì•]‰¿‚ª‚‚¢C0:•]‰¿‚ª“¯‚¶C-1:c2‚Ì•]‰¿‚ª‚‚¢
+ * @return 1:c1ã®è©•ä¾¡ãŒé«˜ã„ï¼Œ0:è©•ä¾¡ãŒåŒã˜ï¼Œ-1:c2ã®è©•ä¾¡ãŒé«˜ã„
  */
 int estimatePos::comp(const void *c1, const void *c2)
 {
@@ -351,13 +351,13 @@ int estimatePos::comp(const void *c1, const void *c2)
 }
 
 /*!
- * @brief •ªU‚ğŒvZ‚·‚é
+ * @brief åˆ†æ•£ã‚’è¨ˆç®—ã™ã‚‹
  *
- * @param[out] ave_x   x‚Ì•½‹Ï’l(m)
- * @param[out] ave_y   y‚Ì•½‹Ï’l(m)
- * @param[out] ave_the Šp“x‚Ì•½‹Ï’l(rad)
+ * @param[out] ave_x   xã®å¹³å‡å€¤(m)
+ * @param[out] ave_y   yã®å¹³å‡å€¤(m)
+ * @param[out] ave_the è§’åº¦ã®å¹³å‡å€¤(rad)
  *
- * @return •ªU‚Ì’l
+ * @return åˆ†æ•£ã®å€¤
  */
 float estimatePos::getVariance(float *ave_x, float *ave_y, float *ave_the)
 {
@@ -368,7 +368,7 @@ float estimatePos::getVariance(float *ave_x, float *ave_y, float *ave_the)
 		sum_x  += particle[i].x;
 		sum_y  += particle[i].y;
 		sum_t  += maxPI(particle[i].the - particle[0].the);
-		// -PI‚ÆPI‚Å•½‹Ï‚µ‚ÄC0‚É‚È‚é‚±‚Æ‚ğ–h‚®Dthe‚ª-PI`PI‚Å‚ ‚é‚±‚Æ‚ª‘O’ñ
+		// -PIã¨PIã§å¹³å‡ã—ã¦ï¼Œ0ã«ãªã‚‹ã“ã¨ã‚’é˜²ãï¼theãŒ-PIï½PIã§ã‚ã‚‹ã“ã¨ãŒå‰æ
 	}
 	ax = sum_x / MAX_PARTICLE;
 	ay = sum_y / MAX_PARTICLE;
@@ -378,7 +378,7 @@ float estimatePos::getVariance(float *ave_x, float *ave_y, float *ave_the)
 		float dx = particle[i].x   - ax;
 		float dy = particle[i].y   - ay;
 		float dt = maxPI(particle[i].the - at);
-		sumv += dx * dx + dy * dy + at * at;	// m‚Ærad‚ğ¬İ‚³‚¹‚Ä‚à—Ç‚¢‚©H
+		sumv += dx * dx + dy * dy + at * at;	// mã¨radã‚’æ··åœ¨ã•ã›ã¦ã‚‚è‰¯ã„ã‹ï¼Ÿ
 	}
 	*ave_x = ax, *ave_y = ay, *ave_the = at;
 
@@ -386,11 +386,11 @@ float estimatePos::getVariance(float *ave_x, float *ave_y, float *ave_the)
 }
 
 /*!
- * @brief ƒp[ƒeƒBƒNƒ‹‚Ìæ“¾
+ * @brief ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å–å¾—
  *
- * @param[out] p       ƒp[ƒeƒBƒNƒ‹ƒf[ƒ^‚Ìƒ|ƒCƒ“ƒ^
- * @param[out] num     æ“¾‚µ‚½ƒp[ƒeƒBƒ‹ƒN‚Ì”
- * @param[in]  max_num Å‘å‚Ìƒp[ƒeƒBƒNƒ‹”
+ * @param[out] p       ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ‡ãƒ¼ã‚¿ã®ãƒã‚¤ãƒ³ã‚¿
+ * @param[out] num     å–å¾—ã—ãŸãƒ‘ãƒ¼ãƒ†ã‚£ãƒ«ã‚¯ã®æ•°
+ * @param[in]  max_num æœ€å¤§ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«æ•°
  *
  * @return 0
  */
@@ -406,13 +406,13 @@ int estimatePos::getParticle(struct particle_T *p, int *num, int max_num)
 }
 
 /*!
- * @brief QÆƒGƒŠƒA‚Ìæ“¾
+ * @brief å‚ç…§ã‚¨ãƒªã‚¢ã®å–å¾—
  *
- * @param[out] x_min x²‚ÌÅ¬’l(mm)
- * @param[out] y_min y²‚ÌÅ¬’l(mm)
- * @param[out] x_max x²‚ÌÅ‘å’l(mm)
- * @param[out] y_max y²‚ÌÅ‘å’l(mm)
- * @param[out] dot_per_mm ˆê‚Â‚ÌƒsƒNƒZƒ‹‚Ì‹——£(mm)
+ * @param[out] x_min xè»¸ã®æœ€å°å€¤(mm)
+ * @param[out] y_min yè»¸ã®æœ€å°å€¤(mm)
+ * @param[out] x_max xè»¸ã®æœ€å¤§å€¤(mm)
+ * @param[out] y_max yè»¸ã®æœ€å¤§å€¤(mm)
+ * @param[out] dot_per_mm ä¸€ã¤ã®ãƒ”ã‚¯ã‚»ãƒ«ã®è·é›¢(mm)
  *
  * @return 0
  */

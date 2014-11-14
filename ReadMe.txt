@@ -1,66 +1,66 @@
-================================================================================
-    MFC (MICROSOFT FOUNDATION CLASS) ���C�u���� : navigation �v���W�F�N�g�̊T�v
+﻿================================================================================
+    MFC (MICROSOFT FOUNDATION CLASS) ライブラリ : navigation プロジェクトの概要
 ===============================================================================
 
-���� navigation �A�v���P�[�V�����́A�A�v���P�[�V���� �E�B�U�[�h�ɂ���č쐬����܂����B���̃A�v���P�[�V�����́AMicrosoft Foundation Classes �̎g�p�̊�{�������Ă��邾���łȂ��A�A�v���P�[�V�����̋L�q�̏o���_�ł�����܂��B
+この navigation アプリケーションは、アプリケーション ウィザードによって作成されました。このアプリケーションは、Microsoft Foundation Classes の使用の基本を示しているだけでなく、アプリケーションの記述の出発点でもあります。
 
-���̃t�@�C���ɂ́Anavigation �A�v���P�[�V�������\������e�t�@�C���̓��e�̊T�����L�q����Ă��܂��B
+このファイルには、navigation アプリケーションを構成する各ファイルの内容の概略が記述されています。
 
 navigation.vcproj
-    ����́A�A�v���P�[�V���� �E�B�U�[�h�Ő������ꂽ VC++ �v���W�F�N�g�̃��C�� �v���W�F�N�g �t�@�C���ł��B
-    �t�@�C���𐶐����� Visual C++ �̃o�[�W�����Ɋւ�����ƁA�A�v���P�[�V���� �E�B�U�[�h�őI�����ꂽ�v���b�g�t�H�[���A�\���A����уv���W�F�N�g�@�\�Ɋւ����񂪊܂܂�Ă��܂��B
+    これは、アプリケーション ウィザードで生成された VC++ プロジェクトのメイン プロジェクト ファイルです。
+    ファイルを生成した Visual C++ のバージョンに関する情報と、アプリケーション ウィザードで選択されたプラットフォーム、構成、およびプロジェクト機能に関する情報が含まれています。
 
 navigation.h
-    ����́A�A�v���P�[�V�����̃��C�� �w�b�_�[ �t�@�C���ł��B���̃v���W�F�N�g�ŗL�̃w�b�_�[ (Resource.h �Ȃ�) ���C���N���[�h���Ă���ACnavigationApp �A�v���P�[�V���� �N���X��錾���Ă��܂��B
+    これは、アプリケーションのメイン ヘッダー ファイルです。他のプロジェクト固有のヘッダー (Resource.h など) をインクルードしており、CnavigationApp アプリケーション クラスを宣言しています。
 
 navigation.cpp
-    ����́A���C���̃A�v���P�[�V���� �\�[�X �t�@�C���ŁA�A�v���P�[�V���� �N���X CnavigationApp ���܂܂�Ă��܂��B
+    これは、メインのアプリケーション ソース ファイルで、アプリケーション クラス CnavigationApp が含まれています。
 
 navigation.rc
-    ����́A�v���O�������g�p���邷�ׂĂ� Microsoft Windows ���\�[�X�̈ꗗ�ł��BRES �T�u�f�B���N�g���Ɋi�[�����A�C�R���A�r�b�g�}�b�v�A����уJ�[�\�����C���N���[�h���Ă��܂��B���̃t�@�C���́AMicrosoft Visual C++ �Œ��ڕҏW�ł��܂��B�v���W�F�N�g ���\�[�X�� 1041 �ɂ���܂��B
+    これは、プログラムが使用するすべての Microsoft Windows リソースの一覧です。RES サブディレクトリに格納されるアイコン、ビットマップ、およびカーソルをインクルードしています。このファイルは、Microsoft Visual C++ で直接編集できます。プロジェクト リソースは 1041 にあります。
 
 res\navigation.ico
-    ����́A�A�v���P�[�V�����̃A�C�R���Ƃ��Ďg�p�����A�C�R�� �t�@�C���ł��B���̃A�C�R���́A���C�� ���\�[�X �t�@�C�� navigation.rc �ɃC���N���[�h����܂��B
+    これは、アプリケーションのアイコンとして使用されるアイコン ファイルです。このアイコンは、メイン リソース ファイル navigation.rc にインクルードされます。
 
 res\navigation.rc2
-    ���̃t�@�C���ɂ́AMicrosoft Visual C++ �ŕҏW���Ȃ����\�[�X���܂܂�Ă��܂��B���\�[�X �G�f�B�^�ŕҏW�ł��Ȃ����ׂẴ��\�[�X�́A���̃t�@�C���Ɋ܂߂�K�v������܂��B
+    このファイルには、Microsoft Visual C++ で編集しないリソースが含まれています。リソース エディタで編集できないすべてのリソースは、このファイルに含める必要があります。
 
 
 /////////////////////////////////////////////////////////////////////////////
 
-�A�v���P�[�V���� �E�B�U�[�h�ɂ���Ď��� 1 �̃_�C�A���O �N���X����������܂��B
+アプリケーション ウィザードによって次の 1 つのダイアログ クラスが生成されます。
 
-navigationDlg.h�AnavigationDlg.cpp - �_�C�A���O
-    �����̃t�@�C���ɂ́ACnavigationDlg �N���X���܂܂�Ă��܂��B���̃N���X�́A�A�v���P�[�V�����̃��C�� �_�C�A���O�̓�����`���܂��B�_�C�A���O�̃e���v���[�g�́AMicrosoft Visual C++ �ŕҏW�ł��� navigation.rc �Ɋ܂܂�Ă��܂��B
+navigationDlg.h、navigationDlg.cpp - ダイアログ
+    これらのファイルには、CnavigationDlg クラスが含まれています。このクラスは、アプリケーションのメイン ダイアログの動作を定義します。ダイアログのテンプレートは、Microsoft Visual C++ で編集できる navigation.rc に含まれています。
 
-
-/////////////////////////////////////////////////////////////////////////////
-
-���̑��̋@�\ :
-
-ActiveX �R���g���[��
-    �A�v���P�[�V�����ɂ́AActiveX �R���g���[�����g�p���邽�߂̃T�|�[�g���܂܂�Ă��܂��B
 
 /////////////////////////////////////////////////////////////////////////////
 
-���̑��̕W���t�@�C�� :
+その他の機能 :
+
+ActiveX コントロール
+    アプリケーションには、ActiveX コントロールを使用するためのサポートが含まれています。
+
+/////////////////////////////////////////////////////////////////////////////
+
+その他の標準ファイル :
 
 StdAfx.h, StdAfx.cpp
-    �����̃t�@�C���́A�v���R���p�C���ς݃w�b�_�[ (PCH) �t�@�C�� navigation.pch �ƃv���R���p�C���ς݌^�t�@�C�� StdAfx.obj ���r���h���邽�߂Ɏg�p����܂��B
+    これらのファイルは、プリコンパイル済みヘッダー (PCH) ファイル navigation.pch とプリコンパイル済み型ファイル StdAfx.obj をビルドするために使用されます。
 
 Resource.h
-    ����́A�V�������\�[�X ID ���`����W���̃w�b�_�[ �t�@�C���ł��B
-    ���̃t�@�C���̓ǂݍ��݂���эX�V�́AMicrosoft Visual C++ �ōs���܂��B
+    これは、新しいリソース ID を定義する標準のヘッダー ファイルです。
+    このファイルの読み込みおよび更新は、Microsoft Visual C++ で行います。
 
 navigation.manifest
-	�A�v���P�[�V���� �}�j�t�F�X�g �t�@�C���� Windows XP �ŁA	side-by-side �A�Z���u���̓���̃o�[�W�����Ɋւ���A�v���P�[�V�����̈ˑ��֌W��������邽�߂Ɏg�p����܂��B���[�_�[�́A����	�����g�p���āA�A�Z���u�� �L���b�V������K�؂ȃA�Z���u�����A�܂��̓A�v���P�[�V��������v���C�x�[�g �A�Z���u����	�ǂݍ��݂܂��B�A�v���P�[�V���� �}�j�t�F�X�g�͍ĔЕz�p�ɁA	�A�v���P�[�V�����̎��s�\�t�@�C���Ɠ����t�H���_�ɃC���X�g�[�������O�� .manifest �t�@�C���Ƃ��Ċ܂܂�Ă��邩�A	�܂��̓��\�[�X�̌`���Ŏ��s�\�t�@�C�����Ɋ܂܂�Ă��܂��B
+	アプリケーション マニフェスト ファイルは Windows XP で、	side-by-side アセンブリの特定のバージョンに関するアプリケーションの依存関係を説明するために使用されます。ローダーは、この	情報を使用して、アセンブリ キャッシュから適切なアセンブリを、またはアプリケーションからプライベート アセンブリを	読み込みます。アプリケーション マニフェストは再頒布用に、	アプリケーションの実行可能ファイルと同じフォルダにインストールされる外部 .manifest ファイルとして含まれているか、	またはリソースの形式で実行可能ファイル内に含まれています。
 /////////////////////////////////////////////////////////////////////////////
 
-���̑��̃��� :
+その他のメモ :
 
-�A�v���P�[�V���� �E�B�U�[�h�ł́A"TODO:" ���g�p���āA���[�U�[���ǉ��܂��̓J�X�^�}�C�Y����K�v������\�[�X�����������܂��B
+アプリケーション ウィザードでは、"TODO:" を使用して、ユーザーが追加またはカスタマイズする必要があるソース部分を示します。
 
-�A�v���P�[�V���������L DLL �� MFC ���g�p����ꍇ�́AMFC DLL ���ĔЕz����K�v������܂��B�܂��A�A�v���P�[�V�������I�y���[�e�B���O �V�X�e���̃��P�[���Ƃ͈قȂ錾����g�p���Ă���ꍇ���A�Ή����郍�[�J���C�Y���ꂽ���\�[�X�� MFC90XXX.DLL ���ĔЕz����K�v������܂��B
-���� 2 �̃g�s�b�N�̏ڍׂɂ��ẮAMSDN �h�L�������g�� Visual C++ �A�v���P�[�V�����̍ĔЕz�Ɋւ���Z�N�V�������Q�Ƃ��Ă��������B
+アプリケーションが共有 DLL で MFC を使用する場合は、MFC DLL を再頒布する必要があります。また、アプリケーションがオペレーティング システムのロケールとは異なる言語を使用している場合も、対応するローカライズされたリソースの MFC90XXX.DLL を再頒布する必要があります。
+この 2 つのトピックの詳細については、MSDN ドキュメントの Visual C++ アプリケーションの再頒布に関するセクションを参照してください。
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-// navigationView.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// navigationView.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -16,12 +16,12 @@ IMPLEMENT_DYNAMIC(CnavigationView, CStatic)
 
 /*!
  * @class CnavigationView
- * @brief ©ŒÈˆÊ’u‚âáŠQ•¨ƒf[ƒ^‚ÉŠÖ‚µ‚Ä•\¦‚ğs‚¤ƒNƒ‰ƒX
+ * @brief è‡ªå·±ä½ç½®ã‚„éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã«é–¢ã—ã¦è¡¨ç¤ºã‚’è¡Œã†ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CnavigationView::CnavigationView():
 data_num(0), ref_data_num(0), odo_num(0), ratio(0.02f), center_x(0), center_y(0),
@@ -31,25 +31,25 @@ is_record(), is_play(0)
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CnavigationView::~CnavigationView()
 {
 }
 
-// CnavigationView ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CnavigationView ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 BEGIN_MESSAGE_MAP(CnavigationView, CStatic)
 	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 /*!
- * @brief Ä•`‰æ
+ * @brief å†æç”»
  */
 void CnavigationView::OnPaint()
 {
 	CPaintDC mdc(this); // device context for painting
 
-	// View‚ÌƒTƒCƒY‚ğæ“¾
+	// Viewã®ã‚µã‚¤ã‚ºã‚’å–å¾—
 	CRect rc;
 	GetClientRect(&rc);
 	mdc.Rectangle(&rc);
@@ -58,7 +58,7 @@ void CnavigationView::OnPaint()
 
 	int p;
 
-	// •`‰æ—Ìˆæ‚Ìİ’è
+	// æç”»é ˜åŸŸã®è¨­å®š
 	CDC dc;
 	dc.CreateCompatibleDC(&mdc);
 	CBitmap memBmp;
@@ -66,31 +66,31 @@ void CnavigationView::OnPaint()
 	CBitmap *pOldBmp = dc.SelectObject(&memBmp);
 	dc.Rectangle(0, 0, disp_x, disp_y);
 
-	// ƒtƒHƒ“ƒg‚Ìİ’è
-	HFONT hFont = CreateFont(60, //ƒtƒHƒ“ƒg‚‚³
-		0, //•¶š•
-		0, //ƒeƒLƒXƒg‚ÌŠp“x
-		0, //ƒx[ƒXƒ‰ƒCƒ“‚Æ‚˜²‚Æ‚ÌŠp“x
-		FW_DONTCARE, //ƒtƒHƒ“ƒg‚Ìd‚³i‘¾‚³j
-		FALSE, //ƒCƒ^ƒŠƒbƒN‘Ì
-		FALSE, //ƒAƒ“ƒ_[ƒ‰ƒCƒ“
-		FALSE, //‘Å‚¿Á‚µü
-		DEFAULT_CHARSET, //•¶šƒZƒbƒg
-		CLIP_DEFAULT_PRECIS, //o—Í¸“x
-		CLIP_DEFAULT_PRECIS,//ƒNƒŠƒbƒsƒ“ƒO¸“x
-		CLEARTYPE_QUALITY, //o—Í•i¿
-		VARIABLE_PITCH,//ƒsƒbƒ`‚Æƒtƒ@ƒ~ƒŠ[
+	// ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®š
+	HFONT hFont = CreateFont(60, //ãƒ•ã‚©ãƒ³ãƒˆé«˜ã•
+		0, //æ–‡å­—å¹…
+		0, //ãƒ†ã‚­ã‚¹ãƒˆã®è§’åº¦
+		0, //ãƒ™ãƒ¼ã‚¹ãƒ©ã‚¤ãƒ³ã¨ï½˜è»¸ã¨ã®è§’åº¦
+		FW_DONTCARE, //ãƒ•ã‚©ãƒ³ãƒˆã®é‡ã•ï¼ˆå¤ªã•ï¼‰
+		FALSE, //ã‚¤ã‚¿ãƒªãƒƒã‚¯ä½“
+		FALSE, //ã‚¢ãƒ³ãƒ€ãƒ¼ãƒ©ã‚¤ãƒ³
+		FALSE, //æ‰“ã¡æ¶ˆã—ç·š
+		DEFAULT_CHARSET, //æ–‡å­—ã‚»ãƒƒãƒˆ
+		CLIP_DEFAULT_PRECIS, //å‡ºåŠ›ç²¾åº¦
+		CLIP_DEFAULT_PRECIS,//ã‚¯ãƒªãƒƒãƒ”ãƒ³ã‚°ç²¾åº¦
+		CLEARTYPE_QUALITY, //å‡ºåŠ›å“è³ª
+		VARIABLE_PITCH,//ãƒ”ãƒƒãƒã¨ãƒ•ã‚¡ãƒŸãƒªãƒ¼
 		_T("Impact"));
 	HFONT prevFont = (HFONT)SelectObject(dc, hFont);
 
 	HPEN hPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(0,0,0));
 	HPEN prevPen = (HPEN)SelectObject(dc, hPen);
 
-	// •¶š‚Ì•\¦
+	// æ–‡å­—ã®è¡¨ç¤º
 	rc.left = 10, rc.top = 10;
 	dc.DrawText(_T("MEGA ROVER"), -1, &rc, NULL);
 
-	// •¶š‚Ì•\¦
+	// æ–‡å­—ã®è¡¨ç¤º
 	{
 		char buf[20];
 		sprintf(buf, "STEP: %04d\n",step);
@@ -98,7 +98,7 @@ void CnavigationView::OnPaint()
 		dc.DrawText(_T(buf), -1, &rc, NULL);
 	}
 
-	// •¶š‚Ì•\¦
+	// æ–‡å­—ã®è¡¨ç¤º
 	{
 		if (is_record){
 			rc.left = 10, rc.top = 400;
@@ -109,14 +109,14 @@ void CnavigationView::OnPaint()
 		}
 	}
 
-	// ƒ[ƒ‹ƒhÀ•WŒn‚Å‚Ì’†S‚ğ‹‚ß‚é
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã§ã®ä¸­å¿ƒã‚’æ±‚ã‚ã‚‹
 	int x0 = 0, y0 = 0;
 	if (odo_num > 0){
 		x0 = (int)(odo[0].x * 1000);
 		y0 = (int)(odo[0].y * 1000);
 	}
 
-	// ƒ}ƒbƒv‚Ì•\¦
+	// ãƒãƒƒãƒ—ã®è¡¨ç¤º
 	{
 		CString num;
 		memBmp.GetBitmapBits(disp_x*disp_y*4,rgb_thre);
@@ -133,7 +133,7 @@ void CnavigationView::OnPaint()
 				rgb_thre[p] = rgb;
 			}
 		}
-		// QÆƒf[ƒ^‚ª‚ ‚éê‡‚ÍCÂ‚Å•\¦
+		// å‚ç…§ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ï¼Œé’ã§è¡¨ç¤º
 		rgb.red = rgb.green = 0, rgb.blue = 255;
 		for(int i = 0; i < ref_data_num; i ++){
 			translatePos(ref_pos[i].x, ref_pos[i].y, x0, y0, &x, &y);
@@ -142,7 +142,7 @@ void CnavigationView::OnPaint()
 				rgb_thre[p] = rgb;
 			}
 		}
-		// ”½Ë‹­“xƒf[ƒ^‚ª‚ ‚éê‡‚ÍCÔ‚Å•\¦@i‹­“x‚É‰‚¶‚Ä”’‚©‚çÔ‚É•Ï‰»j
+		// åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹å ´åˆã¯ï¼Œèµ¤ã§è¡¨ç¤ºã€€ï¼ˆå¼·åº¦ã«å¿œã˜ã¦ç™½ã‹ã‚‰èµ¤ã«å¤‰åŒ–ï¼‰
 		for(int i = 0; i < inten_data_num; i ++){
 			int red = (int)min(max((float)inten_pos[i].intensity / 4000 * 255, 0), 255);
 			rgb.red = 255, rgb.green = rgb.blue = 255 - red;
@@ -152,7 +152,7 @@ void CnavigationView::OnPaint()
 				rgb_thre[p] = rgb;
 			}
 		}
-		// ˆê’v“x‚ÌƒOƒ‰ƒt‚ğ•`‚­
+		// ä¸€è‡´åº¦ã®ã‚°ãƒ©ãƒ•ã‚’æã
 		for(int i = 0; i < (coincidence * 200); i ++){
 			y = 400 - i;
 			if (y < 0) break;
@@ -167,12 +167,12 @@ void CnavigationView::OnPaint()
 		dc.SetBkColor(RGB(0xff,0xff,0xff));
 	}
 	
-	// ’Tõ‘ÎÛŒó•â“_‚ğÔ‚Å•\¦@iŠm—¦‚É‰‚¶‚Ä”¼Œa‚ª•Ï‰»j
+	// æ¢ç´¢å¯¾è±¡å€™è£œç‚¹ã‚’èµ¤ã§è¡¨ç¤ºã€€ï¼ˆç¢ºç‡ã«å¿œã˜ã¦åŠå¾„ãŒå¤‰åŒ–ï¼‰
 	{
 		static const int MAX_RADIUS = 10;
 		int x, y, radius;
 		DeleteObject(hPen);
-		hPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(255,0,0));		// ÔF‚Ìƒyƒ“‚ğ‘I‘ğ
+		hPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(255,0,0));		// èµ¤è‰²ã®ãƒšãƒ³ã‚’é¸æŠ
 		SelectObject(dc, hPen );
 		for(int i = 0; i < slate_data_num; i ++){
 			radius = (int)(slate_pos[i].probability * MAX_RADIUS);
@@ -182,13 +182,13 @@ void CnavigationView::OnPaint()
 		SelectObject(dc, prevPen );
 	}
 
-	// ƒp[ƒeƒBƒNƒ‹‚Ì•\¦
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è¡¨ç¤º
 	{
 		static const int RADIUS = 3, ANG_LEN = 5;
 		float angle;
 		int x, y, px, py, x1, y1;
 		DeleteObject(hPen);
-		hPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(128,128,128));		// ŠDF‚Ìƒyƒ“‚ğ‘I‘ğ
+		hPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(128,128,128));		// ç°è‰²ã®ãƒšãƒ³ã‚’é¸æŠ
 		SelectObject(dc, hPen );
 		for(int i = 0;i < particle_num; i ++){
 			px = (int)(particle[i].x * 1000);
@@ -203,21 +203,21 @@ void CnavigationView::OnPaint()
 		SelectObject(dc, prevPen );
 	}
 
-	// ƒIƒhƒƒgƒŠ‚Ì•\¦
+	// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è¡¨ç¤º
 	if (odo_num > 0) {
 		static const int RADIUS = 10, ANG_LEN = 20;
 		int ox = (int)(odo[0].x * 1000), oy = (int)(odo[0].y * 1000);
 		int x, y, x1, y1;
 		float angle = odo[0].the;
 
-		// Œ»İ‚ÌˆÊ’u‚Ì•`‰æ
+		// ç¾åœ¨ã®ä½ç½®ã®æç”»
 		translatePos(ox, oy, x0, y0, &x, &y);
 		dc.Ellipse(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
 		x1 = x + (int)(ANG_LEN * cos(angle));
 		y1 = y - (int)(ANG_LEN * sin(angle));
 		dc.MoveTo(x, y); dc.LineTo(x1, y1);
 
-		// —š—ğ‚Ì•`‰æ
+		// å±¥æ­´ã®æç”»
 		dc.MoveTo(x, y);
 		for(int i = 1; i < odo_num;i ++){
 			ox = (int)(odo[i].x * 1000);
@@ -231,7 +231,7 @@ void CnavigationView::OnPaint()
 		SelectObject(dc, prevPen);
 	}
 
-	// ƒS[ƒ‹‚Ì•`‰æ
+	// ã‚´ãƒ¼ãƒ«ã®æç”»
 	if (is_target_view){
 		static const int RADIUS = 5, ANG_LEN = 40;
 		int tx = (int)(tarX * 1000), ty = (int)(tarY * 1000);
@@ -239,7 +239,7 @@ void CnavigationView::OnPaint()
 
 		translatePos(tx, ty, x0, y0, &x, &y);
 		DeleteObject(hPen);
-		hPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(255,0,0));		// Ôƒyƒ“‚ğ‘I‘ğ
+		hPen = (HPEN)CreatePen(PS_SOLID, 1, RGB(255,0,0));		// èµ¤ãƒšãƒ³ã‚’é¸æŠ
 		SelectObject(dc, hPen );
 		dc.Ellipse(x - RADIUS, y - RADIUS, x + RADIUS, y + RADIUS);
 		dx =   (int)(ANG_LEN * cos(tarThe + M_PI / 2));
@@ -252,7 +252,7 @@ void CnavigationView::OnPaint()
 	DeleteObject(hFont);
 	DeleteObject(hPen);
 
-	// ‰æ–Ê‚ÌØ‚è‘Ö‚¦
+	// ç”»é¢ã®åˆ‡ã‚Šæ›¿ãˆ
 	mdc.BitBlt(0,0,disp_x,disp_y,&dc,0,0,SRCCOPY);
 	dc.SelectObject(pOldBmp);
 	memBmp.DeleteObject();
@@ -260,12 +260,12 @@ void CnavigationView::OnPaint()
 }
 
 /*!
- * @brief áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğİ’è
+ * @brief éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
  *
- * @param[in] p áŠQ•¨‚ÌˆÊ’uƒf[ƒ^
- * @param[in] num áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @param[in] p éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * @param[in] num éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  *
- * @return •\¦‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @return è¡¨ç¤ºã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  */
 int CnavigationView::setData(pos *p, int num)
 {
@@ -280,12 +280,12 @@ int CnavigationView::setData(pos *p, int num)
 }
 
 /*!
- * @brief QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìİ’è
+ * @brief å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
- * @param[in] p QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^
- * @param[in] num QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @param[in] p å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * @param[in] num å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  *
- * @return QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @return å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  */
 int CnavigationView::setRefData(pos *p, int num)
 {
@@ -300,12 +300,12 @@ int CnavigationView::setRefData(pos *p, int num)
 }
 
 /*!
- * @brief ”½Ë‹­“x‚Ìƒf[ƒ^‚Ìİ’è
+ * @brief åå°„å¼·åº¦ã®ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
  *
- * @param[in] p ”½Ë‹­“x•t‚«ˆÊ’uƒf[ƒ^
- * @param[in] num QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @param[in] p åå°„å¼·åº¦ä»˜ãä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * @param[in] num å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  *
- * @return QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @return å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  */
 int CnavigationView::setIntensityData(pos_inten *p, int num)
 {
@@ -320,12 +320,12 @@ int CnavigationView::setIntensityData(pos_inten *p, int num)
 }
 
 /*!
- * @brief ’Tõ‘ÎÛ‚ÌŒó•â‚Ìİ’è
+ * @brief æ¢ç´¢å¯¾è±¡ã®å€™è£œã®è¨­å®š
  *
- * @param[in] p ’Tõ‘ÎÛ‚ÌŒó•â‚ÌˆÊ’uƒf[ƒ^
- * @param[in] num ’Tõ‘ÎÛ‚ÌŒó•â‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @param[in] p æ¢ç´¢å¯¾è±¡ã®å€™è£œã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * @param[in] num æ¢ç´¢å¯¾è±¡ã®å€™è£œã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  *
- * @return QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì”
+ * @return å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æ•°
  */
 int CnavigationView::setSlatePoint(pos_slate *p, int num)
 {
@@ -341,18 +341,18 @@ int CnavigationView::setSlatePoint(pos_slate *p, int num)
 
 
 /*!
- * @brief ƒIƒhƒƒgƒŠ‚Ìİ’è
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è¨­å®š
  *
- * @param[in] x   ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)
- * @param[in] y   ƒIƒhƒƒgƒŠ‚ÌxÀ•W(m)
- * @param[in] the ƒIƒhƒƒgƒŠ‚ÌŠp“x(rad)
+ * @param[in] x   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)
+ * @param[in] y   ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®xåº§æ¨™(m)
+ * @param[in] the ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è§’åº¦(rad)
  *
- * @return •\¦‚·‚éƒIƒhƒƒgƒŠ‚Ì”
+ * @return è¡¨ç¤ºã™ã‚‹ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®æ•°
  */
 int CnavigationView::setOdometory(float x, float y, float the)
 {
-	const float step_period = 1.0f;						// Œo˜H‚ğ‹L˜^‚·‚éüŠú(s)
-	long time = timeGetTime();							// step_periodˆÈã‚ÌŠÔŠu‚ğŠJ‚¯‚Ä•Û‘¶iƒEƒFƒCƒ|ƒCƒ“ƒg‚Æ‚È‚éj
+	const float step_period = 1.0f;						// çµŒè·¯ã‚’è¨˜éŒ²ã™ã‚‹å‘¨æœŸ(s)
+	long time = timeGetTime();							// step_periodä»¥ä¸Šã®é–“éš”ã‚’é–‹ã‘ã¦ä¿å­˜ï¼ˆã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã¨ãªã‚‹ï¼‰
 
 	odo[0].x = x, odo[0].y = y, odo[0].the = the;
 	if ((time - time0) > (int)(step_period * 1000)){
@@ -368,11 +368,11 @@ int CnavigationView::setOdometory(float x, float y, float the)
 }
 
 /*!
- * @brief waypoint‚Ìİ’è
+ * @brief waypointã®è¨­å®š
  *
- * @param[in] x   waypoint‚ÌxÀ•W(m)
- * @param[in] y   waypoint‚ÌyÀ•W(m)
- * @param[in] the waypoint‚ÌŠp“x(rad)
+ * @param[in] x   waypointã®xåº§æ¨™(m)
+ * @param[in] y   waypointã®yåº§æ¨™(m)
+ * @param[in] the waypointã®è§’åº¦(rad)
  *
  * @return 0
  */
@@ -388,12 +388,12 @@ int CnavigationView::setTargetPos(float x, float y, float the)
 }
 
 /*!
- * @brief ƒp[ƒeƒBƒNƒ‹‚Ìİ’è
+ * @brief ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è¨­å®š
  *
- * @param[in] p   ƒp[ƒeƒBƒNƒ‹‚Ìƒf[ƒ^
- * @param[in] num ƒp[ƒeƒBƒNƒ‹‚Ì”
+ * @param[in] p   ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒ¼ã‚¿
+ * @param[in] num ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®æ•°
  *
- * @return •\¦‚·‚éƒp[ƒeƒBƒNƒ‹‚Ì”
+ * @return è¡¨ç¤ºã™ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®æ•°
  */
 int CnavigationView::setParticle(struct particle_T *p, int num)
 {
@@ -407,16 +407,16 @@ int CnavigationView::setParticle(struct particle_T *p, int num)
 	return data_num;
 }
 
-// ƒ[ƒ‹ƒhÀ•W‚©‚çƒfƒBƒYƒvƒŒƒC‚ÌÀ•W‚É•ÏŠ· (’PˆÊ‚Ímm)
+// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‹ã‚‰ãƒ‡ã‚£ã‚ºãƒ—ãƒ¬ã‚¤ã®åº§æ¨™ã«å¤‰æ› (å˜ä½ã¯mm)
 /*!
- * @brief ƒ[ƒ‹ƒhÀ•WŒn‚©‚çƒfƒBƒYƒvƒŒƒC‚ÌÀ•W‚Ö‚Ì•ÏŠ·
+ * @brief ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã‹ã‚‰ãƒ‡ã‚£ã‚ºãƒ—ãƒ¬ã‚¤ã®åº§æ¨™ã¸ã®å¤‰æ›
  *
- * @param[in]  worldX  ƒ[ƒ‹ƒhÀ•WŒn‚ÌxÀ•W(m)
- * @param[in]  worldY  ƒ[ƒ‹ƒhÀ•WŒn‚ÌyÀ•W(m)
- * @param[in]  worldX0 ƒfƒBƒXƒvƒŒƒC‚Ì’†S‚Æ‚È‚éƒ[ƒ‹ƒhÀ•WŒn‚ÌxÀ•W(m)
- * @param[in]  worldY0 ƒfƒBƒXƒvƒŒƒC‚Ì’†S‚Æ‚È‚éƒ[ƒ‹ƒhÀ•WŒn‚ÌyÀ•W(m)
- * @param[out] dispX   ƒfƒBƒXƒvƒŒƒC‚ÌxÀ•W(dot)
- * @param[out] dispY   ƒfƒBƒXƒvƒŒƒC‚ÌyÀ•W(dot)
+ * @param[in]  worldX  ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã®xåº§æ¨™(m)
+ * @param[in]  worldY  ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã®yåº§æ¨™(m)
+ * @param[in]  worldX0 ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®ä¸­å¿ƒã¨ãªã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã®xåº§æ¨™(m)
+ * @param[in]  worldY0 ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®ä¸­å¿ƒã¨ãªã‚‹ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ã®yåº§æ¨™(m)
+ * @param[out] dispX   ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®xåº§æ¨™(dot)
+ * @param[out] dispY   ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ã®yåº§æ¨™(dot)
  *
  * @return 0
  */
@@ -429,9 +429,9 @@ int CnavigationView::translatePos(int worldX, int worldY, int worldX0, int world
 }
 
 /*!
- * @brief waypoint‚Ì”‚Ìİ’è
+ * @brief waypointã®æ•°ã®è¨­å®š
  *
- * @param[in] step waypoint‚Ì”
+ * @param[in] step waypointã®æ•°
  *
  * @return 0
  */
@@ -443,9 +443,9 @@ int CnavigationView::setStep(int step)
 }
 
 /*!
- * @brief ˆê’v“x‚Ìİ’è
+ * @brief ä¸€è‡´åº¦ã®è¨­å®š
  *
- * @param[in] coincidence ˆê’v“x(0-1)
+ * @param[in] coincidence ä¸€è‡´åº¦(0-1)
  *
  * @return 0
  */
@@ -457,10 +457,10 @@ int CnavigationView::setCoincidence(float coincidence)
 }
 
 /*!
- * @brief ó‘Ô(•Û‘¶ƒ‚[ƒhCÄ¶ƒ‚[ƒh)‚Ìİ’è
+ * @brief çŠ¶æ…‹(ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ï¼Œå†ç”Ÿãƒ¢ãƒ¼ãƒ‰)ã®è¨­å®š
  *
- * @param[in] is_record •Û‘¶ƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(1:•Û‘¶ƒ‚[ƒhC0:•Û‘¶ƒ‚[ƒh‚Å‚Í‚È‚¢)
- * @param[in] is_play   Ä¶ƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO(1:Ä¶ƒ‚[ƒhC0:Ä¶ƒ‚[ƒh‚Å‚Í‚È‚¢)
+ * @param[in] is_record ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(1:ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ï¼Œ0:ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„)
+ * @param[in] is_play   å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°(1:å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ï¼Œ0:å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã§ã¯ãªã„)
  *
  * @return 0
  */

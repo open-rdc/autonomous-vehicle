@@ -1,56 +1,56 @@
-#pragma once
+ï»¿#pragma once
 
-// ‹¤’Ê‚Ìƒf[ƒ^Œ^‚ğ’è‹`
+// å…±é€šã®ãƒ‡ãƒ¼ã‚¿å‹ã‚’å®šç¾©
 
 /*!
  * @struct pos_T
- * @brief ˆÊ’uƒf[ƒ^
+ * @brief ä½ç½®ãƒ‡ãƒ¼ã‚¿
  */
 struct pos_T{
-	int x;				//!< xÀ•W(mm)
-	int y;				//!< yÀ•W(mm)
-	int z;				//!< zÀ•W(mm)
+	int x;				//!< xåº§æ¨™(mm)
+	int y;				//!< yåº§æ¨™(mm)
+	int z;				//!< zåº§æ¨™(mm)
 };
 typedef struct pos_T pos;
 
 /*!
  * @struct pos_inten_T
- * @brief ”½Ë‹­“x•t‚«ˆÊ’uƒf[ƒ^
+ * @brief åå°„å¼·åº¦ä»˜ãä½ç½®ãƒ‡ãƒ¼ã‚¿
  */
 struct pos_inten_T{
-	pos pos;			// ˆÊ’uƒf[ƒ^(mm)
-	int intensity;		// ”½Ë‹­“xi’PˆÊ‚È‚µj
+	pos pos;			// ä½ç½®ãƒ‡ãƒ¼ã‚¿(mm)
+	int intensity;		// åå°„å¼·åº¦ï¼ˆå˜ä½ãªã—ï¼‰
 };
 typedef struct pos_inten_T pos_inten;
 
 /*!
  * @struct pos_slate_T
- * @brief ’Tõ‘ÎÛ‚ÌŒó•â‚ÌˆÊ’uƒf[ƒ^
- * Šm—¦(0-1)•t‚«
+ * @brief æ¢ç´¢å¯¾è±¡ã®å€™è£œã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
+ * ç¢ºç‡(0-1)ä»˜ã
  */
 struct pos_slate_T{
-	pos pos;			// ˆÊ’uƒf[ƒ^(mm)
-	float probability;	// Šm—¦(0.0-1.0)
+	pos pos;			// ä½ç½®ãƒ‡ãƒ¼ã‚¿(mm)
+	float probability;	// ç¢ºç‡(0.0-1.0)
 };
 typedef struct pos_slate_T pos_slate;
 
 /*!
  * @struct particle_T
- * @brief ƒp[ƒeƒBƒNƒ‹‚Ìƒf[ƒ^
+ * @brief ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒ¼ã‚¿
  */
 struct particle_T{
-	float x;			//!< xÀ•W(m)
-	float y;			//!< yÀ•W(m)
-	float the;			//!< Šp“x(rad)
-	int eval;			//!< •]‰¿(0-)
+	float x;			//!< xåº§æ¨™(m)
+	float y;			//!< yåº§æ¨™(m)
+	float the;			//!< è§’åº¦(rad)
+	int eval;			//!< è©•ä¾¡(0-)
 };
 
 /*!
  * @struct odometory
- * @brief ƒIƒhƒƒgƒŠ‚Ìƒf[ƒ^
+ * @brief ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ãƒ‡ãƒ¼ã‚¿
  */
 struct odometory{
-	float x;			//!< xÀ•W(m)
-	float y;			//!< yÀ•W(m)
-	float the;			//!< Šp“x(rad)
+	float x;			//!< xåº§æ¨™(m)
+	float y;			//!< yåº§æ¨™(m)
+	float the;			//!< è§’åº¦(rad)
 };

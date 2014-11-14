@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <opencv2\\opencv.hpp>
 
@@ -7,18 +7,18 @@ using namespace cv;
 class imageProcessing
 {
 private:
-	CvCapture *capture;				//! ƒrƒfƒIƒLƒƒƒvƒ`ƒƒ\‘¢‘Ì
-	Mat img;						//! ‰æ‘œ
+	CvCapture *capture;				//! ãƒ“ãƒ‡ã‚ªã‚­ãƒ£ãƒ—ãƒãƒ£æ§‹é€ ä½“
+	Mat img;						//! ç”»åƒ
 	
-	int terminate;					//! ƒXƒŒƒbƒh‚Ì”jŠüi1:”jŠü, 0:Œp‘±j
-	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
-	DWORD WINAPI ExecThread();		// •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
-	HANDLE mutex, comMutex;			// COMƒ|[ƒg‚Ì”r‘¼§Œä
+	int terminate;					//! ã‚¹ãƒ¬ãƒƒãƒ‰ã®ç ´æ£„ï¼ˆ1:ç ´æ£„, 0:ç¶™ç¶šï¼‰
+	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+	DWORD WINAPI ExecThread();		// åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+	HANDLE mutex, comMutex;			// COMãƒãƒ¼ãƒˆã®æ’ä»–åˆ¶å¾¡
 public:
-	imageProcessing(void);			// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	~imageProcessing(void);			// ƒfƒXƒgƒ‰ƒNƒ^
-	void init(void);				// ‰Šú‰»
-	void close(void);				// I—¹ˆ—
-	void update(void);				// üŠú“I‚És‚¤ˆ—
-	bool checkTarget(float *cf);	// ŒŸo‚µ‚½Œ‹‰Ê‚ğ“n‚·•Ï”
+	imageProcessing(void);			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~imageProcessing(void);			// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	void init(void);				// åˆæœŸåŒ–
+	void close(void);				// çµ‚äº†å‡¦ç†
+	void update(void);				// å‘¨æœŸçš„ã«è¡Œã†å‡¦ç†
+	bool checkTarget(float *cf);	// æ¤œå‡ºã—ãŸçµæœã‚’æ¸¡ã™å¤‰æ•°
 };

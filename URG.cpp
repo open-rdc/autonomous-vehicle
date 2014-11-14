@@ -1,4 +1,4 @@
-// URG.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// URG.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 //
 
 #include "stdafx.h"
@@ -12,30 +12,30 @@
 
 /*!
  * @class CURG
- * @brief URG‚ğg—p‚·‚é‚½‚ß‚ÌƒNƒ‰ƒX
+ * @brief URGã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã®ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CURG::CURG()
 {
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 CURG::~CURG()
 {
 }
 
 /*!
- * @brief ‰Šúİ’è
+ * @brief åˆæœŸè¨­å®š
  *
- * @param[in] om_port URG‚ªÚ‘±‚³‚ê‚Ä‚¢‚éCOMƒ|[ƒg(1-)
+ * @param[in] om_port URGãŒæ¥ç¶šã•ã‚Œã¦ã„ã‚‹COMãƒãƒ¼ãƒˆ(1-)
  *
- * @return true:¬Œ÷Cfalse:¸”s
+ * @return true:æˆåŠŸï¼Œfalse:å¤±æ•—
  */
 int CURG::Init(int com_port)
 {
@@ -47,7 +47,7 @@ int CURG::Init(int com_port)
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  *
  * @return 0
  */
@@ -58,25 +58,25 @@ int CURG::Close()
 }
 
 /*!
- * @brief URG‚ÌŒv‘ªŠJn
- * ‚±‚ê‚ğŒÄ‚Ño‚µ‚Ä‚©‚ç‚µ‚Î‚ç‚­‚µ‚ÄCGetData‚ğŒÄ‚Ño‚·D
+ * @brief URGã®è¨ˆæ¸¬é–‹å§‹
+ * ã“ã‚Œã‚’å‘¼ã³å‡ºã—ã¦ã‹ã‚‰ã—ã°ã‚‰ãã—ã¦ï¼ŒGetDataã‚’å‘¼ã³å‡ºã™ï¼
  *
  * @return 0
  */
 int CURG::StartMeasure(){
 	comm.ClearRecvBuf();
-	comm.Send("ME0220086001000\n");	// ‹——£ƒf[ƒ^(3byte)‚Æ”½Ë‹­“x(3byte)‚Ìo—Í
-									// ME,•ûŒü:0220~0860(4+4),‚Ü‚Æ‚ß:01(2),ŠÔˆø‚«:0(1),‘—M‰ñ”:00(2)‚‚ê—¬‚µ
-									// 10`170deg
+	comm.Send("ME0220086001000\n");	// è·é›¢ãƒ‡ãƒ¼ã‚¿(3byte)ã¨åå°„å¼·åº¦(3byte)ã®å‡ºåŠ›
+									// ME,æ–¹å‘:0220~0860(4+4),ã¾ã¨ã‚:01(2),é–“å¼•ã:0(1),é€ä¿¡å›æ•°:00(2)å‚ã‚Œæµã—
+									// 10ï½170deg
 	return 0;
 }
 
 /*!
- * @brief óMƒoƒbƒtƒ@‚É‚½‚Ü‚Á‚½‹——£ƒf[ƒ^‚ğæ“¾‚·‚é
+ * @brief å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«ãŸã¾ã£ãŸè·é›¢ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
  *
- * @param[out] data ‹——£ƒf[ƒ^
+ * @param[out] data è·é›¢ãƒ‡ãƒ¼ã‚¿
  *
- * @return 1ˆÈãF³íI—¹iƒf[ƒ^”jC0ˆÈ‰ºFˆÙíI—¹
+ * @return 1ä»¥ä¸Šï¼šæ­£å¸¸çµ‚äº†ï¼ˆãƒ‡ãƒ¼ã‚¿æ•°ï¼‰ï¼Œ0ä»¥ä¸‹ï¼šç•°å¸¸çµ‚äº†
  */
 int CURG::GetData(int length[n_data], int intensity[n_data]){
 	const int max_no = n_data * 6 + 1000;
@@ -90,11 +90,11 @@ int CURG::GetData(int length[n_data], int intensity[n_data]){
 			buf[pointer ++] = recv_buf[k];
 		}
 		{
-			// ÅŒã‚Ìƒf[ƒ^ˆÈŠO‚Í‚·‚×‚Ä”jŠü‚·‚éD
+			// æœ€å¾Œã®ãƒ‡ãƒ¼ã‚¿ä»¥å¤–ã¯ã™ã¹ã¦ç ´æ£„ã™ã‚‹ï¼
 			int dp = 0, dpp = 0;
 			for(int k = 0; k < pointer - 1; k ++){
 				if ((buf[k] == '\n')&&(buf[k+1] == '\n')){
-					dpp = dp;		// ˆê‚Â‘O‚ÌƒfƒŠƒ~ƒ^‚ÌˆÊ’u‚ğ•Û‘¶‚·‚éD
+					dpp = dp;		// ä¸€ã¤å‰ã®ãƒ‡ãƒªãƒŸã‚¿ã®ä½ç½®ã‚’ä¿å­˜ã™ã‚‹ï¼
 					dp = k + 2;
 				}
 			}
@@ -107,8 +107,8 @@ int CURG::GetData(int length[n_data], int intensity[n_data]){
 		}
 	} while (recv_num > 0);
 
-	while(i < pointer){		// ƒf[ƒ^‚ÌÅŒã‚É‚È‚é‚Ü‚ÅŒJ‚è•Ô‚·
-		if (num_lf < 3){	// n‚ß‚Ì4ƒ‰ƒCƒ“‚Ìƒf[ƒ^‚Í–³‹iƒGƒ‰[ˆ—–³‚µj
+	while(i < pointer){		// ãƒ‡ãƒ¼ã‚¿ã®æœ€å¾Œã«ãªã‚‹ã¾ã§ç¹°ã‚Šè¿”ã™
+		if (num_lf < 3){	// å§‹ã‚ã®4ãƒ©ã‚¤ãƒ³ã®ãƒ‡ãƒ¼ã‚¿ã¯ç„¡è¦–ï¼ˆã‚¨ãƒ©ãƒ¼å‡¦ç†ç„¡ã—ï¼‰
 			if (buf[i] == '\n') num_lf ++;
 			i ++;
 			continue;
@@ -134,13 +134,13 @@ int CURG::GetData(int length[n_data], int intensity[n_data]){
 }
 
 /*!
- * @brief ƒfƒJƒ‹ƒgÀ•WŒn‚Ö‚Ì•ÏŠ·
+ * @brief ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã¸ã®å¤‰æ›
  *
- * @param[in]  tilt ƒ`ƒ‹ƒg‚ÌŠp“x(rad)
- * @param[in]  data æ“¾‚µ‚½‹——£ƒf[ƒ^[mm]
- * @param[out] p    ƒfƒJƒ‹ƒgÀ•WŒn‚É•ÏŠ·‚µ‚½áŠQ•¨‚ÌˆÊ’uƒf[ƒ^(mm)
+ * @param[in]  tilt ãƒãƒ«ãƒˆã®è§’åº¦(rad)
+ * @param[in]  data å–å¾—ã—ãŸè·é›¢ãƒ‡ãƒ¼ã‚¿[mm]
+ * @param[out] p    ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã«å¤‰æ›ã—ãŸéšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿(mm)
  *
- * @return æ“¾‚µ‚½ƒf[ƒ^‚Ì”
+ * @return å–å¾—ã—ãŸãƒ‡ãƒ¼ã‚¿ã®æ•°
  */
 int CURG::TranslateCartesian(float tilt, int data[n_data], pos p[n_data])
 {
@@ -150,10 +150,10 @@ int CURG::TranslateCartesian(float tilt, int data[n_data], pos p[n_data])
 			p[i].x = p[i].y = p[i].z = 0;
 			continue;
 		}
-		ang = 0.25f*(i-640/2)*M_PI/180.0f;		// URGƒXƒLƒƒƒ“–Ê‚ÌŠp“x
+		ang = 0.25f*(i-640/2)*M_PI/180.0f;		// URGã‚¹ã‚­ãƒ£ãƒ³é¢ã®è§’åº¦
 		x = data[i]*cos(ang);
 		y = data[i]*sin(ang);
-		ang = tilt*M_PI/180.0f;					// URGƒ`ƒ‹ƒgŠp“x
+		ang = tilt*M_PI/180.0f;					// URGãƒãƒ«ãƒˆè§’åº¦
 		p[i].x = (int)(x*cos(ang));
 		p[i].y = (int)(y         );
 		p[i].z = (int)(x*sin(ang));

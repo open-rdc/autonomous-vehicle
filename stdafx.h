@@ -1,7 +1,7 @@
-
-// stdafx.h : •W€‚ÌƒVƒXƒeƒ€ ƒCƒ“ƒNƒ‹[ƒh ƒtƒ@ƒCƒ‹‚ÌƒCƒ“ƒNƒ‹[ƒh ƒtƒ@ƒCƒ‹A‚Ü‚½‚Í
-// ŽQÆ‰ñ”‚ª‘½‚­A‚©‚Â‚ ‚Ü‚è•ÏX‚³‚ê‚È‚¢AƒvƒƒWƒFƒNƒgê—p‚ÌƒCƒ“ƒNƒ‹[ƒh ƒtƒ@ƒCƒ‹
-// ‚ð‹Lq‚µ‚Ü‚·B
+ï»¿
+// stdafx.h : æ¨™æº–ã®ã‚·ã‚¹ãƒ†ãƒ  ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ãƒ•ã‚¡ã‚¤ãƒ«ã€ã¾ãŸã¯
+// å‚ç…§å›žæ•°ãŒå¤šãã€ã‹ã¤ã‚ã¾ã‚Šå¤‰æ›´ã•ã‚Œãªã„ã€ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆå°‚ç”¨ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ ãƒ•ã‚¡ã‚¤ãƒ«
+// ã‚’è¨˜è¿°ã—ã¾ã™ã€‚
 
 #pragma once
 
@@ -10,32 +10,32 @@
 #endif
 
 #ifndef VC_EXTRALEAN
-#define VC_EXTRALEAN            // Windows ƒwƒbƒ_[‚©‚çŽg—p‚³‚ê‚Ä‚¢‚È‚¢•”•ª‚ðœŠO‚µ‚Ü‚·B
+#define VC_EXTRALEAN            // Windows ãƒ˜ãƒƒãƒ€ãƒ¼ã‹ã‚‰ä½¿ç”¨ã•ã‚Œã¦ã„ãªã„éƒ¨åˆ†ã‚’é™¤å¤–ã—ã¾ã™ã€‚
 #endif
 
 #include "targetver.h"
 
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // ˆê•”‚Ì CString ƒRƒ“ƒXƒgƒ‰ƒNƒ^‚Í–¾Ž¦“I‚Å‚·B
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // ä¸€éƒ¨ã® CString ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã¯æ˜Žç¤ºçš„ã§ã™ã€‚
 
-// ˆê”Ê“I‚Å–³Ž‹‚µ‚Ä‚àˆÀ‘S‚È MFC ‚ÌŒxƒƒbƒZ[ƒW‚Ìˆê•”‚Ì”ñ•\Ž¦‚ð‰ðœ‚µ‚Ü‚·B
+// ä¸€èˆ¬çš„ã§ç„¡è¦–ã—ã¦ã‚‚å®‰å…¨ãª MFC ã®è­¦å‘Šãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®ä¸€éƒ¨ã®éžè¡¨ç¤ºã‚’è§£é™¤ã—ã¾ã™ã€‚
 #define _AFX_ALL_WARNINGS
 
-#include <afxwin.h>         // MFC ‚ÌƒRƒA‚¨‚æ‚Ñ•W€ƒRƒ“ƒ|[ƒlƒ“ƒg
-#include <afxext.h>         // MFC ‚ÌŠg’£•”•ª
+#include <afxwin.h>         // MFC ã®ã‚³ã‚¢ãŠã‚ˆã³æ¨™æº–ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
+#include <afxext.h>         // MFC ã®æ‹¡å¼µéƒ¨åˆ†
 
 
-#include <afxdisp.h>        // MFC ƒI[ƒgƒ[ƒVƒ‡ƒ“ ƒNƒ‰ƒX
+#include <afxdisp.h>        // MFC ã‚ªãƒ¼ãƒˆãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ ã‚¯ãƒ©ã‚¹
 
 
 
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxdtctl.h>           // MFC ‚Ì Internet Explorer 4 ƒRƒ‚ƒ“ ƒRƒ“ƒgƒ[ƒ‹ ƒTƒ|[ƒg
+#include <afxdtctl.h>           // MFC ã® Internet Explorer 4 ã‚³ãƒ¢ãƒ³ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« ã‚µãƒãƒ¼ãƒˆ
 #endif
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>             // MFC ‚Ì Windows ƒRƒ‚ƒ“ ƒRƒ“ƒgƒ[ƒ‹ ƒTƒ|[ƒg
+#include <afxcmn.h>             // MFC ã® Windows ã‚³ãƒ¢ãƒ³ ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« ã‚µãƒãƒ¼ãƒˆ
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
-#include <afxcontrolbars.h>     // MFC ‚É‚¨‚¯‚éƒŠƒ{ƒ“‚ÆƒRƒ“ƒgƒ[ƒ‹ ƒo[‚ÌƒTƒ|[ƒg
+#include <afxcontrolbars.h>     // MFC ã«ãŠã‘ã‚‹ãƒªãƒœãƒ³ã¨ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« ãƒãƒ¼ã®ã‚µãƒãƒ¼ãƒˆ
 
 
 

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 // CnavigationView
 
@@ -18,27 +18,27 @@ protected:
 
 
 private:
-	// Œv‘ª“_‚Ì•\¦
+	// è¨ˆæ¸¬ç‚¹ã®è¡¨ç¤º
 	static const int MAX_DATA_NUM = 10000;
 	int data_num;
 	pos data_pos[MAX_DATA_NUM];
 
-	// QÆƒf[ƒ^‚Ì•\¦@(playƒ‚[ƒh‚Åg—p)
+	// å‚ç…§ãƒ‡ãƒ¼ã‚¿ã®è¡¨ç¤ºã€€(playãƒ¢ãƒ¼ãƒ‰ã§ä½¿ç”¨)
 	static const int MAX_REF_DATA_NUM = 10000;
 	int ref_data_num;
 	pos ref_pos[MAX_REF_DATA_NUM];
 
-	// ”½Ë‹­“xƒf[ƒ^‚Ì•\¦
+	// åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ã®è¡¨ç¤º
 	static const int MAX_INTEN_DATA_NUM = 10000;
 	int inten_data_num;
 	pos_inten inten_pos[MAX_INTEN_DATA_NUM];
 
-	// ’Tõ‘ÎÛ‚ÌŒó•âƒf[ƒ^‚Ì•\¦
+	// æ¢ç´¢å¯¾è±¡ã®å€™è£œãƒ‡ãƒ¼ã‚¿ã®è¡¨ç¤º
 	static const int MAX_SLATE_DATA_NUM = 100;
 	int slate_data_num;
 	pos_slate slate_pos[MAX_SLATE_DATA_NUM];
 
-	// RGB•\¦—p\‘¢‘Ì
+	// RGBè¡¨ç¤ºç”¨æ§‹é€ ä½“
 	struct bitmap_rgb_T{
 		unsigned char blue;
 		unsigned char green;
@@ -46,42 +46,42 @@ private:
 		unsigned char alpha;
 	} rgb_thre[640*480];
 	
-	// ƒIƒhƒƒgƒŠ‚Ì•\¦
+	// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è¡¨ç¤º
 	static const int MAX_ODO_NUM = 100;
 	struct odometory odo[MAX_ODO_NUM];
 	int odo_num;
 	long time0;
 
-	// ƒS[ƒ‹‚Ì•\¦@(playƒ‚[ƒh‚Åg—p)
+	// ã‚´ãƒ¼ãƒ«ã®è¡¨ç¤ºã€€(playãƒ¢ãƒ¼ãƒ‰ã§ä½¿ç”¨)
 	int is_target_view;
 	float tarX;				// m
 	float tarY;				// m
 	float tarThe;			// rad
 
-	// ƒp[ƒeƒBƒNƒ‹‚Ì•\¦@(playƒ‚[ƒh‚Åg—p)
-	static const int MAX_PARTICLE_NUM = 1000;	// Å‘å1000ŒÂ•\¦
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è¡¨ç¤ºã€€(playãƒ¢ãƒ¼ãƒ‰ã§ä½¿ç”¨)
+	static const int MAX_PARTICLE_NUM = 1000;	// æœ€å¤§1000å€‹è¡¨ç¤º
 	int particle_num;
 	struct particle_T particle[MAX_PARTICLE_NUM];
 
-	// ƒ[ƒ‹ƒhÀ•W‚©‚çƒfƒBƒYƒvƒŒƒC‚ÌÀ•W‚É•ÏŠ· (’PˆÊ‚Ímm)
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‹ã‚‰ãƒ‡ã‚£ã‚ºãƒ—ãƒ¬ã‚¤ã®åº§æ¨™ã«å¤‰æ› (å˜ä½ã¯mm)
 	int translatePos(int worldX, int worldY, int worldX0, int worldY0, int *dispX, int *dispY);
-	int center_x, center_y;								// ƒrƒ…[‚Ì‚Ì’†S(dot)
-	int disp_x, disp_y;									// ƒrƒ…[‚ÌƒTƒCƒY(dot)
-	int step;											// waypoint‚Ì”Ô†
-	float coincidence;									// ˆê’v“x(0-1)
-	int is_record, is_play;								// •Û‘¶CÄ¶
-	float ratio;										// ‰æ–Ê‚ÌƒTƒCƒY‚Ì”ä—¦(m->dot)
+	int center_x, center_y;								// ãƒ“ãƒ¥ãƒ¼ã®ã®ä¸­å¿ƒ(dot)
+	int disp_x, disp_y;									// ãƒ“ãƒ¥ãƒ¼ã®ã‚µã‚¤ã‚º(dot)
+	int step;											// waypointã®ç•ªå·
+	float coincidence;									// ä¸€è‡´åº¦(0-1)
+	int is_record, is_play;								// ä¿å­˜ï¼Œå†ç”Ÿ
+	float ratio;										// ç”»é¢ã®ã‚µã‚¤ã‚ºã®æ¯”ç‡(m->dot)
 
 public:
-	afx_msg void OnPaint();								// Ä•`‰æ
-	int setData(pos *p, int num);						// áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ğİ’è
-	int setRefData(pos *p, int num);					// QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìİ’è
-	int setIntensityData(pos_inten *p, int num);		// ”½Ë‹­“x‚Ìƒf[ƒ^‚Ìİ’è
-	int setSlatePoint(pos_slate *p, int num);			// ’Tõ‘ÎÛ‚ÌŒó•â‚Ìİ’è
-	int setOdometory(float x, float y, float the);		// ƒIƒhƒƒgƒŠ‚Ìİ’è
-	int setTargetPos(float x, float y, float the);		// waypoint‚Ìİ’è
-	int setParticle(struct particle_T *p, int num);		// ƒp[ƒeƒBƒNƒ‹‚Ìİ’è
-	int setStep(int step);								// waypoint‚Ì”‚Ìİ’è
-	int setCoincidence(float coincidence);				// ˆê’v“x‚Ìİ’è
-	int setStatus(int is_record, int is_play);			// ó‘Ô(•Û‘¶ƒ‚[ƒhCÄ¶ƒ‚[ƒh)‚Ìİ’è
+	afx_msg void OnPaint();								// å†æç”»
+	int setData(pos *p, int num);						// éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’è¨­å®š
+	int setRefData(pos *p, int num);					// å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
+	int setIntensityData(pos_inten *p, int num);		// åå°„å¼·åº¦ã®ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
+	int setSlatePoint(pos_slate *p, int num);			// æ¢ç´¢å¯¾è±¡ã®å€™è£œã®è¨­å®š
+	int setOdometory(float x, float y, float the);		// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®è¨­å®š
+	int setTargetPos(float x, float y, float the);		// waypointã®è¨­å®š
+	int setParticle(struct particle_T *p, int num);		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è¨­å®š
+	int setStep(int step);								// waypointã®æ•°ã®è¨­å®š
+	int setCoincidence(float coincidence);				// ä¸€è‡´åº¦ã®è¨­å®š
+	int setStatus(int is_record, int is_play);			// çŠ¶æ…‹(ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ï¼Œå†ç”Ÿãƒ¢ãƒ¼ãƒ‰)ã®è¨­å®š
 };

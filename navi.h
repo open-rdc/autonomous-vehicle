@@ -1,158 +1,158 @@
-#pragma once
+ï»¿#pragma once
 
 #include "estimatePos.h"
 
 class navi
 {
 public:
-	navi();							// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~navi();				// ƒfƒXƒgƒ‰ƒNƒ^
+	navi();							// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~navi();				// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 private:
-	int is_record;					//! •Û‘¶ƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int is_play;					//! Ä¶ƒ‚[ƒh‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	int step;						//! waypoint‚Ì”Ô†
-	float step_period;				//! Ÿ‚Ìwaypoint‚É“’B‚·‚é‚Ü‚Å‚ÌŠÔ
-	long time0;						//! ‘O‰ñwaypoint‚ğ’Ê‰ß‚µ‚½ŠÔ(ms)
+	int is_record;					//! ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int is_play;					//! å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+	int step;						//! waypointã®ç•ªå·
+	float step_period;				//! æ¬¡ã®waypointã«åˆ°é”ã™ã‚‹ã¾ã§ã®æ™‚é–“
+	long time0;						//! å‰å›waypointã‚’é€šéã—ãŸæ™‚é–“(ms)
 
-	// ƒtƒ@ƒCƒ‹“üo—ÍŠÖ˜A
-	char target_filename[256];		//! ƒf[ƒ^‚ğ•Û‘¶‚·‚éƒtƒ@ƒCƒ‹–¼
-	long seek;						//! ƒf[ƒ^‚ğQÆ‚µ‚Ä‚¢‚éêŠ
-	long getSeek(int num);			// w’è‚µ‚½waypoint‚Ì”Ô†‚Ü‚ÅCƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İˆÊ’u‚ğˆÚ“®‚·‚é
-	int saveNextOdometory(float x, float y, float the);	// ƒIƒhƒƒgƒŠ‚Ì•Û‘¶
-	int saveNextData(pos *p, int num);					// áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ì•Û‘¶
+	// ãƒ•ã‚¡ã‚¤ãƒ«å…¥å‡ºåŠ›é–¢é€£
+	char target_filename[256];		//! ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«å
+	long seek;						//! ãƒ‡ãƒ¼ã‚¿ã‚’å‚ç…§ã—ã¦ã„ã‚‹å ´æ‰€
+	long getSeek(int num);			// æŒ‡å®šã—ãŸwaypointã®ç•ªå·ã¾ã§ï¼Œãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ä½ç½®ã‚’ç§»å‹•ã™ã‚‹
+	int saveNextOdometory(float x, float y, float the);	// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ä¿å­˜
+	int saveNextData(pos *p, int num);					// éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
 	int loadNextOdoAndData(float *x, float *y, float *the, pos *p, int *num, int max_num);
-									// Ÿ‚Ìwaypoint‚ÆáŠQ•¨‚Ì‹——£ƒf[ƒ^‚ğ“Ç‚İ‚Ş
+									// æ¬¡ã®waypointã¨éšœå®³ç‰©ã®è·é›¢ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 	
-	// targetŠÖ˜A
-	float tarX, tarY, tarThe;		// Ÿ‚Ìwaypoint‚ÌˆÊ’u(m,rad)
+	// targeté–¢é€£
+	float tarX, tarY, tarThe;		// æ¬¡ã®waypointã®ä½ç½®(m,rad)
 	int isPassTarget(float x, float y, float the);
-									// waypoint‚É‹ß‚Ã‚¢‚½‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
+									// waypointã«è¿‘ã¥ã„ãŸã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
 
-	// Œv‘ª‚µ‚½áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìˆê•ÛŠÇêŠ
-	static const int MAX_DATA = 10000;	//! áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ÌÅ‘åŒÂ”
-	int data_no;						//! áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ÌŒÂ”
-	pos data[MAX_DATA];					//! ŠŠO•¨‚Ìƒf[ƒ^
+	// è¨ˆæ¸¬ã—ãŸéšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ä¸€æ™‚ä¿ç®¡å ´æ‰€
+	static const int MAX_DATA = 10000;	//! éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§å€‹æ•°
+	int data_no;						//! éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
+	pos data[MAX_DATA];					//! æ‰€å¤–ç‰©ã®ãƒ‡ãƒ¼ã‚¿
 
-	// QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìˆê•ÛŠÇêŠ
-	static const int MAX_REF_DATA = 10000;	//! QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ÌÅ‘åŒÂ”
-	int ref_data_no;						//! QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚ÌŒÂ”
-	pos refData[MAX_REF_DATA];				//! QÆ‚·‚éáŠQ•¨‚ÌˆÊ’uƒf[ƒ^
+	// å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®ä¸€æ™‚ä¿ç®¡å ´æ‰€
+	static const int MAX_REF_DATA = 10000;	//! å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§å€‹æ•°
+	int ref_data_no;						//! å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
+	pos refData[MAX_REF_DATA];				//! å‚ç…§ã™ã‚‹éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿
 
-	// ƒIƒhƒƒgƒŠ
-	float odoX0, odoY0, odoThe0;	//! ˆê‚Â‘O‚ÌƒEƒFƒCƒ|ƒCƒ“ƒg‚ğ’Ê‰ß‚µ‚½‚ÌƒIƒhƒƒgƒŠ(m, rad)
+	// ã‚ªãƒ‰ãƒ¡ãƒˆãƒª
+	float odoX0, odoY0, odoThe0;	//! ä¸€ã¤å‰ã®ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã‚’é€šéã—ãŸæ™‚ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒª(m, rad)
 
-	// „’è’l
-	float estX0, estY0, estThe0;	//! ˆê‚Â‘O‚ÌƒEƒFƒCƒ|ƒCƒ“ƒg‚ğ’Ê‰ß‚µ‚½‚ÌˆÊ’u‚Ì„’è’l(m,rad)
-	float estX,  estY,  estThe ;	//! Œ»İ‚ÌˆÊ’u‚Ì„’è’l
+	// æ¨å®šå€¤
+	float estX0, estY0, estThe0;	//! ä¸€ã¤å‰ã®ã‚¦ã‚§ã‚¤ãƒã‚¤ãƒ³ãƒˆã‚’é€šéã—ãŸæ™‚ã®ä½ç½®ã®æ¨å®šå€¤(m,rad)
+	float estX,  estY,  estThe ;	//! ç¾åœ¨ã®ä½ç½®ã®æ¨å®šå€¤
 
-	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// Œv‘ª‚ÌƒXƒŒƒbƒh
+	static DWORD WINAPI ThreadFunc(LPVOID lpParameter);	// è¨ˆæ¸¬ã®ã‚¹ãƒ¬ãƒƒãƒ‰
 	DWORD WINAPI ExecThread();
-	DWORD threadId;					//! ƒXƒŒƒbƒh ID	
-	HANDLE hThread;					//! ƒXƒŒƒbƒh‚Ìƒnƒ“ƒhƒ‹
+	DWORD threadId;					//! ã‚¹ãƒ¬ãƒƒãƒ‰ ID	
+	HANDLE hThread;					//! ã‚¹ãƒ¬ãƒƒãƒ‰ã®ãƒãƒ³ãƒ‰ãƒ«
 
-	estimatePos est_pos;			//! ©ŒÈˆÊ’u„’è‚ÌƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
-	float coincidence;				//! ˆê’v“x (0-1)
+	estimatePos est_pos;			//! è‡ªå·±ä½ç½®æ¨å®šã®ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
+	float coincidence;				//! ä¸€è‡´åº¦ (0-1)
 	int selfLocalization(float x, float y, float the, float dx, float dy, float dthe);
-									// ©ŒÈˆÊ’u„’è
-	// ’Tõ—p‚Ìˆ—
-	int is_search_object;			//! ’Tõ‘ÎÛÒ‚Ì—L–³
-	int is_search_mode;				//! ’Tõ‘ÎÛÒ‚ğ’Tõ‚·‚éƒ‚[ƒh
-	int search_mode;				//! ’Tõ‚Ìƒ‚[ƒhiƒV[ƒPƒ“ƒX‚Ìˆ—‚Ég—p‚·‚éj
-	float searchX, searchY;			//! ’Tõ‚·‚éˆÊ’u
-	float retX, retY;				//! ’Tõƒ‚[ƒh‚©‚ç–ß‚éˆÊ’uiƒOƒ[ƒoƒ‹À•Wj
-	float forwardSpeed, rotateSpeed;//! ‘¬“x–Ú•W(m/s)
-	int isPassSearchObject(float x, float y, float the);	// ’Tõ‘ÎÛ•¨‚É‹ß‚Ã‚¢‚½‚©‚Ç‚¤‚©‚ğƒ`ƒFƒbƒN‚·‚éŠÖ”
-	int searchProcess();									// ’Tõ‚ÌƒvƒƒZƒX
-	int stop();												// ’â~‚·‚éi’Tõƒ‚[ƒh‚Ì‚İj
-	int turnToPos(float x, float y, float margin_angle);	// –Ú•W(x,y)‚ÉŒü‚«’¼‚é
-	int moveToPos(float x, float y, float margin_distance);	// –Ú•W(x,y)‚É‹ßŠñ‚é
+									// è‡ªå·±ä½ç½®æ¨å®š
+	// æ¢ç´¢ç”¨ã®å‡¦ç†
+	int is_search_object;			//! æ¢ç´¢å¯¾è±¡è€…ã®æœ‰ç„¡
+	int is_search_mode;				//! æ¢ç´¢å¯¾è±¡è€…ã‚’æ¢ç´¢ã™ã‚‹ãƒ¢ãƒ¼ãƒ‰
+	int search_mode;				//! æ¢ç´¢ã®ãƒ¢ãƒ¼ãƒ‰ï¼ˆã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã®å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ï¼‰
+	float searchX, searchY;			//! æ¢ç´¢ã™ã‚‹ä½ç½®
+	float retX, retY;				//! æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã‹ã‚‰æˆ»ã‚‹ä½ç½®ï¼ˆã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ï¼‰
+	float forwardSpeed, rotateSpeed;//! é€Ÿåº¦ç›®æ¨™(m/s)
+	int isPassSearchObject(float x, float y, float the);	// æ¢ç´¢å¯¾è±¡ç‰©ã«è¿‘ã¥ã„ãŸã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹é–¢æ•°
+	int searchProcess();									// æ¢ç´¢ã®ãƒ—ãƒ­ã‚»ã‚¹
+	int stop();												// åœæ­¢ã™ã‚‹ï¼ˆæ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã®ã¿ï¼‰
+	int turnToPos(float x, float y, float margin_angle);	// ç›®æ¨™(x,y)ã«å‘ãç›´ã‚‹
+	int moveToPos(float x, float y, float margin_distance);	// ç›®æ¨™(x,y)ã«è¿‘å¯„ã‚‹
 
 	int is_reroute_mode;
 	int reroute_direction;
 	int reroute_mode;
-	float rerouteX0, rerouteY0, rerouteThe0;				// ƒŠƒ‹[ƒg‚ğn‚ß‚½‚Ìx,y,the
+	float rerouteX0, rerouteY0, rerouteThe0;				// ãƒªãƒ«ãƒ¼ãƒˆã‚’å§‹ã‚ãŸæ™‚ã®x,y,the
 	int rerouteProcess();
 	int turn90deg(int direction, float the0, float margin_angle);
 	int moveForward(float length, float x0, float y0);
 
-	static const int RIGHT = -1, CENTER = 0, LEFT = +1;	//! ‰EC’†‰›C¶‚Ì’è”
+	static const int RIGHT = -1, CENTER = 0, LEFT = +1;	//! å³ï¼Œä¸­å¤®ï¼Œå·¦ã®å®šæ•°
 	int is_need_stop;
 
 public:
-	int Init();						// ‰Šú‰»
-	int Close();					// I—¹ˆ—
-	int setOdometory(float x, float y, float the);	// ƒIƒhƒƒgƒŠ‚ğİ’è‚·‚é
-	int setStep(int num);			// waypoint‚Ì”Ô†‚ğƒZƒbƒg‚·‚é
-	int getStep();					// waypoint‚Ì”Ô†‚ğæ“¾‚·‚é
-	int setData(pos *p, int num);	// áŠQ•¨‚ÌˆÊ’uƒf[ƒ^‚Ìİ’è
-	int getEstimatedPosition(float *x, float *y, float *the);				// „’è‚µ‚½ˆÊ’u‚Ìæ“¾
-	int getTargetPosition(float *x, float *y, float *the, float *period);	// waypoint‚Ìæ“¾
-	int getTargetArcSpeed(float *front, float *radius);						// waypoint‚ÉŒü‚©‚¤ƒƒ{ƒbƒg‚Ì‘¬“x‚Æ‰ñ“]”¼Œa‚ğ‹‚ß‚é
-	int getParticle(struct particle_T *particle, int *num, int max_num);	// ƒp[ƒeƒBƒNƒ‹‚Ìƒf[ƒ^‚ğæ“¾‚·‚é
-	int getCoincidence(float *coincidence);									// ˆê’v“x‚ğæ“¾
-	int setTargetFilename(char *filename = NULL);							// ƒf[ƒ^‚ğ•Û‘¶‚·‚éƒtƒ@ƒCƒ‹–¼‚ğw’è‚·‚é
-	int setRecordMode(int is_record);										// •Û‘¶ƒ‚[ƒh‚Ìİ’è
-	int setPlayMode(int is_play);											// Ä¶ƒ‚[ƒh‚Ìİ’è
-	int isPlayMode();														// PlayMode‚©‚Ç‚¤‚©‚ğ–ß‚·
-	int getRefData(pos *p, int *num, int max_num);							// QÆƒf[ƒ^‚Ìæ“¾
-	int setSearchPoint(pos p);												// ’Tõ‘ÎÛ‚ÌŒó•â“_‚ğİ’è
-	int isSearchMode();														// ’Tõƒ‚[ƒh‚©‚Ç‚¤‚©‚ğ–ß‚·(0:’Tõƒ‚[ƒh‚Å‚È‚¢C1:’Tõƒ‚[ƒhj
-	int getSpeed(float *forward, float *rotate);							// ’¼ÚƒzƒC[ƒ‹‚Ì‘¬“x‚ği—ß‚·‚éD(’Tõƒ‚[ƒh‚Åg—p)
-	float distaceFromPreviousSearchPoint();									// ‘O‰ñ‚Ì’Tõ‘ÎÛ‚©‚ç‚Ì‹——£‚ğ–ß‚·(m)
-	int setRerouteMode(int direction);										// ƒŠƒ‹[ƒgƒ‚[ƒh‚É‚·‚éD
+	int Init();						// åˆæœŸåŒ–
+	int Close();					// çµ‚äº†å‡¦ç†
+	int setOdometory(float x, float y, float the);	// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã‚’è¨­å®šã™ã‚‹
+	int setStep(int num);			// waypointã®ç•ªå·ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+	int getStep();					// waypointã®ç•ªå·ã‚’å–å¾—ã™ã‚‹
+	int setData(pos *p, int num);	// éšœå®³ç‰©ã®ä½ç½®ãƒ‡ãƒ¼ã‚¿ã®è¨­å®š
+	int getEstimatedPosition(float *x, float *y, float *the);				// æ¨å®šã—ãŸä½ç½®ã®å–å¾—
+	int getTargetPosition(float *x, float *y, float *the, float *period);	// waypointã®å–å¾—
+	int getTargetArcSpeed(float *front, float *radius);						// waypointã«å‘ã‹ã†ãƒ­ãƒœãƒƒãƒˆã®é€Ÿåº¦ã¨å›è»¢åŠå¾„ã‚’æ±‚ã‚ã‚‹
+	int getParticle(struct particle_T *particle, int *num, int max_num);	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+	int getCoincidence(float *coincidence);									// ä¸€è‡´åº¦ã‚’å–å¾—
+	int setTargetFilename(char *filename = NULL);							// ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šã™ã‚‹
+	int setRecordMode(int is_record);										// ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+	int setPlayMode(int is_play);											// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š
+	int isPlayMode();														// PlayModeã‹ã©ã†ã‹ã‚’æˆ»ã™
+	int getRefData(pos *p, int *num, int max_num);							// å‚ç…§ãƒ‡ãƒ¼ã‚¿ã®å–å¾—
+	int setSearchPoint(pos p);												// æ¢ç´¢å¯¾è±¡ã®å€™è£œç‚¹ã‚’è¨­å®š
+	int isSearchMode();														// æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹ã‚’æˆ»ã™(0:æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã§ãªã„ï¼Œ1:æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ï¼‰
+	int getSpeed(float *forward, float *rotate);							// ç›´æ¥ãƒ›ã‚¤ãƒ¼ãƒ«ã®é€Ÿåº¦ã‚’å¸ä»¤ã™ã‚‹ï¼(æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã§ä½¿ç”¨)
+	float distaceFromPreviousSearchPoint();									// å‰å›ã®æ¢ç´¢å¯¾è±¡ã‹ã‚‰ã®è·é›¢ã‚’æˆ»ã™(m)
+	int setRerouteMode(int direction);										// ãƒªãƒ«ãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ï¼
 	int isRerouteMode();
 	int setNeedStop(int is_need_stop);
 };
 
 /*
- * g‚¢•û
+ * ä½¿ã„æ–¹
  * 
- * ¡•Û‘¶(record)
- * 1) setTargetFilename("temp.csv")‚È‚Ç‚Åƒtƒ@ƒCƒ‹–¼‚ğw’èiŠÔ‚È‚Ç‚ğ©“®“I‚É“ü‚ê‚é‚æ‚¤‚É‚µ‚½‚¢j
- * 2) setRecordMode(1)‚Å•Û‘¶ƒ‚[ƒh‚É‚·‚éD
- * 3) ƒf[ƒ^‚ğæ“¾‚·‚é‚²‚Æ‚É
- *    setOdometory(x,y,the), setData(p,num)‚Åƒtƒ@ƒCƒ‹‚ğ•Û‘¶i‹¤‚Éƒ[ƒ‹ƒhÀ•Wj
- * 4) setRecordMode(0)‚Å•Û‘¶ƒ‚[ƒh‚ğ‰ğœ‚·‚éDi•K‚¸‚µ‚à•K—v‚È‚¢j
+ * â– ä¿å­˜(record)
+ * 1) setTargetFilename("temp.csv")ãªã©ã§ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šï¼ˆæ™‚é–“ãªã©ã‚’è‡ªå‹•çš„ã«å…¥ã‚Œã‚‹ã‚ˆã†ã«ã—ãŸã„ï¼‰
+ * 2) setRecordMode(1)ã§ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ï¼
+ * 3) ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹ã”ã¨ã«
+ *    setOdometory(x,y,the), setData(p,num)ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä¿å­˜ï¼ˆå…±ã«ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ï¼‰
+ * 4) setRecordMode(0)ã§ä¿å­˜ãƒ¢ãƒ¼ãƒ‰ã‚’è§£é™¤ã™ã‚‹ï¼ï¼ˆå¿…ãšã—ã‚‚å¿…è¦ãªã„ï¼‰
  * 
- * “r’†‚©‚ç‚Ì•Û‘¶‚É‚Í‘Î‰‚µ‚Ä‚¢‚È‚¢i—vŒŸ“¢j
+ * é€”ä¸­ã‹ã‚‰ã®ä¿å­˜ã«ã¯å¯¾å¿œã—ã¦ã„ãªã„ï¼ˆè¦æ¤œè¨ï¼‰
  *
- * ¡Ä¶(play)
- * 1) setTargetFilename("temp.csv")‚È‚Ç‚Åƒtƒ@ƒCƒ‹–¼‚ğw’èiŠÔ‚È‚Ç‚ğ©“®“I‚É“ü‚ê‚é‚æ‚¤‚É‚µ‚½‚¢j
- * 2) setPlayMode(1)‚ÅÄ¶ƒ‚[ƒh‚É‚·‚éD
- * 3) setOdometory(x,y,the)‚ÅŒ»İˆÊ’u‚ğ“ü—Íiƒ[ƒ‹ƒhÀ•WŒnj
- * 4) setData(p, num)‚ÅŒv‘ªƒf[ƒ^‚ğ“ü—Íiƒ[ƒ‹ƒhÀ•WŒnj
- * 5) getEstimatedPosition(&x,&y,&the)‚ÅŒ»İˆÊ’u‚ğæ“¾iƒ[ƒ‹ƒhÀ•WŒnj
- * 6) getTargetPosition(&x,&y,&the,&period)‚Å–Ú•WˆÊ’u‚ğæ“¾iƒ[ƒ‹ƒhÀ•WŒnj
- * 7) getTargetArcSpeed(&front,&radius)‚ğæ“¾C‚±‚ê‚É]‚¢ƒzƒC[ƒ‹‚ğ§Œä
- * 8) 3)‚É–ß‚é
- * 9) setPlayMode(0)‚ÅÄ¶ƒ‚[ƒh‚ğ‰ğœ‚·‚éCi‚©‚È‚¸‚µ‚à•K—v‚È‚¢j
+ * â– å†ç”Ÿ(play)
+ * 1) setTargetFilename("temp.csv")ãªã©ã§ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æŒ‡å®šï¼ˆæ™‚é–“ãªã©ã‚’è‡ªå‹•çš„ã«å…¥ã‚Œã‚‹ã‚ˆã†ã«ã—ãŸã„ï¼‰
+ * 2) setPlayMode(1)ã§å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ï¼
+ * 3) setOdometory(x,y,the)ã§ç¾åœ¨ä½ç½®ã‚’å…¥åŠ›ï¼ˆãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * 4) setData(p, num)ã§è¨ˆæ¸¬ãƒ‡ãƒ¼ã‚¿ã‚’å…¥åŠ›ï¼ˆãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * 5) getEstimatedPosition(&x,&y,&the)ã§ç¾åœ¨ä½ç½®ã‚’å–å¾—ï¼ˆãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * 6) getTargetPosition(&x,&y,&the,&period)ã§ç›®æ¨™ä½ç½®ã‚’å–å¾—ï¼ˆãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ç³»ï¼‰
+ * 7) getTargetArcSpeed(&front,&radius)ã‚’å–å¾—ï¼Œã“ã‚Œã«å¾“ã„ãƒ›ã‚¤ãƒ¼ãƒ«ã‚’åˆ¶å¾¡
+ * 8) 3)ã«æˆ»ã‚‹
+ * 9) setPlayMode(0)ã§å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‚’è§£é™¤ã™ã‚‹ï¼Œï¼ˆã‹ãªãšã—ã‚‚å¿…è¦ãªã„ï¼‰
  *
  */
 
 /*
- * ¡Ä¶(play)‚Ìˆ—è‡
+ * â– å†ç”Ÿ(play)æ™‚ã®å‡¦ç†æ‰‹é †
  *
- * œƒS[ƒ‹‚Ìƒ‰ƒCƒ“‚ğ’Ê‰ß‚·‚é–ˆ‚É
- * 1)‘OX‰ñ‚ÌƒS[ƒ‹ƒ‰ƒCƒ“’Ê‰ß‚Ì„’èˆÊ’u‚ğƒx[ƒX‚Æ‚µ‚ÄŒ»İˆÊ’u‚ğZo‚·‚é
- * 2)Ÿ‚ÌƒS[ƒ‹‚É“’B‚·‚é‚½‚ß‚ÌC–Ú•W‘¬“xCù‰ñ”¼Œa‚ğ‹‚ß‚éD
+ * â—ã‚´ãƒ¼ãƒ«ã®ãƒ©ã‚¤ãƒ³ã‚’é€šéã™ã‚‹æ¯ã«
+ * 1)å‰ã€…å›ã®ã‚´ãƒ¼ãƒ«ãƒ©ã‚¤ãƒ³é€šéæ™‚ã®æ¨å®šä½ç½®ã‚’ãƒ™ãƒ¼ã‚¹ã¨ã—ã¦ç¾åœ¨ä½ç½®ã‚’ç®—å‡ºã™ã‚‹
+ * 2)æ¬¡ã®ã‚´ãƒ¼ãƒ«ã«åˆ°é”ã™ã‚‹ãŸã‚ã®ï¼Œç›®æ¨™é€Ÿåº¦ï¼Œæ—‹å›åŠå¾„ã‚’æ±‚ã‚ã‚‹ï¼
  *
- * 3) ‘O‰ñ‚ÌƒIƒhƒƒgƒŠ‚Ìy„’èˆÊ’uz‚ğsetPosition(float x, float y, float the)‚É“ü‚ê‚é
- * 4) ‘O‰ñ‚©‚ç•Û‘¶‚µ‚½ƒf[ƒ^‚ğÅV‚ÌƒIƒhƒƒgƒŠyˆÊ’uz‚Ì‘Š‘ÎÀ•W‚É•ÏŠ·
- * 5) estimatePos::setData‚Éƒf[ƒ^‚ğ“ü—Íiƒƒ{ƒbƒgÀ•W)
- * 6) ‘O‰ñ‚©‚ç‚ÌƒIƒhƒƒgƒŠ‚Ì·•ª‚ğestimatePos::setOdometory‚É“ü—Íiƒ[ƒ‹ƒhÀ•Wj
- *    y’ˆÓzˆÚ“®‹——£‚ÍÔ—Ö‚©‚çC•ûŒü‚ÍƒIƒhƒƒgƒŠ‚Ìy„’èˆÊ’uz‚©‚çŒvZ‚·‚é
- * 7) estimatePos::calculate()‚ÅŒvZ
- * 8) estimatePos::getOdometory(&x,&y,&the,&var,&coincidence)‚Å„’èˆÊ’u‚ğæ“¾
- * 9) var‚ª¬‚³‚­Ccoincidence‚ª‘å‚«‚¢ê‡‚ÍC„’è‚µ‚½ƒIƒhƒƒgƒŠ‚ÌˆÊ’u‚ğC³
- *    ‚»‚¤‚Å‚È‚¢ê‡‚ÍC’Pƒ‚ÉƒIƒhƒƒgƒŠ‚Ìy„’èˆÊ’uz‚É·•ª‚ğ‘«‚·
+ * 3) å‰å›ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ã€æ¨å®šä½ç½®ã€‘ã‚’setPosition(float x, float y, float the)ã«å…¥ã‚Œã‚‹
+ * 4) å‰å›ã‹ã‚‰ä¿å­˜ã—ãŸãƒ‡ãƒ¼ã‚¿ã‚’æœ€æ–°ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã€ä½ç½®ã€‘ã®ç›¸å¯¾åº§æ¨™ã«å¤‰æ›
+ * 5) estimatePos::setDataã«ãƒ‡ãƒ¼ã‚¿ã‚’å…¥åŠ›ï¼ˆãƒ­ãƒœãƒƒãƒˆåº§æ¨™)
+ * 6) å‰å›ã‹ã‚‰ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®å·®åˆ†ã‚’estimatePos::setOdometoryã«å…¥åŠ›ï¼ˆãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ï¼‰
+ *    ã€æ³¨æ„ã€‘ç§»å‹•è·é›¢ã¯è»Šè¼ªã‹ã‚‰ï¼Œæ–¹å‘ã¯ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ã€æ¨å®šä½ç½®ã€‘ã‹ã‚‰è¨ˆç®—ã™ã‚‹
+ * 7) estimatePos::calculate()ã§è¨ˆç®—
+ * 8) estimatePos::getOdometory(&x,&y,&the,&var,&coincidence)ã§æ¨å®šä½ç½®ã‚’å–å¾—
+ * 9) varãŒå°ã•ãï¼ŒcoincidenceãŒå¤§ãã„å ´åˆã¯ï¼Œæ¨å®šã—ãŸã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ä½ç½®ã‚’ä¿®æ­£
+ *    ãã†ã§ãªã„å ´åˆã¯ï¼Œå˜ç´”ã«ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ã€æ¨å®šä½ç½®ã€‘ã«å·®åˆ†ã‚’è¶³ã™
  *
- *    ‚±‚ê‚ğ©ŒÈˆÊ’u‚Æ‚µ‚ÄCƒS[ƒ‹‚ÉŒü‚©‚¤‚½‚ß‚Ì–Ú•W‹O“¹‚ğ¶¬‚µ‚ÄŸ‚ÌƒS[ƒ‹ƒ‰ƒCƒ“‚Ü‚Å§Œä‚·‚é
+ *    ã“ã‚Œã‚’è‡ªå·±ä½ç½®ã¨ã—ã¦ï¼Œã‚´ãƒ¼ãƒ«ã«å‘ã‹ã†ãŸã‚ã®ç›®æ¨™è»Œé“ã‚’ç”Ÿæˆã—ã¦æ¬¡ã®ã‚´ãƒ¼ãƒ«ãƒ©ã‚¤ãƒ³ã¾ã§åˆ¶å¾¡ã™ã‚‹
  */
 
 /*
- * ƒIƒhƒƒgƒŠ‚Ìí—Ş
- * 1) record‚ÌƒIƒhƒƒgƒŠ
- * 2) play‚ÌƒIƒhƒƒgƒŠ
- * 3) play‚Érecord‚ÌƒIƒhƒƒgƒŠ‚É‡‚í‚¹‚½ƒIƒhƒƒgƒŠ
+ * ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ç¨®é¡
+ * 1) recordæ™‚ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒª
+ * 2) playæ™‚ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒª
+ * 3) playæ™‚ã«recordæ™‚ã®ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã«åˆã‚ã›ãŸã‚ªãƒ‰ãƒ¡ãƒˆãƒª
  */

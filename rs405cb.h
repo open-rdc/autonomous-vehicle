@@ -1,12 +1,12 @@
-#define SERVO_ID	1							// �T�[�{��ID
-#define	COM_PORT	"COM1"						// �T�[�{��COM�ԍ�
-#define	MAX_TORQUE	0x64						// �ő�g���N
+﻿#define SERVO_ID	1							// サーボのID
+#define	COM_PORT	"COM1"						// サーボのCOM番号
+#define	MAX_TORQUE	0x64						// 最大トルク
 
-HANDLE CommOpen( char *pport );					// �ʐM�|�[�g�̃I�[�v��
-int CommClose( HANDLE hComm );					// �ʐM�|�[�g�����
+HANDLE CommOpen( char *pport );					// 通信ポートのオープン
+int CommClose( HANDLE hComm );					// 通信ポートを閉じる
 int RSMove( HANDLE hComm, short sPos, unsigned short sTime );
-												// �T�[�{�̏o�͊p���w��
-short RSStartGetAngle( HANDLE hComm );			// �T�[�{�̌��݊p�x�̎擾���J�n����
-short RSGetAngle( HANDLE hComm );				// �T�[�{�̌��݊p�x���擾����
-int RSTorqueOnOff( HANDLE hComm, short sMode );	// �T�[�{�̃g���N��ON/OFF����
-int RSMaxTorque( HANDLE hComm, int maxTorque );	// �T�[�{�̃g���N��ݒ肷��
+												// サーボの出力角を指定
+short RSStartGetAngle( HANDLE hComm );			// サーボの現在角度の取得を開始する
+short RSGetAngle( HANDLE hComm );				// サーボの現在角度を取得する
+int RSTorqueOnOff( HANDLE hComm, short sMode );	// サーボのトルクをON/OFFする
+int RSMaxTorque( HANDLE hComm, int maxTorque );	// サーボのトルクを設定する

@@ -1,13 +1,13 @@
-/*!
+ï»¿/*!
  * @file  navigationDlg.cpp
- * @brief ƒ_ƒCƒAƒƒOƒNƒ‰ƒX
+ * @brief ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¯ãƒ©ã‚¹
  * @date 2013.10.31
  * @author Y.Hayashibara
  *
- * ‘S‘Ì‚ğ“Š‡‚·‚éÅ‚àŠî–{“I‚ÈƒNƒ‰ƒX
- * OnInitialize()‚Å‰Šú‰»
- * OnTimer()‚ÅüŠú“I‚Èˆ—
- * OnClose()‚ÅI—¹ˆ—
+ * å…¨ä½“ã‚’çµ±æ‹¬ã™ã‚‹æœ€ã‚‚åŸºæœ¬çš„ãªã‚¯ãƒ©ã‚¹
+ * OnInitialize()ã§åˆæœŸåŒ–
+ * OnTimer()ã§å‘¨æœŸçš„ãªå‡¦ç†
+ * OnClose()ã§çµ‚äº†å‡¦ç†
  */
 
 #include "stdafx.h"
@@ -28,20 +28,20 @@
 #define USE_IMU
 #define USE_CAMERA
 
-// ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìƒo[ƒWƒ‡ƒ“î•ñ‚Ég‚í‚ê‚é CAboutDlg ƒ_ƒCƒAƒƒO
+// ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±ã«ä½¿ã‚ã‚Œã‚‹ CAboutDlg ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// ƒ_ƒCƒAƒƒO ƒf[ƒ^
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚° ãƒ‡ãƒ¼ã‚¿
 	enum { IDD = IDD_ABOUTBOX };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ƒTƒ|[ƒg
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ã‚µãƒãƒ¼ãƒˆ
 
-// À‘•
+// å®Ÿè£…
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -60,11 +60,11 @@ END_MESSAGE_MAP()
 
 /*!
  * @class CnavigationDlg
- * @brief ƒ_ƒCƒAƒƒO‚ÌƒNƒ‰ƒX
+ * @brief ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
-// CnavigationDlg ƒ_ƒCƒAƒƒO
+// CnavigationDlg ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 
 CnavigationDlg::CnavigationDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CnavigationDlg::IDD, pParent)
@@ -96,10 +96,10 @@ BEGIN_MESSAGE_MAP(CnavigationDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CnavigationDlg ƒƒbƒZ[ƒW ƒnƒ“ƒhƒ‰
+// CnavigationDlg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒãƒ³ãƒ‰ãƒ©
 
 /*!
- * @brief ‰Šú‰»
+ * @brief åˆæœŸåŒ–
  *
  * @return TRUE
  */
@@ -107,9 +107,9 @@ BOOL CnavigationDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// "ƒo[ƒWƒ‡ƒ“î•ñ..." ƒƒjƒ…[‚ğƒVƒXƒeƒ€ ƒƒjƒ…[‚É’Ç‰Á‚µ‚Ü‚·B
+	// "ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±..." ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ã‚·ã‚¹ãƒ†ãƒ  ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¿½åŠ ã—ã¾ã™ã€‚
 
-	// IDM_ABOUTBOX ‚ÍAƒVƒXƒeƒ€ ƒRƒ}ƒ“ƒh‚Ì”ÍˆÍ“à‚É‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+	// IDM_ABOUTBOX ã¯ã€ã‚·ã‚¹ãƒ†ãƒ  ã‚³ãƒãƒ³ãƒ‰ã®ç¯„å›²å†…ã«ãªã‘ã‚Œã°ãªã‚Šã¾ã›ã‚“ã€‚
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -127,10 +127,10 @@ BOOL CnavigationDlg::OnInitDialog()
 		}
 	}
 
-	// ‚±‚Ìƒ_ƒCƒAƒƒO‚ÌƒAƒCƒRƒ“‚ğİ’è‚µ‚Ü‚·BƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒƒCƒ“ ƒEƒBƒ“ƒhƒE‚ªƒ_ƒCƒAƒƒO‚Å‚È‚¢ê‡A
-	//  Framework ‚ÍA‚±‚Ìİ’è‚ğ©“®“I‚És‚¢‚Ü‚·B
-	SetIcon(m_hIcon, TRUE);			// ‘å‚«‚¢ƒAƒCƒRƒ“‚Ìİ’è
-	SetIcon(m_hIcon, FALSE);		// ¬‚³‚¢ƒAƒCƒRƒ“‚Ìİ’è
+	// ã“ã®ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®ã‚¢ã‚¤ã‚³ãƒ³ã‚’è¨­å®šã—ã¾ã™ã€‚ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ãƒ¡ã‚¤ãƒ³ ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã§ãªã„å ´åˆã€
+	//  Framework ã¯ã€ã“ã®è¨­å®šã‚’è‡ªå‹•çš„ã«è¡Œã„ã¾ã™ã€‚
+	SetIcon(m_hIcon, TRUE);			// å¤§ãã„ã‚¢ã‚¤ã‚³ãƒ³ã®è¨­å®š
+	SetIcon(m_hIcon, FALSE);		// å°ã•ã„ã‚¢ã‚¤ã‚³ãƒ³ã®è¨­å®š
 
 	ShowWindow(SW_SHOW);
 
@@ -151,9 +151,9 @@ BOOL CnavigationDlg::OnInitDialog()
 #endif
 #ifdef USE_MEGA_ROVER 
 	if (mega_rover.init()) AfxMessageBox("Connect Mega Rover");
-	mega_rover.servoOn(30);			// Gain‚ğİ’è
+	mega_rover.servoOn(30);			// Gainã‚’è¨­å®š
 	mega_rover.setSpeedControlMode(1);
-	mega_rover.setDelta(20,20);		// ‰ÁŒ¸‘¬‚Ì’ö“x
+	mega_rover.setDelta(20,20);		// åŠ æ¸›é€Ÿã®ç¨‹åº¦
 #endif
 #ifdef USE_IMU
 	IMU.Init(IMU_COM_PORT);
@@ -167,7 +167,7 @@ BOOL CnavigationDlg::OnInitDialog()
 
 	SetTimer(1, 100, NULL);
 	
-	return TRUE;					// ƒtƒH[ƒJƒX‚ğƒRƒ“ƒgƒ[ƒ‹‚Éİ’è‚µ‚½ê‡‚ğœ‚«ATRUE ‚ğ•Ô‚µ‚Ü‚·B
+	return TRUE;					// ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã‚’ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã«è¨­å®šã—ãŸå ´åˆã‚’é™¤ãã€TRUE ã‚’è¿”ã—ã¾ã™ã€‚
 }
 
 void CnavigationDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -183,19 +183,19 @@ void CnavigationDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// ƒ_ƒCƒAƒƒO‚ÉÅ¬‰»ƒ{ƒ^ƒ“‚ğ’Ç‰Á‚·‚éê‡AƒAƒCƒRƒ“‚ğ•`‰æ‚·‚é‚½‚ß‚Ì
-//  ‰º‚ÌƒR[ƒh‚ª•K—v‚Å‚·BƒhƒLƒ…ƒƒ“ƒg/ƒrƒ…[ ƒ‚ƒfƒ‹‚ğg‚¤ MFC ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìê‡A
-//  ‚±‚ê‚ÍAFramework ‚É‚æ‚Á‚Ä©“®“I‚Éİ’è‚³‚ê‚Ü‚·B
+// ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã«æœ€å°åŒ–ãƒœã‚¿ãƒ³ã‚’è¿½åŠ ã™ã‚‹å ´åˆã€ã‚¢ã‚¤ã‚³ãƒ³ã‚’æç”»ã™ã‚‹ãŸã‚ã®
+//  ä¸‹ã®ã‚³ãƒ¼ãƒ‰ãŒå¿…è¦ã§ã™ã€‚ãƒ‰ã‚­ãƒ¥ãƒ¡ãƒ³ãƒˆ/ãƒ“ãƒ¥ãƒ¼ ãƒ¢ãƒ‡ãƒ«ã‚’ä½¿ã† MFC ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®å ´åˆã€
+//  ã“ã‚Œã¯ã€Framework ã«ã‚ˆã£ã¦è‡ªå‹•çš„ã«è¨­å®šã•ã‚Œã¾ã™ã€‚
 
 void CnavigationDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this);			// •`‰æ‚ÌƒfƒoƒCƒX ƒRƒ“ƒeƒLƒXƒg
+		CPaintDC dc(this);			// æç”»ã®ãƒ‡ãƒã‚¤ã‚¹ ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// ƒNƒ‰ƒCƒAƒ“ƒg‚ÌlŠpŒ`—Ìˆæ“à‚Ì’†‰›
+		// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®å››è§’å½¢é ˜åŸŸå†…ã®ä¸­å¤®
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -203,7 +203,7 @@ void CnavigationDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// ƒAƒCƒRƒ“‚Ì•`‰æ
+		// ã‚¢ã‚¤ã‚³ãƒ³ã®æç”»
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -212,8 +212,8 @@ void CnavigationDlg::OnPaint()
 	}
 }
 
-// ƒ†[ƒU[‚ªÅ¬‰»‚µ‚½ƒEƒBƒ“ƒhƒE‚ğƒhƒ‰ƒbƒO‚µ‚Ä‚¢‚é‚Æ‚«‚É•\¦‚·‚éƒJ[ƒ\ƒ‹‚ğæ“¾‚·‚é‚½‚ß‚ÉA
-//  ƒVƒXƒeƒ€‚ª‚±‚ÌŠÖ”‚ğŒÄ‚Ño‚µ‚Ü‚·B
+// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãŒæœ€å°åŒ–ã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ãƒ‰ãƒ©ãƒƒã‚°ã—ã¦ã„ã‚‹ã¨ãã«è¡¨ç¤ºã™ã‚‹ã‚«ãƒ¼ã‚½ãƒ«ã‚’å–å¾—ã™ã‚‹ãŸã‚ã«ã€
+//  ã‚·ã‚¹ãƒ†ãƒ ãŒã“ã®é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã¾ã™ã€‚
 HCURSOR CnavigationDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -221,7 +221,7 @@ HCURSOR CnavigationDlg::OnQueryDragIcon()
 
 
 /*!
- * @brief ƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é‚Æ‚«‚Ìƒnƒ“ƒhƒ‰
+ * @brief ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹ã¨ãã®ãƒãƒ³ãƒ‰ãƒ©
  */
 void CnavigationDlg::OnClose()
 {
@@ -247,52 +247,52 @@ void CnavigationDlg::OnClose()
 }
 
 /*!
- * @brief ˆê’èüŠú(100ms)‚ÅŒÄ‚Ño‚³‚ê‚éƒnƒ“ƒhƒ‰
- * ‚ ‚Ü‚è³Šm‚ÈüŠú‚Å‚ÍŒÄ‚Ño‚³‚ê‚È‚¢
+ * @brief ä¸€å®šå‘¨æœŸ(100ms)ã§å‘¼ã³å‡ºã•ã‚Œã‚‹ãƒãƒ³ãƒ‰ãƒ©
+ * ã‚ã¾ã‚Šæ­£ç¢ºãªå‘¨æœŸã§ã¯å‘¼ã³å‡ºã•ã‚Œãªã„
  */
 void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 {
-	// ˆÊ’u‚Ì•â³‚É—p‚¢‚éƒf[ƒ^‚Ì”ÍˆÍiƒƒ{ƒbƒgÀ•Wj
-	static const int search_x0 =      0, search_x1 = 14000;			//! ‘OŒã•ûŒü‚Ì’Tõ”ÍˆÍ(mm)	yToDo: ‚à‚Á‚Æ’Tõ”ÍˆÍ‚ğL‚°‚½•û‚ª—Ç‚¢‚Ì‚Å‚Í‚È‚¢‚©Hz
-	static const int search_y0 = -14000, search_y1 = 14000;			//! ¶‰E•ûŒü‚Ì’Tõ”ÍˆÍ(mm)
+	// ä½ç½®ã®è£œæ­£ã«ç”¨ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ç¯„å›²ï¼ˆãƒ­ãƒœãƒƒãƒˆåº§æ¨™ï¼‰
+	static const int search_x0 =      0, search_x1 = 14000;			//! å‰å¾Œæ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm)	ã€ToDo: ã‚‚ã£ã¨æ¢ç´¢ç¯„å›²ã‚’åºƒã’ãŸæ–¹ãŒè‰¯ã„ã®ã§ã¯ãªã„ã‹ï¼Ÿã€‘
+	static const int search_y0 = -14000, search_y1 = 14000;			//! å·¦å³æ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm)
 
-	static const int search_z0     = 1800, search_z1     = 1900;	//! ã‰º•ûŒü‚Ì’Tõ”ÍˆÍ(mm) ‰®“à—p
-//	static const int search_z0     = 1900, search_z1     = 2000;	//! ã‰º•ûŒü‚Ì’Tõ”ÍˆÍ(mm) ‰®ŠO—p
-	static const int search_obs_z0 =    0, search_obs_z1 = 1000;	//! áŠQ•¨‚ğ’T‚·ã‰º•ûŒü‚Ì’Tõ”ÍˆÍ(mm)@URG‚Ì‚‚³‚ªŠî€@yToDo: ã‚Ü‚Å’Tõ‚µ‚½‚Ù‚¤‚ª—Ç‚¢‚Ì‚Å‚Í‚È‚¢‚©Hz
-	static const int search_tar_z0 =  200, search_tar_z1 = 400;		//! ƒ^[ƒQƒbƒg‚ğ’T‚·ã‰º•ûŒü‚Ì’Tõ”ÍˆÍ(mm)@URG‚Ì‚‚³‚ªŠî€
-	static const int intensity_thre = 7000;							//! ”½Ë‹­“x‚Ì‚µ‚«‚¢’l(’PˆÊ‚È‚µ)
+	static const int search_z0     = 1800, search_z1     = 1900;	//! ä¸Šä¸‹æ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm) å±‹å†…ç”¨
+//	static const int search_z0     = 1900, search_z1     = 2000;	//! ä¸Šä¸‹æ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm) å±‹å¤–ç”¨
+	static const int search_obs_z0 =    0, search_obs_z1 = 1000;	//! éšœå®³ç‰©ã‚’æ¢ã™ä¸Šä¸‹æ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm)ã€€URGã®é«˜ã•ãŒåŸºæº–ã€€ã€ToDo: ä¸Šã¾ã§æ¢ç´¢ã—ãŸã»ã†ãŒè‰¯ã„ã®ã§ã¯ãªã„ã‹ï¼Ÿã€‘
+	static const int search_tar_z0 =  200, search_tar_z1 = 400;		//! ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã‚’æ¢ã™ä¸Šä¸‹æ–¹å‘ã®æ¢ç´¢ç¯„å›²(mm)ã€€URGã®é«˜ã•ãŒåŸºæº–
+	static const int intensity_thre = 7000;							//! åå°„å¼·åº¦ã®ã—ãã„å€¤(å˜ä½ãªã—)
 
 	static int is_first = 1;
-	float odoX = 0, odoY = 0, odoThe = 0;							//! ƒIƒhƒƒgƒŠ‚ÌˆÊ’u‚ÆŠp“x(m, rad)
-	float estX = 0, estY = 0, estThe = 0;							//! „’è‚µ‚½ˆÊ’u‚ÆŠp“x(m, rad)
+	float odoX = 0, odoY = 0, odoThe = 0;							//! ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ä½ç½®ã¨è§’åº¦(m, rad)
+	float estX = 0, estY = 0, estThe = 0;							//! æ¨å®šã—ãŸä½ç½®ã¨è§’åº¦(m, rad)
 	float joyX, joyY;
 	int button;
 #ifdef MEGA_ROVER_1_1
-	static const float f_gain = 0.5f;								//! ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚ğ‘OŒã‚ÉÅ‘åŒÀ“|‚µ‚½‚Ì‘¬“x–Ú•W(m/s)
-	static const float t_gain = 0.5f;								//! ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚ğ¶‰E‚ÉÅ‘åŒÀ“|‚µ‚½‚ÉƒzƒC[ƒ‹‚ª‹t‚É‰ñ“]‚·‚é‘¬“x–Ú•W(m/s)
+	static const float f_gain = 0.5f;								//! ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’å‰å¾Œã«æœ€å¤§é™å€’ã—ãŸæ™‚ã®é€Ÿåº¦ç›®æ¨™(m/s)
+	static const float t_gain = 0.5f;								//! ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’å·¦å³ã«æœ€å¤§é™å€’ã—ãŸæ™‚ã«ãƒ›ã‚¤ãƒ¼ãƒ«ãŒé€†ã«å›è»¢ã™ã‚‹é€Ÿåº¦ç›®æ¨™(m/s)
 #else
-	static const float f_gain = 0.3f;								//! ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚ğ‘OŒã‚ÉÅ‘åŒÀ“|‚µ‚½‚Ì‘¬“x–Ú•W(m/s)
-	static const float t_gain = 1.0f;								//! ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚ğ¶‰E‚ÉÅ‘åŒÀ“|‚µ‚½‚ÉƒzƒC[ƒ‹‚ª‹t‚É‰ñ“]‚·‚é‘¬“x–Ú•W(m/s)
+	static const float f_gain = 0.3f;								//! ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’å‰å¾Œã«æœ€å¤§é™å€’ã—ãŸæ™‚ã®é€Ÿåº¦ç›®æ¨™(m/s)
+	static const float t_gain = 1.0f;								//! ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’å·¦å³ã«æœ€å¤§é™å€’ã—ãŸæ™‚ã«ãƒ›ã‚¤ãƒ¼ãƒ«ãŒé€†ã«å›è»¢ã™ã‚‹é€Ÿåº¦ç›®æ¨™(m/s)
 #endif
 	float target_ip_cf = 0.0f;
 
 #ifdef USE_CAMERA
-	is_target_ip = ip.checkTarget(& target_ip_cf);					//! ’Tõ‘ÎÛ‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN(true:’Tõ‘ÎÛCfalse:’Tõ‘ÎÛ‚Å‚È‚¢j
+	is_target_ip = ip.checkTarget(& target_ip_cf);					//! æ¢ç´¢å¯¾è±¡ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯(true:æ¢ç´¢å¯¾è±¡ï¼Œfalse:æ¢ç´¢å¯¾è±¡ã§ãªã„ï¼‰
 #endif
 
 #ifdef USE_MEGA_ROVER
-	// ƒp[ƒeƒBƒNƒ‹‚Ì•\¦
-	static const int MAX_PARTICLE_NUM = 1000;						//! Å‘å1000ŒÂ•\¦
-	static struct particle_T particle[MAX_PARTICLE_NUM];			//! ƒp[ƒeƒBƒNƒ‹‚Ì”z—ñ
-	int particle_num;												//! Œ»İg—p‚µ‚Ä‚¢‚éƒp[ƒeƒBƒNƒ‹
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è¡¨ç¤º
+	static const int MAX_PARTICLE_NUM = 1000;						//! æœ€å¤§1000å€‹è¡¨ç¤º
+	static struct particle_T particle[MAX_PARTICLE_NUM];			//! ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®é…åˆ—
+	int particle_num;												//! ç¾åœ¨ä½¿ç”¨ã—ã¦ã„ã‚‹ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 
 	float rightSpeed, leftSpeed;
 	mega_rover.getSpeed(&rightSpeed, &leftSpeed);
 	LOG("rightSpeed:%f, leftSpeed%f\n", rightSpeed, leftSpeed);
-	mega_rover.getOdometory(&odoX, &odoY, &odoThe, 0);			// ƒIƒhƒƒgƒŠ‚ğæ“¾
+	mega_rover.getOdometory(&odoX, &odoY, &odoThe, 0);			// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã‚’å–å¾—
 	LOG("odometory:(%f,%f,%f)\n", odoX, odoY, odoThe);
-	estX = odoX, estY = odoY, estThe = odoThe;					// ƒp[ƒeƒBƒNƒ‹ƒtƒCƒ‹ƒ^‚ğg—p‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚ÍC„’èˆÊ’u‚ÆƒIƒhƒƒgƒŠ‚Íˆê
-	mega_rover.getJoyStick(&joyX, &joyY, &button);				// ƒWƒ‡ƒCƒXƒeƒBƒbƒN‚Ì’l‚ğæ“¾
+	estX = odoX, estY = odoY, estThe = odoThe;					// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ãƒ•ã‚¤ãƒ«ã‚¿ã‚’ä½¿ç”¨ã—ã¦ã„ãªã„ã¨ãã¯ï¼Œæ¨å®šä½ç½®ã¨ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã¯ä¸€ç·’
+	mega_rover.getJoyStick(&joyX, &joyY, &button);				// ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®å€¤ã‚’å–å¾—
 	if (fabs(joyX) < 0.1f) joyX = 0.0f;
 	if (fabs(joyY) < 0.1f) joyY = 0.0f;
 	LOG("joystick:(%f,%f),button:%d\n", joyX, joyY, button);
@@ -303,39 +303,39 @@ void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 		UpdateData(FALSE);
 	}
 
-	if (!is_record){											// ‹³¦ƒ‚[ƒh‚Å‚È‚¢‚É
-		if (button & (DOWN_BUTTON | RIGHT_BUTTON | LEFT_BUTTON)){	// ƒ{ƒ^ƒ“‚P‚ğ‰Ÿ‚µ‚½‚ç
-			is_play = 0;										// ’â~
+	if (!is_record){											// æ•™ç¤ºãƒ¢ãƒ¼ãƒ‰ã§ãªã„æ™‚ã«
+		if (button & (DOWN_BUTTON | RIGHT_BUTTON | LEFT_BUTTON)){	// ãƒœã‚¿ãƒ³ï¼‘ã‚’æŠ¼ã—ãŸã‚‰
+			is_play = 0;										// åœæ­¢
 			mega_rover.setMotor(0,0);
-		} else if (button & UP_BUTTON){							// ƒ{ƒ^ƒ“‚Q‚ğ‰Ÿ‚µ‚½‚ç
+		} else if (button & UP_BUTTON){							// ãƒœã‚¿ãƒ³ï¼’ã‚’æŠ¼ã—ãŸã‚‰
 			if (!navigation.isPlayMode()) OnBnClickedButtonPlay();
-			is_play = 1;										// Ä¶
+			is_play = 1;										// å†ç”Ÿ
 		}
 	}
-	if (navigation.setOdometory(odoX, odoY, odoThe)){			// ƒiƒrƒQ[ƒVƒ‡ƒ“‚ÉƒIƒhƒƒgƒŠ‚ğ“ü—Í
+	if (navigation.setOdometory(odoX, odoY, odoThe)){			// ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã«ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã‚’å…¥åŠ›
 		LOG("goal\n");
-		if (m_check_loop){										// ü‰ñ‚·‚éê‡
+		if (m_check_loop){										// å‘¨å›ã™ã‚‹å ´åˆ
 			urg3d.ClearData();
-			navigation.Init();									// Šeƒpƒ‰ƒ[ƒ^‚ğƒŠƒZƒbƒg‚·‚éD
+			navigation.Init();									// å„ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹ï¼
 			obs_avoid.Init();
-			mega_rover.setMotor(0,0);							// ƒ‚[ƒ^’â~
-			mega_rover.clearOdometory();						// ƒIƒhƒƒgƒŠ‚ÌƒNƒŠƒA
-		} else {												// ü‰ñ‚µ‚È‚¢ê‡‚ÍCÄ¶ƒ‚[ƒh‚ğ’â~‚µ‚Ä’â~‚·‚éD
+			mega_rover.setMotor(0,0);							// ãƒ¢ãƒ¼ã‚¿åœæ­¢
+			mega_rover.clearOdometory();						// ã‚ªãƒ‰ãƒ¡ãƒˆãƒªã®ã‚¯ãƒªã‚¢
+		} else {												// å‘¨å›ã—ãªã„å ´åˆã¯ï¼Œå†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã‚’åœæ­¢ã—ã¦åœæ­¢ã™ã‚‹ï¼
 			is_play = 0;
 			mega_rover.setMotor(0,0);
 		}
 	};
 	LOG("is_play:%d, is_record:%d\n", is_play, is_record);
-	if (is_play){												// ©—¥‘–s
+	if (is_play){												// è‡ªå¾‹èµ°è¡Œ
 		float front, radius;
 		float tarX, tarY, tarThe, period;
 		
-		navigation.getEstimatedPosition(&estX, &estY, &estThe);	// „’èˆÊ’u‚Ìæ“¾
+		navigation.getEstimatedPosition(&estX, &estY, &estThe);	// æ¨å®šä½ç½®ã®å–å¾—
 		LOG("estimatePosition:(%f,%f,%f)\n", estX, estY, estThe);
 		navigation.getTargetPosition(&tarX, &tarY, &tarThe, &period);
-																// –Ú•WˆÊ’u‚Ìæ“¾
+																// ç›®æ¨™ä½ç½®ã®å–å¾—
 		LOG("targetPosition:(%f,%f,%f)\n", tarX, tarY, tarThe);
-		float slowDownFactor = obs_avoid.getSlowDownFactor();	// áŠQ•¨‚ª‚ ‚Á‚½‚Æ‚«‚ÌŒ¸‘¬‚·‚é”ä—¦‚ğæ“¾
+		float slowDownFactor = obs_avoid.getSlowDownFactor();	// éšœå®³ç‰©ãŒã‚ã£ãŸã¨ãã®æ¸›é€Ÿã™ã‚‹æ¯”ç‡ã‚’å–å¾—
 		navigation.setNeedStop(obs_avoid.isNeedStop());
 		
 		if (reroute_mode0 && (!navigation.isRerouteMode())){
@@ -359,110 +359,110 @@ void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 			LOG("search_mode, forward;%f, rotate:%f, slowDownFactor:%f\n", forward, rotate, slowDownFactor);
 		} else {
 			if (slowDownFactor < 1.0f) PlaySound("obstacle.wav", NULL, SND_FILENAME | SND_ASYNC | SND_NOSTOP);
-			navigation.getTargetArcSpeed(&front, &radius);		// –Ú•W‚ÉˆÚ“®‚·‚é‘¬“x‚Æ”¼Œa
+			navigation.getTargetArcSpeed(&front, &radius);		// ç›®æ¨™ã«ç§»å‹•ã™ã‚‹é€Ÿåº¦ã¨åŠå¾„
 			mega_rover.setArcSpeed(front * slowDownFactor, radius);
 			LOG("target_arc_speed, front;%f, radius:%f, slowDownFactor:%f\n", front, radius, slowDownFactor);
 		}
 
-		navigationView.setOdometory(estX, estY, estThe);		// „’èˆÊ’u‚Ì“ü—Í
-		navigationView.setTargetPos(tarX, tarY, tarThe);		// –Ú•WˆÊ’u‚Ì“ü—Í
+		navigationView.setOdometory(estX, estY, estThe);		// æ¨å®šä½ç½®ã®å…¥åŠ›
+		navigationView.setTargetPos(tarX, tarY, tarThe);		// ç›®æ¨™ä½ç½®ã®å…¥åŠ›
 		
-		// ƒp[ƒeƒBƒNƒ‹‚Ìæ“¾‚Æ•\¦
+		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å–å¾—ã¨è¡¨ç¤º
 		navigation.getParticle(particle, &particle_num, MAX_PARTICLE_NUM);
 		LOG("\n");
 		for(int i = 0;i < particle_num; i ++){
 			LOG_WITHOUT_TIME("particle:(%f,%f,%f), eval:%d\n", particle[i].x, particle[i].y, particle[i].the, particle[i].eval);
 		}
-		navigationView.setParticle(particle, particle_num);		// ƒp[ƒeƒBƒNƒ‹‚Ì•\¦
+		navigationView.setParticle(particle, particle_num);		// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®è¡¨ç¤º
 		
-		// ˆê’v“x‚Ìæ“¾‚Æ•\¦
+		// ä¸€è‡´åº¦ã®å–å¾—ã¨è¡¨ç¤º
 		navigation.getCoincidence(&coincidence);
 		navigationView.setCoincidence(coincidence);
-	} else {													// Ä¶ƒ‚[ƒh‚Å‚È‚¢ê‡
+	} else {													// å†ç”Ÿãƒ¢ãƒ¼ãƒ‰ã§ãªã„å ´åˆ
 		mega_rover.setSpeed(f_gain * joyY, t_gain * joyX);
 		navigationView.setOdometory(odoX, odoY, odoThe);
 	}
-	navigationView.setStep(navigation.getStep());				// waypoint‚Ì”‚Ì•\¦
+	navigationView.setStep(navigation.getStep());				// waypointã®æ•°ã®è¡¨ç¤º
 
 #endif
 
 #ifdef USE_URG3D
-	// URG3D‚©‚çóM‚·‚éƒf[ƒ^
+	// URG3Dã‹ã‚‰å—ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 	static const int MAX_DATA = 10000;
 	static pos p[MAX_DATA];
 	int num = 0;
 
-	// URG3D‚©‚çóM‚·‚éáŠQ•¨‚Ìƒf[ƒ^
+	// URG3Dã‹ã‚‰å—ä¿¡ã™ã‚‹éšœå®³ç‰©ã®ãƒ‡ãƒ¼ã‚¿
 	static const int MAX_OBS_DATA = 10000;
 	static pos op[MAX_OBS_DATA];
 	int obs_num = 0;
 
-	// URG3D‚©‚çóM‚·‚éƒ^[ƒQƒbƒg‚Ìƒf[ƒ^
+	// URG3Dã‹ã‚‰å—ä¿¡ã™ã‚‹ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ãƒ‡ãƒ¼ã‚¿
 	static const int MAX_TAR_DATA = 10000;
 	static pos_inten tp[MAX_TAR_DATA];
 	int tar_num = 0;
 
-	// ƒOƒ[ƒoƒ‹À•W‚Å‚Ìƒ^[ƒQƒbƒg‚Ìƒf[ƒ^
+	// ã‚°ãƒ­ãƒ¼ãƒãƒ«åº§æ¨™ã§ã®ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ãƒ‡ãƒ¼ã‚¿
 	static pos_inten global_tp[MAX_TAR_DATA];
 
-	// •\¦—p‚Ìƒf[ƒ^i’Ç‰Á‚µ‚Ä‚¢‚­j
+	// è¡¨ç¤ºç”¨ã®ãƒ‡ãƒ¼ã‚¿ï¼ˆè¿½åŠ ã—ã¦ã„ãï¼‰
 	static const int MAX_DRAW_POS = 10000;
 	static pos drawPos[MAX_DRAW_POS];
 	static int draw_no = 0, is_max = 0;
 
-	// ”½Ë‹­“x•\¦—p‚Ìƒf[ƒ^i’Ç‰Á‚µ‚Ä‚¢‚­j
+	// åå°„å¼·åº¦è¡¨ç¤ºç”¨ã®ãƒ‡ãƒ¼ã‚¿ï¼ˆè¿½åŠ ã—ã¦ã„ãï¼‰
 	static const int MAX_DRAW_INTEN_POS = 10000;
 	static pos_inten drawIntenPos[MAX_DRAW_INTEN_POS];
 	static int inten_draw_no = 0, is_max_inten = 0;
 
-	// ’Tõ‘ÎÛ‚ÌŒó•â‚Ìƒf[ƒ^
+	// æ¢ç´¢å¯¾è±¡ã®å€™è£œã®ãƒ‡ãƒ¼ã‚¿
 	static const int MAX_SLATE_POINT = 100;
 	static pos_slate slatePoint[MAX_SLATE_POINT];
 	static int slate_num = 0;
 
-	// ƒiƒrƒQ[ƒVƒ‡ƒ“‚É‘—M‚·‚éƒf[ƒ^
+	// ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã«é€ä¿¡ã™ã‚‹ãƒ‡ãƒ¼ã‚¿
 	static const int MAX_NAVI_POS = 10000;
 	static pos naviPos[MAX_NAVI_POS];
 	int navi_num = 0;
 
-	// QÆƒf[ƒ^
+	// å‚ç…§ãƒ‡ãƒ¼ã‚¿
 	static const int MAX_REF_DATA = 10000;
 	static pos rp[MAX_REF_DATA];
 	int ref_num = 100;
 	
-	// URG3D‚©‚çƒf[ƒ^‚ğæ“¾
+	// URG3Dã‹ã‚‰ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 	urg3d.Get3SelectedData(search_z0, search_z1, p, &num, MAX_DATA,
 		search_obs_z0, search_obs_z1, op, &obs_num, MAX_OBS_DATA,
 		search_tar_z0, search_tar_z1, tp, &tar_num, MAX_TAR_DATA, intensity_thre);
 	
-	// worldÀ•WŒn‚É•ÏŠ· (search_x,y‚Å—Ìˆæ‚ğ§ŒÀ)
+	// worldåº§æ¨™ç³»ã«å¤‰æ› (search_x,yã§é ˜åŸŸã‚’åˆ¶é™)
 	LOG("\n");
 	for(int i = 0; i < num; i ++){
 		if ((p[i].x < search_x0)||(p[i].x > search_x1)||
 			(p[i].y < search_y0)||(p[i].y > search_y1)) continue;
-		int x = (int)(p[i].x * cos(odoThe) - p[i].y * sin(odoThe) + odoX * 1000.0f);		// ƒiƒrƒQ[ƒVƒ‡ƒ“‚É‚ÍƒIƒhƒƒgƒŠƒx[ƒX‚Ì˜A‘±“I‚Èƒf[ƒ^‚ğ‘—‚é
+		int x = (int)(p[i].x * cos(odoThe) - p[i].y * sin(odoThe) + odoX * 1000.0f);		// ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã«ã¯ã‚ªãƒ‰ãƒ¡ãƒˆãƒªãƒ™ãƒ¼ã‚¹ã®é€£ç¶šçš„ãªãƒ‡ãƒ¼ã‚¿ã‚’é€ã‚‹
 		int y = (int)(p[i].x * sin(odoThe) + p[i].y * cos(odoThe) + odoY * 1000.0f);
 		naviPos[navi_num].x = x, naviPos[navi_num].y = y, naviPos[navi_num].z = p[i].z;
 		navi_num ++;
 		
-		x = (int)(p[i].x * cos(estThe) - p[i].y * sin(estThe) + estX * 1000.0f);			// •\¦‚É‚Í„’èˆÊ’u‚ğŠî€‚Æ‚µ‚½’l‚ğ—p‚¢‚é
-		y = (int)(p[i].x * sin(estThe) + p[i].y * cos(estThe) + estY * 1000.0f);			// „’è‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚ÍCƒIƒhƒƒgƒŠ‚Æ“¯‚¶‚É‚·‚éD
+		x = (int)(p[i].x * cos(estThe) - p[i].y * sin(estThe) + estX * 1000.0f);			// è¡¨ç¤ºã«ã¯æ¨å®šä½ç½®ã‚’åŸºæº–ã¨ã—ãŸå€¤ã‚’ç”¨ã„ã‚‹
+		y = (int)(p[i].x * sin(estThe) + p[i].y * cos(estThe) + estY * 1000.0f);			// æ¨å®šã—ã¦ã„ãªã„ã¨ãã¯ï¼Œã‚ªãƒ‰ãƒ¡ãƒˆãƒªã¨åŒã˜ã«ã™ã‚‹ï¼
 		LOG_WITHOUT_TIME("urg_global_pos:(%d,%d,%d)\n", x, y, p[i].z);
 		drawPos[draw_no].x = x, drawPos[draw_no].y = y, drawPos[draw_no].z = p[i].z;
 		draw_no ++;
 		if (draw_no >= MAX_DRAW_POS) is_max = 1, draw_no = 0;
 	}
 
-	navigation.setData(naviPos, navi_num);													// ƒiƒrƒQ[ƒVƒ‡ƒ“‚Éƒf[ƒ^‚ğ“o˜^
+	navigation.setData(naviPos, navi_num);													// ãƒŠãƒ“ã‚²ãƒ¼ã‚·ãƒ§ãƒ³ã«ãƒ‡ãƒ¼ã‚¿ã‚’ç™»éŒ²
 
-	if (is_max) navigationView.setData(drawPos, MAX_DRAW_POS);								// ƒf[ƒ^‚Ì•`‰æ
-	else        navigationView.setData(drawPos, draw_no     );								// ƒf[ƒ^‚Ì•`‰æ
+	if (is_max) navigationView.setData(drawPos, MAX_DRAW_POS);								// ãƒ‡ãƒ¼ã‚¿ã®æç”»
+	else        navigationView.setData(drawPos, draw_no     );								// ãƒ‡ãƒ¼ã‚¿ã®æç”»
 
-	// worldÀ•WŒn‚É•ÏŠ· (search_x,y‚Å—Ìˆæ‚ğ§ŒÀ)
+	// worldåº§æ¨™ç³»ã«å¤‰æ› (search_x,yã§é ˜åŸŸã‚’åˆ¶é™)
 	LOG("\n");
 	for(int i = 0; i < tar_num; i ++){		
-		int x = (int)(tp[i].pos.x * cos(estThe) - tp[i].pos.y * sin(estThe) + estX * 1000.0f);	// •\¦‚É‚Í„’èˆÊ’u‚ğŠî€‚Æ‚µ‚½’l‚ğ—p‚¢‚é
-		int y = (int)(tp[i].pos.x * sin(estThe) + tp[i].pos.y * cos(estThe) + estY * 1000.0f);	// „’è‚µ‚Ä‚¢‚È‚¢‚Æ‚«‚ÍCƒIƒhƒƒgƒŠ‚Æ“¯‚¶‚É‚·‚éD
+		int x = (int)(tp[i].pos.x * cos(estThe) - tp[i].pos.y * sin(estThe) + estX * 1000.0f);	// è¡¨ç¤ºã«ã¯æ¨å®šä½ç½®ã‚’åŸºæº–ã¨ã—ãŸå€¤ã‚’ç”¨ã„ã‚‹
+		int y = (int)(tp[i].pos.x * sin(estThe) + tp[i].pos.y * cos(estThe) + estY * 1000.0f);	// æ¨å®šã—ã¦ã„ãªã„ã¨ãã¯ï¼Œã‚ªãƒ‰ãƒ¡ãƒˆãƒªã¨åŒã˜ã«ã™ã‚‹ï¼
 		LOG_WITHOUT_TIME("intensity_global_pos:(%d,%d,%d),intensity:%d\n", x, y, tp[i].pos.z, tp[i].intensity);
 		global_tp[i].pos.x = x, global_tp[i].pos.y = y, global_tp[i].pos.z = tp[i].pos.z;
 		global_tp[i].intensity = tp[i].intensity;
@@ -472,30 +472,30 @@ void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 		inten_draw_no ++;
 		if (inten_draw_no >= MAX_DRAW_INTEN_POS) is_max_inten = 1, inten_draw_no = 0;
 	}
-	detect_target.addIntensityData(global_tp, tar_num);										// ‚µ‚«‚¢’lˆÈã‚Ì”½Ë‹­“xƒf[ƒ^‚ğƒ^[ƒQƒbƒgŒŸo‚ÌƒNƒ‰ƒX‚Éİ’è
-	detect_target.getTargetPos(slatePoint, &slate_num);										// ’Tõ‘ÎÛÒ‚ÌŒó•â“_‚ğæ“¾
+	detect_target.addIntensityData(global_tp, tar_num);										// ã—ãã„å€¤ä»¥ä¸Šã®åå°„å¼·åº¦ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¿ãƒ¼ã‚²ãƒƒãƒˆæ¤œå‡ºã®ã‚¯ãƒ©ã‚¹ã«è¨­å®š
+	detect_target.getTargetPos(slatePoint, &slate_num);										// æ¢ç´¢å¯¾è±¡è€…ã®å€™è£œç‚¹ã‚’å–å¾—
 	{
 		const float SEARCH_RADIUS = 5.0f;
 		pos search_pos, self_pos;
 		self_pos.x = (int)(estX * 1000), self_pos.y = (int)(estY * 1000), self_pos.z = 0;
 
 		if (detect_target.getSearchPos(&search_pos, self_pos, SEARCH_RADIUS)){
-			if (navigation.distaceFromPreviousSearchPoint() > SEARCH_RADIUS) navigation.setSearchPoint(search_pos);			// Šñ‚è“¹‚ğ‚·‚é‚æ‚¤‚ÉnaviƒNƒ‰ƒX‚ÉˆÊ’u‚ğİ’è
+			if (navigation.distaceFromPreviousSearchPoint() > SEARCH_RADIUS) navigation.setSearchPoint(search_pos);			// å¯„ã‚Šé“ã‚’ã™ã‚‹ã‚ˆã†ã«naviã‚¯ãƒ©ã‚¹ã«ä½ç½®ã‚’è¨­å®š
 		}
 	}
-	navigationView.setSlatePoint(slatePoint, slate_num);									// ’Tõ‘ÎÛÒ‚ÌŒó•â“_‚ğ•`‰æ‚·‚é‚æ‚¤‚Éİ’è
+	navigationView.setSlatePoint(slatePoint, slate_num);									// æ¢ç´¢å¯¾è±¡è€…ã®å€™è£œç‚¹ã‚’æç”»ã™ã‚‹ã‚ˆã†ã«è¨­å®š
 	LOG("\n");
 	for(int i = 0; i < slate_num; i ++){		
 		LOG_WITHOUT_TIME("slate_point:(%d,%d,%d),probability:%f\n", slatePoint[i].pos.x, slatePoint[i].pos.y, slatePoint[i].pos.z, slatePoint[i].probability);
 	}
 
-	if (is_max_inten) navigationView.setIntensityData(drawIntenPos, MAX_DRAW_INTEN_POS);	// ƒf[ƒ^‚Ì•`‰æ
-	else			  navigationView.setIntensityData(drawIntenPos, inten_draw_no     );	// ƒf[ƒ^‚Ì•`‰æ
+	if (is_max_inten) navigationView.setIntensityData(drawIntenPos, MAX_DRAW_INTEN_POS);	// ãƒ‡ãƒ¼ã‚¿ã®æç”»
+	else			  navigationView.setIntensityData(drawIntenPos, inten_draw_no     );	// ãƒ‡ãƒ¼ã‚¿ã®æç”»
 
-	navigation.getRefData(rp, &ref_num, MAX_REF_DATA);										// ƒŠƒtƒ@ƒŒƒ“ƒXƒf[ƒ^‚Ì•\¦
+	navigation.getRefData(rp, &ref_num, MAX_REF_DATA);										// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãƒ‡ãƒ¼ã‚¿ã®è¡¨ç¤º
 	navigationView.setRefData(rp, ref_num);
 
-	obs_avoid.setData(op, obs_num);															// áŠQ•¨ƒf[ƒ^‚Ì‘ã“ü
+	obs_avoid.setData(op, obs_num);															// éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã®ä»£å…¥
 #endif
 
 #ifdef USE_IMU
@@ -518,7 +518,7 @@ void CnavigationDlg::OnTimer(UINT_PTR nIDEvent)
 }
 
 /*!
- * @brief [Record]ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Ìƒnƒ“ƒhƒ‰
+ * @brief [Record]ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒãƒ³ãƒ‰ãƒ©
  */
 void CnavigationDlg::OnBnClickedButtonRecord()
 {
@@ -529,7 +529,7 @@ void CnavigationDlg::OnBnClickedButtonRecord()
 }
 
 /*!
- * @brief [Play]ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Ìƒnƒ“ƒhƒ‰
+ * @brief [Play]ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒãƒ³ãƒ‰ãƒ©
  */
 void CnavigationDlg::OnBnClickedButtonPlay()
 {
@@ -540,7 +540,7 @@ void CnavigationDlg::OnBnClickedButtonPlay()
 }
 
 /*!
- * @brief [loop]‚Ìƒ`ƒFƒbƒNƒ{ƒbƒNƒX‚ğ‰Ÿ‚µ‚½‚Ìƒnƒ“ƒhƒ‰
+ * @brief [loop]ã®ãƒã‚§ãƒƒã‚¯ãƒœãƒƒã‚¯ã‚¹ã‚’æŠ¼ã—ãŸæ™‚ã®ãƒãƒ³ãƒ‰ãƒ©
  */
 void CnavigationDlg::OnBnClickedCheckLoop()
 {

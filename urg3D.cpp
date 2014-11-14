@@ -1,4 +1,4 @@
-// URG.cpp : À‘•ƒtƒ@ƒCƒ‹
+ï»¿// URG.cpp : å®Ÿè£…ãƒ•ã‚¡ã‚¤ãƒ«
 
 #include "stdafx.h"
 #include "urg3D.h"
@@ -8,12 +8,12 @@
 
 /*!
  * @class urg3D
- * @brief URG‚ğg—p‚µ‚Ä3DáŠQ•¨ƒf[ƒ^‚ğŒŸo‚·‚éƒNƒ‰ƒX
+ * @brief URGã‚’ä½¿ç”¨ã—ã¦3Déšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’æ¤œå‡ºã™ã‚‹ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 urg3D::urg3D():
 tilt_low(0), tilt_high(0), tilt_period(1.0), num(0),terminate(0)
@@ -21,41 +21,41 @@ tilt_low(0), tilt_high(0), tilt_period(1.0), num(0),terminate(0)
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 urg3D::~urg3D()
 {
 }
 
 /*!
- * @brief ‰Šú‰»iÅ‰‚É‚P‰ñŒÄ‚Ño‚·j
+ * @brief åˆæœŸåŒ–ï¼ˆæœ€åˆã«ï¼‘å›å‘¼ã³å‡ºã™ï¼‰
  *
  * @return 0
  */
 int urg3D::Init()
 {
-	// ”r‘¼ˆ—
+	// æ’ä»–å‡¦ç†
 	mutex = CreateMutex(NULL, FALSE, NULL);
 
-	// URG‚Ì‰Šúİ’è
-	if (!urg.Init(URG_PORT)) AfxMessageBox("Cannot communicate URG0");// UHG‚Ì‰Šúİ’è
+	// URGã®åˆæœŸè¨­å®š
+	if (!urg.Init(URG_PORT)) AfxMessageBox("Cannot communicate URG0");// UHGã®åˆæœŸè¨­å®š
 
-	// RS405CB‚Ì‰Šúİ’è
-	hComm = CommOpen( COM_PORT );				// ’ÊMƒ|[ƒg‚ğŠJ‚­
-	RSTorqueOnOff( hComm, 1 );					// ƒgƒ‹ƒN‚ğON‚·‚é
-	Sleep(100);									// ­‚µ‘Ò‚Â
-	RSMove( hComm, SERVO_OFFSET * 10, 200 );	// 2•b‚©‚¯‚Ä‰Šúp¨‚ÉˆÚ“®
-	Sleep(3000);								// 3•b‘Ò‚Â
+	// RS405CBã®åˆæœŸè¨­å®š
+	hComm = CommOpen( COM_PORT );				// é€šä¿¡ãƒãƒ¼ãƒˆã‚’é–‹ã
+	RSTorqueOnOff( hComm, 1 );					// ãƒˆãƒ«ã‚¯ã‚’ONã™ã‚‹
+	Sleep(100);									// å°‘ã—å¾…ã¤
+	RSMove( hComm, SERVO_OFFSET * 10, 200 );	// 2ç§’ã‹ã‘ã¦åˆæœŸå§¿å‹¢ã«ç§»å‹•
+	Sleep(3000);								// 3ç§’å¾…ã¤
 
-	// ‘¬“x§Œä‚ÌƒXƒŒƒbƒh‚ğŠJn
-	DWORD threadId;								// ƒXƒŒƒbƒh ID	
+	// é€Ÿåº¦åˆ¶å¾¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹å§‹
+	DWORD threadId;								// ã‚¹ãƒ¬ãƒƒãƒ‰ ID	
 	HANDLE hThread = CreateThread(NULL, 0, ThreadFunc, (LPVOID)this, 0, &threadId); 
 
 	return 0;
 }
 
 /*!
- * @brief I—¹ˆ—iÅŒã‚É‚P‰ñŒÄ‚Ño‚·j
+ * @brief çµ‚äº†å‡¦ç†ï¼ˆæœ€å¾Œã«ï¼‘å›å‘¼ã³å‡ºã™ï¼‰
  *
  * @return 0
  */
@@ -64,25 +64,25 @@ int urg3D::Close()
 	terminate = 1;
 	CloseHandle(mutex);
 
-	// RS405CB‚ÌI—¹ˆ—
-	RSMove( hComm, SERVO_OFFSET * 10, 200 );	// 2•b‚©‚¯‚Ä‰Šúp¨‚ÉˆÚ“®
-	Sleep(3000);								// 3•b‘Ò‚Â
-	RSTorqueOnOff( hComm, 0 );					// ƒgƒ‹ƒN‚ğOFF‚·‚é
-	CommClose( hComm );							// ’ÊMƒ|[ƒg‚ğ•Â‚¶‚é
+	// RS405CBã®çµ‚äº†å‡¦ç†
+	RSMove( hComm, SERVO_OFFSET * 10, 200 );	// 2ç§’ã‹ã‘ã¦åˆæœŸå§¿å‹¢ã«ç§»å‹•
+	Sleep(3000);								// 3ç§’å¾…ã¤
+	RSTorqueOnOff( hComm, 0 );					// ãƒˆãƒ«ã‚¯ã‚’OFFã™ã‚‹
+	CommClose( hComm );							// é€šä¿¡ãƒãƒ¼ãƒˆã‚’é–‰ã˜ã‚‹
 
-	// URG‚ÌI—¹ˆ—
+	// URGã®çµ‚äº†å‡¦ç†
 	urg.Close();
 
 	return 0;
 }
 
 /*!
- * @brief URG‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
+ * @brief URGã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in] p ˆÊ’uƒf[ƒ^‚ğ•Û‘¶‚·‚é”z—ñ
- * @param[in] max_no ƒf[ƒ^‚ÌÅ‘åŒÂ”iˆÊ’uƒf[ƒ^‚Ì”z—ñ‚ÌÅ‘å’lj
+ * @param[in] p ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹é…åˆ—
+ * @param[in] max_no ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§å€‹æ•°ï¼ˆä½ç½®ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ã®æœ€å¤§å€¤ï¼‰
  * 
- * @return ƒf[ƒ^‚ÌŒÂ”
+ * @return ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  */
 int urg3D::GetAllData(pos_inten *p, int max_no)
 {
@@ -101,14 +101,14 @@ int urg3D::GetAllData(pos_inten *p, int max_no)
 }
 
 /*!
- * @brief ‚‚³‚ğw’è‚µ‚Äurg‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
+ * @brief é«˜ã•ã‚’æŒ‡å®šã—ã¦urgã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in] low æ“¾‚·‚éƒf[ƒ^‚ÌÅ¬‚‚³
- * @param[in] high æ“¾‚·‚éƒf[ƒ^‚ÌÅ‘å‚‚³
- * @param[in] p ˆÊ’uƒf[ƒ^‚ğ•Û‘¶‚·‚é”z—ñ
- * @param[in] max_no ƒf[ƒ^‚ÌÅ‘åŒÂ”iˆÊ’uƒf[ƒ^‚Ì”z—ñ‚ÌÅ‘å’lj
+ * @param[in] low å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æœ€å°é«˜ã•
+ * @param[in] high å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§é«˜ã•
+ * @param[in] p ä½ç½®ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹é…åˆ—
+ * @param[in] max_no ãƒ‡ãƒ¼ã‚¿ã®æœ€å¤§å€‹æ•°ï¼ˆä½ç½®ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ã®æœ€å¤§å€¤ï¼‰
  * 
- * @return ƒf[ƒ^‚ÌŒÂ”
+ * @return ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  */
 int urg3D::GetSelectedData(int low, int high, pos *p, int max_no)
 {
@@ -127,20 +127,20 @@ int urg3D::GetSelectedData(int low, int high, pos *p, int max_no)
 }
 
 /*!
- * @brief ‚Q‚Â‚Ì‚‚³‚ğw’è‚µ‚Äurg‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
+ * @brief ï¼’ã¤ã®é«˜ã•ã‚’æŒ‡å®šã—ã¦urgã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
  *
- * @param[in] low1 æ“¾‚·‚éƒf[ƒ^‚P‚ÌÅ¬‚‚³
- * @param[in] high1 æ“¾‚·‚éƒf[ƒ^‚P‚ÌÅ‘å‚‚³
- * @param[in] low2 æ“¾‚·‚éƒf[ƒ^‚Q‚ÌÅ¬‚‚³
- * @param[in] high2 æ“¾‚·‚éƒf[ƒ^‚Q‚ÌÅ‘å‚‚³
- * @param[in] p1 ˆÊ’uƒf[ƒ^‚P‚ğ•Û‘¶‚·‚é”z—ñ
- * @param[in] p2 ˆÊ’uƒf[ƒ^‚Q‚ğ•Û‘¶‚·‚é”z—ñ
- * @param[out] no1 ƒf[ƒ^‚P‚ÌŒÂ”
- * @param[out] no2 ƒf[ƒ^‚Q‚ÌŒÂ”
- * @param[in] max_no1 ƒf[ƒ^‚P‚ÌÅ‘åŒÂ”iˆÊ’uƒf[ƒ^‚Ì”z—ñ‚ÌÅ‘å’lj
- * @param[in] max_no2 ƒf[ƒ^‚Q‚ÌÅ‘åŒÂ”iˆÊ’uƒf[ƒ^‚Ì”z—ñ‚ÌÅ‘å’lj
+ * @param[in] low1 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼‘ã®æœ€å°é«˜ã•
+ * @param[in] high1 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼‘ã®æœ€å¤§é«˜ã•
+ * @param[in] low2 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼’ã®æœ€å°é«˜ã•
+ * @param[in] high2 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼’ã®æœ€å¤§é«˜ã•
+ * @param[in] p1 ä½ç½®ãƒ‡ãƒ¼ã‚¿ï¼‘ã‚’ä¿å­˜ã™ã‚‹é…åˆ—
+ * @param[in] p2 ä½ç½®ãƒ‡ãƒ¼ã‚¿ï¼’ã‚’ä¿å­˜ã™ã‚‹é…åˆ—
+ * @param[out] no1 ãƒ‡ãƒ¼ã‚¿ï¼‘ã®å€‹æ•°
+ * @param[out] no2 ãƒ‡ãƒ¼ã‚¿ï¼’ã®å€‹æ•°
+ * @param[in] max_no1 ãƒ‡ãƒ¼ã‚¿ï¼‘ã®æœ€å¤§å€‹æ•°ï¼ˆä½ç½®ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ã®æœ€å¤§å€¤ï¼‰
+ * @param[in] max_no2 ãƒ‡ãƒ¼ã‚¿ï¼’ã®æœ€å¤§å€‹æ•°ï¼ˆä½ç½®ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ã®æœ€å¤§å€¤ï¼‰
  * 
- * @return ƒf[ƒ^‚ÌŒÂ”
+ * @return ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  */
 int urg3D::Get2SelectedData(int low1, int high1, pos *p1, int *no1, int max_no1,
 							int low2, int high2, pos *p2, int *no2, int max_no2)
@@ -164,27 +164,27 @@ int urg3D::Get2SelectedData(int low1, int high1, pos *p1, int *no1, int max_no1,
 }
 
 /*!
- * @brief ‚R‚Â‚Ì‚‚³‚ğw’è‚µ‚Äurg‚ÌƒfƒJƒ‹ƒgÀ•WŒn‚Å‚ÌáŠQ•¨ƒf[ƒ^‚ğæ“¾
- * ‚P‚Â‚ÉŠÖ‚µ‚Ä‚ÍC”½Ë‹­“x‚àæ“¾‚·‚éD
+ * @brief ï¼“ã¤ã®é«˜ã•ã‚’æŒ‡å®šã—ã¦urgã®ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã§ã®éšœå®³ç‰©ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ * ï¼‘ã¤ã«é–¢ã—ã¦ã¯ï¼Œåå°„å¼·åº¦ã‚‚å–å¾—ã™ã‚‹ï¼
  *
- * @param[in] low1 æ“¾‚·‚éƒf[ƒ^‚P‚ÌÅ¬‚‚³
- * @param[in] high1 æ“¾‚·‚éƒf[ƒ^‚P‚ÌÅ‘å‚‚³
- * @param[in] p1 ˆÊ’uƒf[ƒ^‚P‚ğ•Û‘¶‚·‚é”z—ñ
- * @param[out] no1 ƒf[ƒ^‚P‚ÌŒÂ”
- * @param[in] max_no1 ƒf[ƒ^‚P‚ÌÅ‘åŒÂ”iˆÊ’uƒf[ƒ^‚Ì”z—ñ‚ÌÅ‘å’lj
- * @param[in] low2 æ“¾‚·‚éƒf[ƒ^‚Q‚ÌÅ¬‚‚³
- * @param[in] high2 æ“¾‚·‚éƒf[ƒ^‚Q‚ÌÅ‘å‚‚³
- * @param[in] p2 ˆÊ’uƒf[ƒ^‚Q‚ğ•Û‘¶‚·‚é”z—ñ
- * @param[out] no2 ƒf[ƒ^‚Q‚ÌŒÂ”
- * @param[in] max_no2 ƒf[ƒ^‚Q‚ÌÅ‘åŒÂ”iˆÊ’uƒf[ƒ^‚Ì”z—ñ‚ÌÅ‘å’lj
- * @param[in] low3 æ“¾‚·‚éƒf[ƒ^‚R‚ÌÅ¬‚‚³
- * @param[in] high3 æ“¾‚·‚éƒf[ƒ^‚S‚ÌÅ‘å‚‚³
- * @param[in] p3 ˆÊ’uƒf[ƒ^‚R‚ğ•Û‘¶‚·‚é”z—ñi”½Ë‹­“x‚àŠÜ‚Şj
- * @param[out] no3 ƒf[ƒ^‚R‚ÌŒÂ”
- * @param[in] max_no3 ƒf[ƒ^‚R‚ÌÅ‘åŒÂ”iˆÊ’uƒf[ƒ^‚Ì”z—ñ‚ÌÅ‘å’lj
- * @param[in] min_intensity ”½Ë‹­“x‚ÌÅ¬’l
+ * @param[in] low1 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼‘ã®æœ€å°é«˜ã•
+ * @param[in] high1 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼‘ã®æœ€å¤§é«˜ã•
+ * @param[in] p1 ä½ç½®ãƒ‡ãƒ¼ã‚¿ï¼‘ã‚’ä¿å­˜ã™ã‚‹é…åˆ—
+ * @param[out] no1 ãƒ‡ãƒ¼ã‚¿ï¼‘ã®å€‹æ•°
+ * @param[in] max_no1 ãƒ‡ãƒ¼ã‚¿ï¼‘ã®æœ€å¤§å€‹æ•°ï¼ˆä½ç½®ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ã®æœ€å¤§å€¤ï¼‰
+ * @param[in] low2 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼’ã®æœ€å°é«˜ã•
+ * @param[in] high2 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼’ã®æœ€å¤§é«˜ã•
+ * @param[in] p2 ä½ç½®ãƒ‡ãƒ¼ã‚¿ï¼’ã‚’ä¿å­˜ã™ã‚‹é…åˆ—
+ * @param[out] no2 ãƒ‡ãƒ¼ã‚¿ï¼’ã®å€‹æ•°
+ * @param[in] max_no2 ãƒ‡ãƒ¼ã‚¿ï¼’ã®æœ€å¤§å€‹æ•°ï¼ˆä½ç½®ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ã®æœ€å¤§å€¤ï¼‰
+ * @param[in] low3 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼“ã®æœ€å°é«˜ã•
+ * @param[in] high3 å–å¾—ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ï¼”ã®æœ€å¤§é«˜ã•
+ * @param[in] p3 ä½ç½®ãƒ‡ãƒ¼ã‚¿ï¼“ã‚’ä¿å­˜ã™ã‚‹é…åˆ—ï¼ˆåå°„å¼·åº¦ã‚‚å«ã‚€ï¼‰
+ * @param[out] no3 ãƒ‡ãƒ¼ã‚¿ï¼“ã®å€‹æ•°
+ * @param[in] max_no3 ãƒ‡ãƒ¼ã‚¿ï¼“ã®æœ€å¤§å€‹æ•°ï¼ˆä½ç½®ãƒ‡ãƒ¼ã‚¿ã®é…åˆ—ã®æœ€å¤§å€¤ï¼‰
+ * @param[in] min_intensity åå°„å¼·åº¦ã®æœ€å°å€¤
  * 
- * @return ƒf[ƒ^‚ÌŒÂ”
+ * @return ãƒ‡ãƒ¼ã‚¿ã®å€‹æ•°
  */
 int urg3D::Get3SelectedData(int low1, int high1, pos *p1, int *no1, int max_no1,
 							int low2, int high2, pos *p2, int *no2, int max_no2,
@@ -213,11 +213,11 @@ int urg3D::Get3SelectedData(int low1, int high1, pos *p1, int *no1, int max_no1,
 }
 
 /*!
- * @brief ƒ`ƒ‹ƒgƒAƒ“ƒOƒ‹‚Ì“®‚«‚Ìİ’è
+ * @brief ãƒãƒ«ãƒˆã‚¢ãƒ³ã‚°ãƒ«ã®å‹•ãã®è¨­å®š
  *
- * @param[in] low Å¬Šp“x(deg) -90`90
- * @param[in] high Å‘åŠp“x(deg) -90`90
- * @param[in] period ŠÔ(sec) low->high, high->low‚É—v‚·‚éŠÔ
+ * @param[in] low æœ€å°è§’åº¦(deg) -90ï½90
+ * @param[in] high æœ€å¤§è§’åº¦(deg) -90ï½90
+ * @param[in] period æ™‚é–“(sec) low->high, high->lowã«è¦ã™ã‚‹æ™‚é–“
  * 
  * @return 0
  */
@@ -232,9 +232,9 @@ int urg3D::SetTiltAngle(int low, int high, float period)
 }
 
 /*!
- * @brief ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+ * @brief ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
  *
- * @param[in] lpParameter ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] lpParameter ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return S_OK
  */
@@ -244,8 +244,8 @@ DWORD WINAPI urg3D::ThreadFunc(LPVOID lpParameter)
 }
 
 /*!
- * @brief •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
- * Update()‚ğ50ms–ˆ‚ÉŒÄ‚Ño‚µ‚Ä‚¢‚éD
+ * @brief åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+ * Update()ã‚’50msæ¯ã«å‘¼ã³å‡ºã—ã¦ã„ã‚‹ï¼
  *
  * @return S_OK
  */
@@ -260,11 +260,11 @@ DWORD WINAPI urg3D::ExecThread()
 
 
 /*!
- * @brief ’èŠú“I(50ms)‚ÉŒÄ‚Ño‚³‚ê‚éŠÖ”
- * 1)ƒT[ƒ{ƒ‚[ƒ^‚Ì§Œä
- * 2)ƒT[ƒ{ƒ‚[ƒ^‚ÌŠp“x‚Ìæ“¾
- * 3)URG‚Ìƒf[ƒ^‚ğæ“¾
- * 4)ƒfƒJƒ‹ƒgÀ•WŒn‚Ìè—Lƒf[ƒ^‚É•ÏŠ·‚µ‚Ä”z—ñ‚É•Û‘¶
+ * @brief å®šæœŸçš„(50ms)ã«å‘¼ã³å‡ºã•ã‚Œã‚‹é–¢æ•°
+ * 1)ã‚µãƒ¼ãƒœãƒ¢ãƒ¼ã‚¿ã®åˆ¶å¾¡
+ * 2)ã‚µãƒ¼ãƒœãƒ¢ãƒ¼ã‚¿ã®è§’åº¦ã®å–å¾—
+ * 3)URGã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
+ * 4)ãƒ‡ã‚«ãƒ«ãƒˆåº§æ¨™ç³»ã®å æœ‰ãƒ‡ãƒ¼ã‚¿ã«å¤‰æ›ã—ã¦é…åˆ—ã«ä¿å­˜
  *
  * @return 0
  */
@@ -282,14 +282,14 @@ int urg3D::Update()
 		} else {
 			RSMove(hComm, (tilt_low  + SERVO_OFFSET) * 10, (int)(tilt_period * 100));
 		}
-		RSStartGetAngle(hComm);				// tiltŠp“x‚Ìæ“¾‚ğn‚ß‚éD
+		RSStartGetAngle(hComm);				// tiltè§’åº¦ã®å–å¾—ã‚’å§‹ã‚ã‚‹ï¼
 		is_up ^= 1;
 		count = 0;
 		return 0;
 	}
 
 	if (is_first){
-		RSStartGetAngle(hComm);				// tiltŠp“x‚Ìæ“¾‚ğn‚ß‚éD
+		RSStartGetAngle(hComm);				// tiltè§’åº¦ã®å–å¾—ã‚’å§‹ã‚ã‚‹ï¼
 		urg.StartMeasure();
 		is_first = 0;
 		return 0;
@@ -300,7 +300,7 @@ int urg3D::Update()
 	if (urg.n_data == urg.GetData(length, intensity)){
 		n = urg.TranslateCartesian(tilt_angle, length, p);
 	}
-	WaitForSingleObject(mutex, INFINITE);	// mutex‚ÌŠJn
+	WaitForSingleObject(mutex, INFINITE);	// mutexã®é–‹å§‹
 	pos *q = p;
 	int *r = intensity;
 	for(int i = 0; (i < n)&&(num < MAX_NUM);i ++){
@@ -311,23 +311,23 @@ int urg3D::Update()
 			q ++;
 		}
 	}
-	ReleaseMutex(mutex);					// mutex‚ÌI—¹
+	ReleaseMutex(mutex);					// mutexã®çµ‚äº†
 
-	// Log‚É‘‚«o‚µ
+	// Logã«æ›¸ãå‡ºã—
 	LOG("tilt_angle:%f\n", tilt_angle);
-	LOG("\n");								// ŠÔ‚ğ•\¦‚·‚é‚½‚ß 
+	LOG("\n");								// æ™‚é–“ã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ 
 	for(int i = 0; i < num ;i ++){
 		LOG_WITHOUT_TIME("urg:(%d,%d,%d),intensity:%d\n",
 			upos_inten[i].pos.x, upos_inten[i].pos.y, upos_inten[i].pos.z, upos_inten[i].intensity); 
 	}
 
-	RSStartGetAngle(hComm);					// tiltŠp“x‚Ìæ“¾‚ğŠJn
+	RSStartGetAngle(hComm);					// tiltè§’åº¦ã®å–å¾—ã‚’é–‹å§‹
 	
 	return 0;
 }
 
 /*!
- * @brief URG3D‚Ìƒf[ƒ^‚ğƒNƒŠƒA‚·‚éD
+ * @brief URG3Dã®ãƒ‡ãƒ¼ã‚¿ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ï¼
  * 
  * @return 0
  */

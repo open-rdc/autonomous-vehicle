@@ -1,14 +1,14 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "imageProcessing.h"
 
 /*!
  * @class imageProcessing
- * @brief ‰æ‘œˆ—‚É‚æ‚è’Tõ‘ÎÛÒ‚ğŒŸo‚µ‚ÄC‚»‚Ì—L–³‚Æ•ûŒü‚ğ’m‚ç‚¹‚éƒNƒ‰ƒX
+ * @brief ç”»åƒå‡¦ç†ã«ã‚ˆã‚Šæ¢ç´¢å¯¾è±¡è€…ã‚’æ¤œå‡ºã—ã¦ï¼Œãã®æœ‰ç„¡ã¨æ–¹å‘ã‚’çŸ¥ã‚‰ã›ã‚‹ã‚¯ãƒ©ã‚¹
  * @author Y.Hayashibara
  */
 
 /*!
- * @brief ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 imageProcessing::imageProcessing(void):
 	terminate(0), capture(NULL)
@@ -16,15 +16,15 @@ imageProcessing::imageProcessing(void):
 }
 
 /*!
- * @brief ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  */
 imageProcessing::~imageProcessing(void)
 {
 }
 
 /*!
- * @brief ‰Šú‰»
- * ƒJƒƒ‰‚â‰æ‘œˆ—‚Ì‰Šú‰»‚ğs‚¢C‰æ‘œˆ—‚ÌƒXƒŒƒbƒh‚ğ—§‚¿ã‚°‚éD
+ * @brief åˆæœŸåŒ–
+ * ã‚«ãƒ¡ãƒ©ã‚„ç”»åƒå‡¦ç†ã®åˆæœŸåŒ–ã‚’è¡Œã„ï¼Œç”»åƒå‡¦ç†ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ç«‹ã¡ä¸Šã’ã‚‹ï¼
  */
 void imageProcessing::init(void)
 {
@@ -33,27 +33,27 @@ void imageProcessing::init(void)
 	capture = cvCreateCameraCapture(0);
 	if (capture == NULL) AfxMessageBox("Not Find Camera Device");
 
-	// ‘¬“x§Œä‚ÌƒXƒŒƒbƒh‚ğŠJn
+	// é€Ÿåº¦åˆ¶å¾¡ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’é–‹å§‹
 	DWORD threadId;	
 	HANDLE hThread = CreateThread(NULL, 0, ThreadFunc, (LPVOID)this, 0, &threadId); 
-	// ƒXƒŒƒbƒh‚Ì—Dæ‡ˆÊ‚ğã‚°‚é
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å„ªå…ˆé †ä½ã‚’ä¸Šã’ã‚‹
 	SetThreadPriority(hThread, THREAD_PRIORITY_NORMAL);
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  */
 void imageProcessing::close(void)
 {
-	terminate = 1;				// ‘¬“x§ŒäƒXƒŒƒbƒh‚Ì’â~
+	terminate = 1;				// é€Ÿåº¦åˆ¶å¾¡ã‚¹ãƒ¬ãƒƒãƒ‰ã®åœæ­¢
 	CloseHandle(mutex);
 	cvDestroyWindow ("Camera");
 }
 
 /*!
- * @brief üŠú“I‚És‚¤ˆ—
- * ‰æ‘œˆ—‚ğs‚¢CŒ‹‰Ê‚ğƒNƒ‰ƒX•Ï”‚É‘ã“ü‚·‚éD
- * ‰æ‘œˆ—‚µ‚½Œ‹‰Ê‚ğƒEƒBƒ“ƒhƒE‚É•\¦‚·‚éD
+ * @brief å‘¨æœŸçš„ã«è¡Œã†å‡¦ç†
+ * ç”»åƒå‡¦ç†ã‚’è¡Œã„ï¼Œçµæœã‚’ã‚¯ãƒ©ã‚¹å¤‰æ•°ã«ä»£å…¥ã™ã‚‹ï¼
+ * ç”»åƒå‡¦ç†ã—ãŸçµæœã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«è¡¨ç¤ºã™ã‚‹ï¼
  */
 void imageProcessing::update(void)
 {
@@ -66,7 +66,7 @@ void imageProcessing::update(void)
 		char s[100];
 		time_t timer = time(NULL);
 		struct tm *date = localtime(&timer);
-		if ((date->tm_sec != prev_sec)&&(!img.empty())){	// •Û‘¶‚Í‚P•bŠÔ‚É‚P–‡ˆÈ“à
+		if ((date->tm_sec != prev_sec)&&(!img.empty())){	// ä¿å­˜ã¯ï¼‘ç§’é–“ã«ï¼‘æšä»¥å†…
 			prev_sec = date->tm_sec;
 			sprintf(s, "image%04d%02d%02d%02d%02d%02d.bmp", date->tm_year+1900, date->tm_mon+1, date->tm_mday, date->tm_hour, date->tm_min, date->tm_sec);
 			cv::imwrite(s, img);
@@ -74,31 +74,31 @@ void imageProcessing::update(void)
 	}
 #endif
 
-	// Œ‹‰Ê‚Ì•`‰æ
+	// çµæœã®æç”»
 	namedWindow("Camera", CV_WINDOW_AUTOSIZE|CV_WINDOW_FREERATIO);
 	imshow( "Camera", img ); 
-	waitKey(1000);														// 1000ms(1•b)ƒEƒGƒCƒg
+	waitKey(1000);														// 1000ms(1ç§’)ã‚¦ã‚¨ã‚¤ãƒˆ
 }
 
 /*!
- * @brief ŒŸo‚µ‚½Œ‹‰Ê‚ğ“n‚·•Ï”
+ * @brief æ¤œå‡ºã—ãŸçµæœã‚’æ¸¡ã™å¤‰æ•°
  *
- * @param[out] cf    ŠmM“x(0.0:ƒ^[ƒQƒbƒg‚Å‚Í‚È‚¢`1.0:ƒ^[ƒQƒbƒg‚Å‚ ‚é)
+ * @param[out] cf    ç¢ºä¿¡åº¦(0.0:ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã§ã¯ãªã„ï½1.0:ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã§ã‚ã‚‹)
  *
- * @return true:”­Œ©, false:–¢”­Œ©
+ * @return true:ç™ºè¦‹, false:æœªç™ºè¦‹
  */
 bool imageProcessing::checkTarget(float *cf)
 {
-	// ŒÄ‚Ño‚³‚ê‚Ä‰æ‘œˆ—C‚à‚µ‚­‚ÍŠù‚Éˆ—‚µ‚½Œ‹‰Ê‚ğ–ß‚·D
-	*cf = 0.0;			// ƒ^[ƒQƒbƒg‚Å‚Í‚È‚¢D
+	// å‘¼ã³å‡ºã•ã‚Œã¦ç”»åƒå‡¦ç†ï¼Œã‚‚ã—ãã¯æ—¢ã«å‡¦ç†ã—ãŸçµæœã‚’æˆ»ã™ï¼
+	*cf = 0.0;			// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã§ã¯ãªã„ï¼
 
 	return false;
 }
 
 /*!
- * @brief ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+ * @brief ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
  *
- * @param[in] lpParameter ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒ|ƒCƒ“ƒ^
+ * @param[in] lpParameter ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
  * 
  * @return S_OK
  */
@@ -108,8 +108,8 @@ DWORD WINAPI imageProcessing::ThreadFunc(LPVOID lpParameter)
 }
 
 /*!
- * @brief •ÊƒXƒŒƒbƒh‚Å“®ì‚·‚éŠÖ”
- * ƒƒ{ƒbƒg‚Ì§Œä‚ğ•ÊƒXƒŒƒbƒh‚Ås‚¤D
+ * @brief åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§å‹•ä½œã™ã‚‹é–¢æ•°
+ * ãƒ­ãƒœãƒƒãƒˆã®åˆ¶å¾¡ã‚’åˆ¥ã‚¹ãƒ¬ãƒƒãƒ‰ã§è¡Œã†ï¼
  *
  * @return S_OK
  */

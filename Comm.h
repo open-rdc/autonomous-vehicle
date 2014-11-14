@@ -1,20 +1,20 @@
-#pragma once
+ï»¿#pragma once
 
-#define DEFAULT_BAUDRATE 19200								//! •W€‚ÌƒrƒbƒgƒŒ[ƒg
+#define DEFAULT_BAUDRATE 19200								//! æ¨™æº–ã®ãƒ“ãƒƒãƒˆãƒ¬ãƒ¼ãƒˆ
 
 class CComm : public CWnd
 {
 public:
-	CComm();												// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	virtual ~CComm();										// ƒfƒXƒgƒ‰ƒNƒ^
+	CComm();												// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~CComm();										// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
 public:
-	int com_port;											//! ƒ|[ƒg”Ô†
-	HANDLE hComm;											//! ƒnƒ“ƒhƒ‰
+	int com_port;											//! ãƒãƒ¼ãƒˆç•ªå·
+	HANDLE hComm;											//! ãƒãƒ³ãƒ‰ãƒ©
 	
-	bool Open(int port, int baudrate = DEFAULT_BAUDRATE);	// COMƒ|[ƒg‚ÌƒI[ƒvƒ“
-	bool Close(void);										// COMƒ|[ƒg‚ÌƒNƒ[ƒY
-	int Send(char *data, int len = 0);						// ƒf[ƒ^‚ğ‘—M‚·‚é
-	int Recv(char *data, int max_len);						// ƒf[ƒ^‚ğóM‚·‚é
-	bool ClearRecvBuf(void);								// ƒf[ƒ^ƒoƒbƒtƒ@‚ğƒNƒŠƒA‚·‚é
+	bool Open(int port, int baudrate = DEFAULT_BAUDRATE);	// COMãƒãƒ¼ãƒˆã®ã‚ªãƒ¼ãƒ—ãƒ³
+	bool Close(void);										// COMãƒãƒ¼ãƒˆã®ã‚¯ãƒ­ãƒ¼ã‚º
+	int Send(char *data, int len = 0);						// ãƒ‡ãƒ¼ã‚¿ã‚’é€ä¿¡ã™ã‚‹
+	int Recv(char *data, int max_len);						// ãƒ‡ãƒ¼ã‚¿ã‚’å—ä¿¡ã™ã‚‹
+	bool ClearRecvBuf(void);								// ãƒ‡ãƒ¼ã‚¿ãƒãƒƒãƒ•ã‚¡ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹
 };

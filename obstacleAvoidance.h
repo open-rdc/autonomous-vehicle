@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "dataType.h"
 
 class obstacleAvoidance
@@ -8,56 +8,56 @@ public:
 	virtual ~obstacleAvoidance();
 
 private:
-	static const int MARGIN = 200;				//! ��Q���Ƃ��Č��o����̈�̃��{�b�g�̕�����Ƃ��鍶�E�̃}�[�W�� (mm)
-	static const int TREAD  = 282;				//! �g���b�h�i���E�̃^�C���̕��j (mm)
-	static const int STOP_LENGTH = 500;			//! ��~���鋗�� (mm)
-	static const int SLOW_DOWN_LENGTH = 1000;	//! �������J�n���鋗�� (mm)
-	static const int REROUTE_PERIOD = 10;		//! ��Q�������o���Ă��烊���[�g����܂ł̎��� (s)
+	static const int MARGIN = 200;				//! 障害物として検出する領域のロボットの幅を基準とする左右のマージン (mm)
+	static const int TREAD  = 282;				//! トレッド（左右のタイヤの幅） (mm)
+	static const int STOP_LENGTH = 500;			//! 停止する距離 (mm)
+	static const int SLOW_DOWN_LENGTH = 1000;	//! 減速を開始する距離 (mm)
+	static const int REROUTE_PERIOD = 10;		//! 障害物を検出してからリルートするまでの時間 (s)
 
-	// ��Q���̃f�[�^���󂯎��f�[�^�̈�
-	static const int MAX_OBS_NUM = 1000;		//! ��Q���̍ő�l
-	pos obs[MAX_OBS_NUM];						//! ��Q���̈ʒu�f�[�^
-	int obs_num;								//! ��Q���̌�
+	// 障害物のデータを受け取るデータ領域
+	static const int MAX_OBS_NUM = 1000;		//! 障害物の最大値
+	pos obs[MAX_OBS_NUM];						//! 障害物の位置データ
+	int obs_num;								//! 障害物の個数
 
-	int is_obstacle;							//! ��Q���̗L���iCENTER�j
+	int is_obstacle;							//! 障害物の有無（CENTER）
 	int is_need_stop;
-	float slow_down_factor;						//! �����̔䗦�iSTOP_LENGTH�ȉ���0, SLOW_DOWN_LENGTH��1�j
-												//! �����ڕW���x�ɂ����邱�ƂŁC���X�ɒ�~����
-	long obstacle_detect_time;					//! ��Q�������o��������(ms)
-	float obstacle_detect_period;				//! ��Q���̌��o���Ă��鎞��(s)
-	int is_reroute;								//! �����[�g�����ǂ���
-	int reroute_direction;						//! �����[�g�̕����@(���F+1, �E -1)
+	float slow_down_factor;						//! 減速の比率（STOP_LENGTH以下で0, SLOW_DOWN_LENGTHで1）
+												//! これを目標速度にかけることで，徐々に停止する
+	long obstacle_detect_time;					//! 障害物を検出した時間(ms)
+	float obstacle_detect_period;				//! 障害物の検出している時間(s)
+	int is_reroute;								//! リルート中かどうか
+	int reroute_direction;						//! リルートの方向　(左：+1, 右 -1)
 
 	int getDataNum(int x_min, int y_min, int x_max, int y_max, int *nearest_x);
-													// (x_min,y_min)-(x_max,y_max)�Ɋ܂܂���Q���̌����v�Z
-													// nearest_x�ɍł��߂�x���W��߂�
+													// (x_min,y_min)-(x_max,y_max)に含まれる障害物の個数を計算
+													// nearest_xに最も近いx座標を戻す
 	int isDetectObstacle(int right_center_left, int *min_x);
-													// �E�C�����C���ɏ�Q�������邩���v������
-	static const int RIGHT = -1, CENTER = 0, LEFT = +1;	//! �E�C�����C���̒萔
+													// 右，中央，左に障害物があるかを計測する
+	static const int RIGHT = -1, CENTER = 0, LEFT = +1;	//! 右，中央，左の定数
 
 public:
 
-	int Init();										// ������
-	int Close();									// �I������
-	int isObstacle();								// ��Q�������邩�ǂ�����߂�
-	float getSlowDownFactor();						// �����̔䗦��߂�
-	int setData(pos *p, int num);					// ��Q���̈ʒu�f�[�^��ݒ�
-	int isReroute();					// �����[�g�����ǂ���
-	int getRerouteDirection();						// �����[�g�̕���
-	int finishReroute();							// �����[�g���I������
-	int Update();									// ��Q������̏������s���D(setData���ɌĂяo�����)
-	int isNeedStop();								// ��~���K�v�ȏ󋵂��ǂ�����߂��@(1:��~���K�v�C0:�K�v���Ȃ��j
+	int Init();										// 初期化
+	int Close();									// 終了処理
+	int isObstacle();								// 障害物があるかどうかを戻す
+	float getSlowDownFactor();						// 減速の比率を戻す
+	int setData(pos *p, int num);					// 障害物の位置データを設定
+	int isReroute();					// リルート中かどうか
+	int getRerouteDirection();						// リルートの方向
+	int finishReroute();							// リルートを終了する
+	int Update();									// 障害物回避の処理を行う．(setData毎に呼び出される)
+	int isNeedStop();								// 停止が必要な状況かどうかを戻す　(1:停止が必要，0:必要がない）
 };
 
 /*
- * ���菇
- * 1) ��Q�������o�iSLOW_DOWN_LENGTH���猸���J�n�CSTOP_LENGTH�Œ�~�j
- * 2) �b�����Ԃ��o�߂����烊���[�g�J�n(��Q�����o����REROUTE_PERIOD�o��)�@�yToDo: �������疢�����z
- * 3) ���E�̋󂫏󋵂����o���ċ󂢂Ă���΂�����Ƀ����[�g�i�E�D��j
- * 4) �󂢂Ă��������90���^�[��(forceControl) ���S�ɐ����D��
- * 5) ��Q�����������`�F�b�N�i�����90���߂��ċt�����Ƀ^�[���j
- * 6) ���[�g�ɃI�t�Z�b�g�𑫂��Ēʏ�̐�����s���D(getRerouteOffset)
- * 7) ��Q�������o���Ȃ��Ȃ����猳�̕�����90������
- * 8) �ʏ�ʂ葖�s
+ * ■手順
+ * 1) 障害物を検出（SLOW_DOWN_LENGTHから減速開始，STOP_LENGTHで停止）
+ * 2) 暫く時間が経過したらリルート開始(障害物検出からREROUTE_PERIOD経過)　【ToDo: ここから未実装】
+ * 3) 左右の空き状況を検出して空いていればそちらにリルート（右優先）
+ * 4) 空いている方向に90°ターン(forceControl) 完全に制御を奪う
+ * 5) 障害物が無いかチェック（あれば90°戻して逆方向にターン）
+ * 6) ルートにオフセットを足して通常の制御を行う．(getRerouteOffset)
+ * 7) 障害物を検出しなくなったら元の方向に90°旋回
+ * 8) 通常通り走行
  *
  */

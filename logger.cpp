@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "logger.h"
 #include <mmsystem.h>
 #include <time.h>
@@ -6,9 +6,9 @@
 FILE* logger::fp = NULL;
 
 /*!
- * @brief ‰Šú‰»
+ * @brief åˆæœŸåŒ–
  *
- * @param[in] filename	ƒtƒ@ƒCƒ‹–¼
+ * @param[in] filename	ãƒ•ã‚¡ã‚¤ãƒ«å
  */
 void logger::Init(CString filename)
 {
@@ -19,10 +19,10 @@ void logger::Init(CString filename)
 }
 
 /*!
- * @brief ƒƒOƒtƒ@ƒCƒ‹‚Ö‚Ì’Ç‰Á‘‚«‚İ
- * ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv‚ÌŒãCw’è‚³‚ê‚½•¶šƒf[ƒ^‚ğ‘‚«‚ŞD
+ * @brief ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®è¿½åŠ æ›¸ãè¾¼ã¿
+ * ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ã®å¾Œï¼ŒæŒ‡å®šã•ã‚ŒãŸæ–‡å­—ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ï¼
  * 
- * @param[in] str	‘‚«‚Ş•¶š—ñiƒtƒH[ƒ}ƒbƒgw’èq‚ğg—p‰Â”\j
+ * @param[in] str	æ›¸ãè¾¼ã‚€æ–‡å­—åˆ—ï¼ˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæŒ‡å®šå­ã‚’ä½¿ç”¨å¯èƒ½ï¼‰
  */
 void logger::Write(const char* str, ...)
 {
@@ -38,10 +38,10 @@ void logger::Write(const char* str, ...)
 }
 
 /*!
- * @brief ƒƒOƒtƒ@ƒCƒ‹‚Ö‚Ì’Ç‰Á‘‚«‚İ
- * ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv–³‚µ‚ÅCw’è‚³‚ê‚½•¶šƒf[ƒ^‚ğ‘‚«‚ŞD
+ * @brief ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®è¿½åŠ æ›¸ãè¾¼ã¿
+ * ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ç„¡ã—ã§ï¼ŒæŒ‡å®šã•ã‚ŒãŸæ–‡å­—ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€ï¼
  *
- * @param[in] str	‘‚«‚Ş•¶š—ñiƒtƒH[ƒ}ƒbƒgw’èq‚ğg—p‰Â”\j
+ * @param[in] str	æ›¸ãè¾¼ã‚€æ–‡å­—åˆ—ï¼ˆãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆæŒ‡å®šå­ã‚’ä½¿ç”¨å¯èƒ½ï¼‰
  */
 void logger::WriteWithoutTime(const char* str, ...)
 {
@@ -55,7 +55,7 @@ void logger::WriteWithoutTime(const char* str, ...)
 }
 
 /*!
- * @brief I—¹ˆ—
+ * @brief çµ‚äº†å‡¦ç†
  */
 void logger::Close()
 {
