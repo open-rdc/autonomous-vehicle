@@ -1,6 +1,6 @@
 ## About
 
-This program is developed for Tsukuba Challenge 2013.
+This program is developed for Tsukuba Challenge 2014-2013.
 
 Tsukuba Challenge Web Page<br>
 http://www.tsukubachallenge.jp/
@@ -16,7 +16,7 @@ http://www.hayashibara.net/
 
 ## License
 
-Copyright (c) 2013-2014, Robot Design and Control Lab. (MIT License)
+Copyright (c) 2014-2013, Robot Design and Control Lab. (MIT License)
 
 See LICENSE for more info.
 
