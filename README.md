@@ -2,7 +2,8 @@
 
 This program is developed for Tsukuba Challenge 2014-2013.
 
-Tsukuba Challenge Web Page<br>
+Tsukuba Challenge Web Page
+
 http://www.tsukubachallenge.jp/
 
 In the challenge, our robot traveled 1081m autonomously.
