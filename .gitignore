@@ -6,3 +6,6 @@ obj/
 *.ncb
 *.user
 *~
+*.bmp
+*.dll
+*.txt

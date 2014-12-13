@@ -26,7 +26,7 @@
 #define USE_URG3D
 #define USE_MEGA_ROVER
 #define USE_IMU
-#define USE_CAMERA
+//#define USE_CAMERA
 
 // アプリケーションのバージョン情報に使われる CAboutDlg ダイアログ
 
